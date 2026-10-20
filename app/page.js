@@ -1,16 +1,79 @@
 'use client';
 import {useState} from 'react';
-const features=[['🌎','Programa Bilíngue','Inglês integrado à rotina para ampliar repertório e preparar para um mundo sem fronteiras.'],['🎓','Maternal ao 5º ano','Uma jornada contínua, respeitando cada fase do desenvolvimento da criança.'],['☀️','Integral e Semi-integral','Mais flexibilidade para as famílias, com cuidado, experiências e aprendizagem.'],['❄️','Salas climatizadas','Ambientes confortáveis e preparados para favorecer concentração e bem-estar.'],['🛝','2 parquinhos','Espaços estruturados para brincar, conviver, descobrir e criar memórias.'],['🏀','Quadra esportiva','Movimento, esporte e desenvolvimento acontecendo também fora da sala.'],['📚','Biblioteca','Um espaço para despertar imaginação, curiosidade e o prazer pela leitura.']];
-const stages=[['01','Educação Infantil','Maternal e primeiras descobertas','Aprender brincando, convivendo e explorando o mundo com segurança e afeto.'],['02','Ensino Fundamental','1º ao 5º ano','Conhecimento, autonomia e novas habilidades para avançar com confiança.']];
-export default function Home(){const [open,setOpen]=useState(false);return <main>
-<header><a className="brand" href="#inicio"><span className="leaf">✦</span><span><b>ESCOLA PARQUE</b><small>Educação Infantil e Ensino Fundamental</small></span></a><button className="menu" onClick={()=>setOpen(!open)}>☰</button><nav className={open?'open':''}><a href="#escola">A Escola</a><a href="#ensino">Ensino</a><a href="#bilingue">Bilíngue</a><a href="#estrutura">Estrutura</a><a href="#integral">Integral</a><a className="navcta" href="#contato">Agende uma visita</a></nav></header>
-<section id="inicio" className="hero"><div className="orb one"/><div className="orb two"/><div className="heroText"><span className="eyebrow">EDUCAÇÃO QUE ACOLHE • ENSINO QUE TRANSFORMA</span><h1>Um lugar para <em>aprender, crescer</em> e descobrir o mundo.</h1><p>Da Educação Infantil ao 5º ano, uma formação completa, acolhedora e preparada para o futuro.</p><div className="actions"><a className="primary" href="#contato">Agende uma visita <b>→</b></a><a className="secondary" href="#escola">Conheça a Escola</a></div><div className="mini"><span>✓ Programa Bilíngue</span><span>✓ Integral e Semi-integral</span></div></div><div className="heroVisual"><div className="photo"><div className="photoContent"><span>🌿</span><strong>Um espaço para viver<br/>grandes descobertas.</strong></div></div><div className="floating"><b>Do Maternal ao 5º ano</b><small>Uma escola para cada nova fase.</small></div></div></section>
-<section id="escola" className="intro"><div><span className="eyebrow">POR QUE ESCOLA PARQUE?</span><h2>Educação por inteiro.<br/><em>Infância em movimento.</em></h2></div><p>Acreditamos em uma educação que vai além do conteúdo. Criamos um ambiente onde cada criança é vista, acolhida e estimulada a desenvolver todo o seu potencial.</p></section>
-<section className="featureGrid">{features.map((f,i)=><article key={i} className={i===0?'featured':''}><span className="icon">{f[0]}</span><h3>{f[1]}</h3><p>{f[2]}</p><span className="arrow">↗</span></article>)}</section>
-<section id="bilingue" className="bilingual"><div className="visualCard"><div className="globe">HELLO<br/><span>🌎</span><br/>WORLD!</div><div className="badge">Inglês que faz parte<br/><b>da rotina.</b></div></div><div className="copy"><span className="eyebrow light">PROGRAMA BILÍNGUE</span><h2>Aprender inglês.<br/><em>Viver novas possibilidades.</em></h2><p>Na Escola Parque, o inglês acontece de forma contextualizada e natural. A criança amplia vocabulário, confiança e visão de mundo enquanto aprende e se diverte.</p><div className="checks"><span>✓ Vivência integrada à rotina</span><span>✓ Aprendizagem contextualizada</span><span>✓ Desenvolvimento da comunicação</span></div><a href="#contato">Quero conhecer o programa →</a></div></section>
-<section id="ensino" className="stages"><div className="center"><span className="eyebrow">UMA JORNADA COMPLETA</span><h2>Cada fase tem seu tempo.<br/><em>Cada criança, seu jeito de aprender.</em></h2></div><div className="stageGrid">{stages.map(s=><article key={s[0]}><span className="num">{s[0]}</span><small>{s[2]}</small><h3>{s[1]}</h3><p>{s[3]}</p><a href="#contato">Saiba mais →</a></article>)}</div></section>
-<section id="estrutura" className="structure"><div className="structureCopy"><span className="eyebrow">NOSSA ESTRUTURA</span><h2>Espaços pensados para <em>aprender e ser feliz.</em></h2><p>Ambientes seguros, acolhedores e preparados para transformar todos os momentos da escola em oportunidades de desenvolvimento.</p><div className="chips"><span>❄ Salas climatizadas</span><span>🛝 2 parquinhos</span><span>🏀 Quadra esportiva</span><span>📚 Biblioteca</span></div></div><div className="gallery"><div className="g1">PARQUINHOS <b>Brincar também é aprender.</b></div><div className="g2">QUADRA <b>Corpo em movimento.</b></div><div className="g3">BIBLIOTECA <b>Histórias que abrem mundos.</b></div></div></section>
-<section id="integral" className="integral"><div><span className="eyebrow">MAIS TEMPO. MAIS EXPERIÊNCIAS.</span><h2>Integral e Semi-integral</h2><p>Uma rotina que combina aprendizagem, cuidado e novas experiências, oferecendo tranquilidade para a família e um dia cheio de significado para a criança.</p></div><div className="schedule"><span>☀️</span><b>Uma rotina completa</b><small>acolhimento • aprendizagem • alimentação • atividades • convivência</small></div></section>
-<section id="contato" className="cta"><span>🌱</span><h2>O próximo capítulo da história<br/>do seu filho pode começar aqui.</h2><p>Venha conhecer de perto a Escola Parque, nossa proposta e os espaços preparados para acolher sua família.</p><a href="#">Agende uma visita <b>→</b></a><small>Matrículas e visitas • Atendimento personalizado</small></section>
-<footer><div className="brand foot"><span className="leaf">✦</span><span><b>ESCOLA PARQUE</b><small>Educação Infantil e Ensino Fundamental</small></span></div><p>Do Maternal ao 5º ano • Programa Bilíngue • Integral e Semi-integral</p><p className="copyright">© 2026 Escola Parque. Todos os direitos reservados.</p></footer>
-</main>}
+
+const benefits=[
+ ['01','Programa Bilíngue','Inglês presente na rotina, com experiências que ampliam repertório e confiança.'],
+ ['02','Integral & Semi-integral','Uma rotina completa para a criança e mais tranquilidade para a família.'],
+ ['03','Maternal ao 5º ano','Uma jornada contínua que acompanha cada etapa do desenvolvimento.'],
+ ['04','Estrutura completa','Salas climatizadas, biblioteca, quadra e dois parquinhos estruturados.']
+];
+
+function Logo(){return <div className="logo"><div className="logoMark"><i/><i/><i/><i/><i/><b/><b/></div><div className="logoWords"><strong>ESCOLA PARQUE</strong><small>Educação Infantil e Ensino Fundamental</small></div></div>}
+
+export default function Home(){
+ const [open,setOpen]=useState(false);
+ return <main>
+  <header className="topbar">
+   <a href="#inicio" aria-label="Escola Parque"><Logo/></a>
+   <button className="menuBtn" onClick={()=>setOpen(!open)} aria-label="Abrir menu"><span/><span/></button>
+   <nav className={open?'open':''}>
+    <a href="#escola">A Escola</a><a href="#ensino">Ensino</a><a href="#bilingue">Bilíngue</a><a href="#estrutura">Estrutura</a>
+    <a className="pill" href="#contato">Agendar visita <span>↗</span></a>
+   </nav>
+  </header>
+
+  <section id="inicio" className="hero">
+   <div className="grain"/><div className="heroGlow"/>
+   <div className="heroCopy">
+    <div className="kicker"><span/> EDUCAÇÃO PARA O PRESENTE E PARA O FUTURO</div>
+    <h1>Onde a infância<br/>ganha <em>espaço</em><br/>para florescer.</h1>
+    <p>Uma escola acolhedora, contemporânea e completa. Do Maternal ao 5º ano, cada descoberta vira parte de uma grande história.</p>
+    <div className="heroActions"><a className="btnMain" href="#contato">Agende uma visita <span>↗</span></a><a className="textLink" href="#escola">Descubra a Escola <span>↓</span></a></div>
+   </div>
+   <div className="heroArt" aria-hidden="true">
+    <div className="arch"><div className="archInner"><div className="bigLeaf">✦</div><p>APRENDER<br/><b>É DESCOBRIR</b></p></div></div>
+    <div className="orbit orbit1">BILÍNGUE</div><div className="orbit orbit2">MATERNAL → 5º ANO</div>
+    <div className="scribble">∞</div>
+   </div>
+   <div className="scrollNote">SCROLL TO EXPLORE <span>↓</span></div>
+  </section>
+
+  <section className="marquee"><div>APRENDER <b>✦</b> CRESCER <b>✦</b> DESCOBRIR <b>✦</b> CRIAR <b>✦</b> CONVIVER <b>✦</b> APRENDER <b>✦</b> CRESCER <b>✦</b></div></section>
+
+  <section id="escola" className="manifesto">
+   <div className="sectionNo">01 / A ESCOLA</div>
+   <div className="manifestoTitle"><span>Mais que uma escola.</span><h2>Um lugar onde cada criança pode ser <em>inteira.</em></h2></div>
+   <div className="manifestoText"><p>Na Escola Parque, aprender não acontece só entre quatro paredes. Acontece na leitura, no movimento, nas brincadeiras, nas relações e em cada nova pergunta.</p><a href="#ensino">Conheça nossa proposta <span>↗</span></a></div>
+  </section>
+
+  <section className="benefits">
+   {benefits.map((b,i)=><article key={b[0]}><div className="benefitTop"><span>{b[0]}</span><i>↗</i></div><h3>{b[1]}</h3><p>{b[2]}</p><div className="line"/></article>)}
+  </section>
+
+  <section id="bilingue" className="bilingual">
+   <div className="bilingualArt"><div className="hello">HELLO!</div><div className="world">WORLD<br/>IS YOURS.</div><div className="roundText">ENGLISH • EVERY DAY • ENGLISH • EVERY DAY •</div></div>
+   <div className="bilingualCopy"><div className="sectionNo light">02 / PROGRAMA BILÍNGUE</div><h2>Inglês que sai do livro e <em>entra na vida.</em></h2><p>O contato com o inglês acontece de maneira contextualizada e natural. A criança aprende enquanto interage, brinca, cria e se comunica.</p><div className="tags"><span>Vivência diária</span><span>Comunicação</span><span>Novas culturas</span></div><a className="btnLight" href="#contato">Conhecer o programa <span>↗</span></a></div>
+  </section>
+
+  <section id="ensino" className="journey">
+   <div className="journeyHead"><div className="sectionNo">03 / JORNADA DE ENSINO</div><h2>Do primeiro passo<br/>às <em>grandes ideias.</em></h2><p>Uma formação que respeita o tempo da infância e evolui junto com cada aluno.</p></div>
+   <div className="journeyCards">
+    <article className="stage stageA"><span>MATERNAL</span><div><small>DESCOBRIR</small><h3>Educação<br/>Infantil</h3><p>Afeto, brincadeira e experiências que despertam curiosidade e autonomia.</p></div><b>01</b></article>
+    <article className="stage stageB"><span>1º AO 5º ANO</span><div><small>EVOLUIR</small><h3>Ensino<br/>Fundamental</h3><p>Conhecimento, protagonismo e habilidades para seguir aprendendo com confiança.</p></div><b>02</b></article>
+   </div>
+  </section>
+
+  <section id="estrutura" className="spaces">
+   <div className="spacesIntro"><div className="sectionNo light">04 / NOSSOS ESPAÇOS</div><h2>Uma escola feita para <em>ser vivida.</em></h2><p>Cada ambiente participa da aprendizagem. Aqui, conforto, movimento, leitura e diversão fazem parte da rotina.</p></div>
+   <div className="spaceGrid"><div className="space big"><span>01</span><b>2 PARQUINHOS</b><small>BRINCAR • CRIAR • CONVIVER</small></div><div className="space green"><span>02</span><b>QUADRA ESPORTIVA</b><small>MOVIMENTO • ESPORTE</small></div><div className="space lime"><span>03</span><b>BIBLIOTECA</b><small>LER • IMAGINAR • DESCOBRIR</small></div><div className="space dark"><span>04</span><b>SALAS CLIMATIZADAS</b><small>CONFORTO • APRENDIZAGEM</small></div></div>
+  </section>
+
+  <section className="fulltime"><div className="sectionNo">05 / MAIS TEMPO, MAIS EXPERIÊNCIAS</div><div className="fulltimeMain"><h2>Integral ou<br/><em>semi-integral.</em></h2><div><p>Uma rotina pensada para quem precisa de flexibilidade sem abrir mão de cuidado, desenvolvimento e experiências de qualidade.</p><div className="routine"><span>ACOLHER</span><i>→</i><span>APRENDER</span><i>→</i><span>BRINCAR</span><i>→</i><span>CRESCER</span></div></div></div></section>
+
+  <section id="contato" className="contact">
+   <div className="contactStar">✦</div><div className="kicker centerK">VENHA VIVER A ESCOLA PARQUE</div><h2>O futuro começa<br/><em>com uma visita.</em></h2><p>Conheça nossa proposta, nossos espaços e descubra por que a Escola Parque pode ser o próximo grande capítulo da história do seu filho.</p><a href="#">Quero agendar uma visita <span>↗</span></a>
+  </section>
+
+  <footer><Logo/><div className="footerText"><p>Maternal ao 5º ano<br/>Programa Bilíngue<br/>Integral e Semi-integral</p></div><div className="footerEnd"><span>© 2026 ESCOLA PARQUE</span><a href="#inicio">VOLTAR AO TOPO ↑</a></div></footer>
+ </main>
+}
