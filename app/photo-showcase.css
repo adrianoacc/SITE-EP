@@ -1,64 +1,41 @@
-/* Fotografias reais da Escola Parque — mapeadas conforme o portfólio 2027.
-   Educação Infantil: 01–04 | Ensino Fundamental: 05–08 | Espaço Escolar: 09–14 | Localização: 15 */
-
-/* Institucional: não força foto de outra seção. */
+/* Fotografias reais da Escola Parque — mapeadas conforme o portfólio 2027 e identificação da escola. */
 .manifest{position:relative;overflow:hidden}
 
-/* Jornada de ensino: cada segmento usa somente foto do conjunto correspondente no PDF. */
+/* Jornada de ensino */
 .stage{position:relative!important;overflow:hidden!important;padding-top:235px!important;isolation:isolate}
 .stage:before{content:'';position:absolute;left:0;right:0;top:0;height:205px;background-size:cover;background-position:center;z-index:-1}
 .stage:after{content:'';position:absolute;left:0;right:0;top:145px;height:70px;background:linear-gradient(180deg,transparent,currentColor);opacity:.08;z-index:-1;pointer-events:none}
-.stage.infant:before{background-image:url('/02_evento_palco.jpg');background-position:center 48%}
+/* Infância com liberdade para criar — foto turma_evento indicada pela escola */
+.stage.infant:before{background-image:url('/06_turma_evento.png');background-position:center 45%}
 .stage.funda:before{background-image:url('/05_sala_de_aula.png');background-position:center 48%}
 .stage.infant{box-shadow:inset 0 0 0 1px #dce9ce}
 .stage.funda{box-shadow:inset 0 0 0 1px #efd7c6}
 
-/* Programa Bilíngue e Oficina das Emoções não possuem fotografias próprias no PDF.
-   Mantemos a direção gráfica dessas seções em vez de associar fotos de outros capítulos. */
 .biArt{overflow:hidden!important}
 .emotion aside{overflow:hidden!important}
 
-/* Espaço escolar: somente fotos que correspondem de forma verificável à descrição. */
+/* Espaço escolar */
 .structureIntro{max-width:680px!important}
 .spaceList{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:16px!important;margin-top:42px!important}
 .spaceList article{position:relative!important;display:flex!important;align-items:flex-end!important;min-height:310px!important;border:1px solid #e3e9df!important;border-radius:24px!important;overflow:hidden!important;padding:24px!important;background:#f7f8f3!important;background-size:cover!important;background-position:center!important;box-shadow:0 18px 48px #143d3112;isolation:isolate}
-.spaceList article.photoSpace:after,.spaceList article:nth-child(1):after,.spaceList article:nth-child(2):after,.spaceList article:nth-child(4):after,.spaceList article:nth-child(5):after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 28%,#0b3027e8 100%);z-index:-1}
-/* 01 — dois parquinhos: foto do parquinho exibido no capítulo Espaço Escolar */
+.spaceList article:nth-child(1):after,.spaceList article:nth-child(2):after,.spaceList article:nth-child(3):after,.spaceList article:nth-child(5):after,.spaceList article:nth-child(6):after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 28%,#0b3027e8 100%);z-index:-1}
+/* Os dois parquinhos são ambientes separados. */
 .spaceList article:nth-child(1){background-image:url('/12_parquinho_01.jpg')!important}
-/* 02 — quadra coberta */
-.spaceList article:nth-child(2){background-image:url('/11_quadra_esportiva.jpg')!important}
-/* 03 — sala de leitura: o portfólio cita o espaço, mas não traz uma foto isolada identificável. */
-.spaceList article:nth-child(3){background-image:none!important;background:#eef4e5!important}
-/* 04 — salas climatizadas: foto de sala de aula do conjunto Ensino Fundamental */
-.spaceList article:nth-child(4){background-image:url('/05_sala_de_aula.png')!important}
-/* 05 — ampla área de convivência aberta */
-.spaceList article:nth-child(5){background-image:url('/10_area_convivencia.jpg')!important}
-/* 06 — cantina: citada no portfólio, porém sem foto isolada identificável. */
-.spaceList article:nth-child(6){background-image:none!important;background:#f6efe0!important}
+.spaceList article:nth-child(2){background-image:url('/14_parquinho_02.jpg')!important}
+.spaceList article:nth-child(3){background-image:url('/11_quadra_esportiva.jpg')!important}
+/* Sala de leitura: aguardando foto específica. */
+.spaceList article:nth-child(4){background-image:none!important;background:#eef4e5!important}
+.spaceList article:nth-child(5){background-image:url('/05_sala_de_aula.png')!important}
+/* Área de convivência: 13_area_recreacao, conforme identificação da escola. */
+.spaceList article:nth-child(6){background-image:url('/13_area_recreacao.jpg')!important}
+.spaceList article:nth-child(7){background-image:none!important;background:#f6efe0!important}
 .spaceList article>span{position:absolute!important;top:18px;left:18px;background:#ffffffeb;color:#143d31!important;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font-weight:900!important}
-.spaceList article:nth-child(1) h3,.spaceList article:nth-child(1) p,.spaceList article:nth-child(1)>b,.spaceList article:nth-child(2) h3,.spaceList article:nth-child(2) p,.spaceList article:nth-child(2)>b,.spaceList article:nth-child(4) h3,.spaceList article:nth-child(4) p,.spaceList article:nth-child(4)>b,.spaceList article:nth-child(5) h3,.spaceList article:nth-child(5) p,.spaceList article:nth-child(5)>b{color:#fff!important}
+.spaceList article:nth-child(1) h3,.spaceList article:nth-child(1) p,.spaceList article:nth-child(1)>b,.spaceList article:nth-child(2) h3,.spaceList article:nth-child(2) p,.spaceList article:nth-child(2)>b,.spaceList article:nth-child(3) h3,.spaceList article:nth-child(3) p,.spaceList article:nth-child(3)>b,.spaceList article:nth-child(5) h3,.spaceList article:nth-child(5) p,.spaceList article:nth-child(5)>b,.spaceList article:nth-child(6) h3,.spaceList article:nth-child(6) p,.spaceList article:nth-child(6)>b{color:#fff!important}
 .spaceList article h3{font-size:23px!important;margin:0 0 6px!important}
 .spaceList article p{opacity:.82!important}
 .spaceList article>b{position:absolute;right:20px;top:20px;background:#ffffff55;width:34px;height:34px;border-radius:50%;display:grid;place-items:center}
 
-/* Integral: sem usar foto de outro capítulo como se fosse rotina do integral. */
-.integral{position:relative;overflow:hidden}
-.integral:before{display:none!important}
-
-/* Contato/localização: usa a fachada aérea que aparece especificamente na página Localização. */
-.contact{position:relative;overflow:hidden}
-.contact:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#143d31 0 46%,#143d31d2 62%,#143d3166),url('/15_fachada_aerea.png') right center/55% 100% no-repeat;z-index:0}
-.contact>div{position:relative;z-index:1}
-
-@media(max-width:950px){
-  .spaceList{grid-template-columns:repeat(2,1fr)!important}
-  .stage{padding-top:220px!important}
-  .stage:before{height:190px}
-}
-@media(max-width:600px){
-  .stage{padding-top:200px!important}
-  .stage:before{height:170px}
-  .spaceList{grid-template-columns:1fr!important}
-  .spaceList article{min-height:260px!important}
-  .contact:before{background:linear-gradient(180deg,#143d31e8,#143d31f5),url('/15_fachada_aerea.png') center/cover no-repeat}
-}
+.integral{position:relative;overflow:hidden}.integral:before{display:none!important}
+.contact{position:relative;overflow:hidden}.contact:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#143d31 0 46%,#143d31d2 62%,#143d3166),url('/15_fachada_aerea.png') right center/55% 100% no-repeat;z-index:0}.contact>div{position:relative;z-index:1}
+@media(max-width:950px){.spaceList{grid-template-columns:repeat(2,1fr)!important}.stage{padding-top:220px!important}.stage:before{height:190px}}
+@media(max-width:600px){.stage{padding-top:200px!important}.stage:before{height:170px}.spaceList{grid-template-columns:1fr!important}.spaceList article{min-height:260px!important}.contact:before{background:linear-gradient(180deg,#143d31e8,#143d31f5),url('/15_fachada_aerea.png') center/cover no-repeat}}
