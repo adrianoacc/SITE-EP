@@ -1,0 +1,31 @@
+/* Ajuste fino da composição da primeira dobra */
+@media (min-width: 951px){
+  .epHero{height:610px;padding:48px 6vw 55px;align-items:center}
+  .heroCopy{width:52%;transform:translateY(-4px)}
+  .heroCopy h1{font-size:clamp(54px,5vw,72px);margin:18px 0 22px}
+  .heroCopy>p{max-width:520px}
+  .heroVisual{right:0;top:0;width:52%;height:610px;transform:translateX(-2.2vw)}
+  .h1{width:470px;height:470px;right:1%;top:34px}
+  .h2{width:345px;height:345px;right:11%;top:91px}
+  .leafBlob{width:355px;height:235px;right:1%;top:76px}
+  .o1{width:420px;height:420px;right:5%;top:56px}
+  .o2{width:455px;height:320px;right:1%;top:103px}
+  .o3{width:355px;height:455px;right:12%;top:43px}
+  .heroBoy,.heroGirl{bottom:-6px}
+  .heroBoy{height:545px;left:17%}
+  .heroGirl{height:505px;left:43%}
+  .heroCard{right:4%;top:73px}
+  .heroTicker{height:34px}
+}
+@media (min-width: 1200px){
+  .heroVisual{transform:translateX(-3.8vw)}
+  .heroBoy{left:20%}
+  .heroGirl{left:45%}
+}
+@media (min-width: 951px) and (max-width: 1100px){
+  .heroCopy h1{font-size:56px}
+  .heroVisual{width:50%;transform:translateX(-1vw)}
+  .heroBoy{height:505px;left:9%}
+  .heroGirl{height:465px;left:38%}
+  .h1{width:430px;height:430px}
+}
