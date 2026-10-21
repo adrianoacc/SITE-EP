@@ -1,41 +1,33 @@
 /* Fotografias reais da Escola Parque — mapeadas conforme o portfólio 2027 e identificação da escola. */
-.manifest{position:relative;overflow:hidden}
+.manifest{position:relative;overflow:hidden;background:linear-gradient(135deg,#f8f7f0 0%,#f8f7f0 58%,#eef5e5 100%)!important;isolation:isolate}
+.manifest:before{content:'';position:absolute;width:410px;height:410px;border:1px solid #9fc78566;border-radius:50%;right:-135px;top:-170px;box-shadow:0 0 0 42px #a8cf8a18,0 0 0 92px #a8cf8a0d;z-index:-1}
+.manifest:after{content:'✦';position:absolute;right:8vw;top:72px;color:#78aa58;font-size:24px;opacity:.75}
+.manifest .lead{position:relative;margin-bottom:58px!important}
+.manifest .lead:after{content:'CUIDAR  •  DESCOBRIR  •  CRESCER';position:absolute;right:0;bottom:-30px;font:800 7px Manrope;letter-spacing:.22em;color:#8ca27e}
+.manifest .values{border-top:0!important;gap:14px!important;position:relative}
+.manifest .values article{position:relative;min-height:190px;padding:26px 24px!important;border:1px solid #dce5d6;border-radius:22px;background:#ffffffb8;box-shadow:0 16px 40px #173d3109;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;overflow:hidden}
+.manifest .values article:after{content:'';position:absolute;width:80px;height:80px;border-radius:50%;right:-28px;bottom:-32px;background:#9bc97618;transition:transform .25s ease}
+.manifest .values article:hover{transform:translateY(-5px);box-shadow:0 22px 48px #173d3112;border-color:#bcd4ad}
+.manifest .values article:hover:after{transform:scale(1.35)}
+.manifest .values b{display:grid!important;place-items:center;width:34px;height:34px;border-radius:50%;background:#e8f2dd;color:#5f963f!important;margin-bottom:23px;font-size:8px!important}
+.manifest .values h3{font-size:18px!important;margin:0 0 10px!important;letter-spacing:-.025em}
+.manifest .values p{font-size:11px!important;line-height:1.65!important;max-width:230px}
+.manifest .values article:nth-child(2){transform:translateY(18px)}
+.manifest .values article:nth-child(2):hover{transform:translateY(13px)}
+.manifest .values article:nth-child(4){transform:translateY(18px)}
+.manifest .values article:nth-child(4):hover{transform:translateY(13px)}
 
 /* Jornada de ensino */
 .stage{position:relative!important;overflow:hidden!important;padding-top:235px!important;isolation:isolate}
 .stage:before{content:'';position:absolute;left:0;right:0;top:0;height:205px;background-size:cover;background-position:center;z-index:-1}
 .stage:after{content:'';position:absolute;left:0;right:0;top:145px;height:70px;background:linear-gradient(180deg,transparent,currentColor);opacity:.08;z-index:-1;pointer-events:none}
-/* Infância com liberdade para criar — foto turma_evento indicada pela escola */
 .stage.infant:before{background-image:url('/06_turma_evento.png');background-position:center 45%}
 .stage.funda:before{background-image:url('/05_sala_de_aula.png');background-position:center 48%}
-.stage.infant{box-shadow:inset 0 0 0 1px #dce9ce}
-.stage.funda{box-shadow:inset 0 0 0 1px #efd7c6}
-
-.biArt{overflow:hidden!important}
-.emotion aside{overflow:hidden!important}
+.stage.infant{box-shadow:inset 0 0 0 1px #dce9ce}.stage.funda{box-shadow:inset 0 0 0 1px #efd7c6}
+.biArt{overflow:hidden!important}.emotion aside{overflow:hidden!important}
 
 /* Espaço escolar */
-.structureIntro{max-width:680px!important}
-.spaceList{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:16px!important;margin-top:42px!important}
-.spaceList article{position:relative!important;display:flex!important;align-items:flex-end!important;min-height:310px!important;border:1px solid #e3e9df!important;border-radius:24px!important;overflow:hidden!important;padding:24px!important;background:#f7f8f3!important;background-size:cover!important;background-position:center!important;box-shadow:0 18px 48px #143d3112;isolation:isolate}
-.spaceList article:nth-child(1):after,.spaceList article:nth-child(2):after,.spaceList article:nth-child(3):after,.spaceList article:nth-child(5):after,.spaceList article:nth-child(6):after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 28%,#0b3027e8 100%);z-index:-1}
-/* Os dois parquinhos são ambientes separados. */
-.spaceList article:nth-child(1){background-image:url('/12_parquinho_01.jpg')!important}
-.spaceList article:nth-child(2){background-image:url('/14_parquinho_02.jpg')!important}
-.spaceList article:nth-child(3){background-image:url('/11_quadra_esportiva.jpg')!important}
-/* Sala de leitura: aguardando foto específica. */
-.spaceList article:nth-child(4){background-image:none!important;background:#eef4e5!important}
-.spaceList article:nth-child(5){background-image:url('/05_sala_de_aula.png')!important}
-/* Área de convivência: 13_area_recreacao, conforme identificação da escola. */
-.spaceList article:nth-child(6){background-image:url('/13_area_recreacao.jpg')!important}
-.spaceList article:nth-child(7){background-image:none!important;background:#f6efe0!important}
-.spaceList article>span{position:absolute!important;top:18px;left:18px;background:#ffffffeb;color:#143d31!important;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font-weight:900!important}
-.spaceList article:nth-child(1) h3,.spaceList article:nth-child(1) p,.spaceList article:nth-child(1)>b,.spaceList article:nth-child(2) h3,.spaceList article:nth-child(2) p,.spaceList article:nth-child(2)>b,.spaceList article:nth-child(3) h3,.spaceList article:nth-child(3) p,.spaceList article:nth-child(3)>b,.spaceList article:nth-child(5) h3,.spaceList article:nth-child(5) p,.spaceList article:nth-child(5)>b,.spaceList article:nth-child(6) h3,.spaceList article:nth-child(6) p,.spaceList article:nth-child(6)>b{color:#fff!important}
-.spaceList article h3{font-size:23px!important;margin:0 0 6px!important}
-.spaceList article p{opacity:.82!important}
-.spaceList article>b{position:absolute;right:20px;top:20px;background:#ffffff55;width:34px;height:34px;border-radius:50%;display:grid;place-items:center}
-
-.integral{position:relative;overflow:hidden}.integral:before{display:none!important}
-.contact{position:relative;overflow:hidden}.contact:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#143d31 0 46%,#143d31d2 62%,#143d3166),url('/15_fachada_aerea.png') right center/55% 100% no-repeat;z-index:0}.contact>div{position:relative;z-index:1}
-@media(max-width:950px){.spaceList{grid-template-columns:repeat(2,1fr)!important}.stage{padding-top:220px!important}.stage:before{height:190px}}
-@media(max-width:600px){.stage{padding-top:200px!important}.stage:before{height:170px}.spaceList{grid-template-columns:1fr!important}.spaceList article{min-height:260px!important}.contact:before{background:linear-gradient(180deg,#143d31e8,#143d31f5),url('/15_fachada_aerea.png') center/cover no-repeat}}
+.structureIntro{max-width:680px!important}.spaceList{display:grid!important;grid-template-columns:repeat(3,1fr)!important;gap:16px!important;margin-top:42px!important}.spaceList article{position:relative!important;display:flex!important;align-items:flex-end!important;min-height:310px!important;border:1px solid #e3e9df!important;border-radius:24px!important;overflow:hidden!important;padding:24px!important;background:#f7f8f3!important;background-size:cover!important;background-position:center!important;box-shadow:0 18px 48px #143d3112;isolation:isolate}.spaceList article:nth-child(1):after,.spaceList article:nth-child(2):after,.spaceList article:nth-child(3):after,.spaceList article:nth-child(5):after,.spaceList article:nth-child(6):after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 28%,#0b3027e8 100%);z-index:-1}.spaceList article:nth-child(1){background-image:url('/12_parquinho_01.jpg')!important}.spaceList article:nth-child(2){background-image:url('/14_parquinho_02.jpg')!important}.spaceList article:nth-child(3){background-image:url('/11_quadra_esportiva.jpg')!important}.spaceList article:nth-child(4){background-image:none!important;background:#eef4e5!important}.spaceList article:nth-child(5){background-image:url('/05_sala_de_aula.png')!important}.spaceList article:nth-child(6){background-image:url('/13_area_recreacao.jpg')!important}.spaceList article:nth-child(7){background-image:none!important;background:#f6efe0!important}.spaceList article>span{position:absolute!important;top:18px;left:18px;background:#ffffffeb;color:#143d31!important;width:34px;height:34px;display:grid;place-items:center;border-radius:50%;font-weight:900!important}.spaceList article:nth-child(1) h3,.spaceList article:nth-child(1) p,.spaceList article:nth-child(1)>b,.spaceList article:nth-child(2) h3,.spaceList article:nth-child(2) p,.spaceList article:nth-child(2)>b,.spaceList article:nth-child(3) h3,.spaceList article:nth-child(3) p,.spaceList article:nth-child(3)>b,.spaceList article:nth-child(5) h3,.spaceList article:nth-child(5) p,.spaceList article:nth-child(5)>b,.spaceList article:nth-child(6) h3,.spaceList article:nth-child(6) p,.spaceList article:nth-child(6)>b{color:#fff!important}.spaceList article h3{font-size:23px!important;margin:0 0 6px!important}.spaceList article p{opacity:.82!important}.spaceList article>b{position:absolute;right:20px;top:20px;background:#ffffff55;width:34px;height:34px;border-radius:50%;display:grid;place-items:center}
+.integral{position:relative;overflow:hidden}.integral:before{display:none!important}.contact{position:relative;overflow:hidden}.contact:before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#143d31 0 46%,#143d31d2 62%,#143d3166),url('/15_fachada_aerea.png') right center/55% 100% no-repeat;z-index:0}.contact>div{position:relative;z-index:1}
+@media(max-width:950px){.manifest .values article:nth-child(2),.manifest .values article:nth-child(4){transform:none}.manifest .lead:after{display:none}.spaceList{grid-template-columns:repeat(2,1fr)!important}.stage{padding-top:220px!important}.stage:before{height:190px}}
+@media(max-width:600px){.manifest:before{width:260px;height:260px;right:-120px;top:-100px}.manifest:after{right:7vw;top:45px}.manifest .values{gap:10px!important}.manifest .values article{min-height:auto;padding:22px!important}.stage{padding-top:200px!important}.stage:before{height:170px}.spaceList{grid-template-columns:1fr!important}.spaceList article{min-height:260px!important}.contact:before{background:linear-gradient(180deg,#143d31e8,#143d31f5),url('/15_fachada_aerea.png') center/cover no-repeat}}
