@@ -3,19 +3,23 @@
 .epHero{height:620px!important;padding-top:48px!important;padding-bottom:54px!important}
 .heroCopy{width:51%!important;transform:translateY(-6px)}
 .heroCopy h1{font-size:clamp(54px,5vw,74px)!important;margin-bottom:22px!important}
-.heroVisual{right:5.2vw!important;top:0!important;width:47%!important;height:620px!important}
-.h1{width:500px!important;height:500px!important;right:1%!important;top:43px!important}
-.h2{width:365px!important;height:365px!important;right:10%!important;top:105px!important}
-.leafBlob{width:385px!important;height:250px!important;right:1%!important;top:82px!important}
-.o1{width:430px!important;height:430px!important;right:5%!important;top:65px!important}
-.o2{width:465px!important;height:330px!important;right:1%!important;top:105px!important}
-.o3{width:365px!important;height:475px!important;right:11%!important;top:48px!important}
-.heroBoy,.heroGirl{bottom:-4px!important}
-.heroBoy{height:565px!important;left:14%!important}
-.heroGirl{height:525px!important;left:39%!important}
-.heroCard{right:1%!important;top:92px!important}
+.heroVisual{right:8.5vw!important;top:0!important;width:49%!important;height:620px!important}
+.h1{width:515px!important;height:515px!important;right:0!important;top:38px!important}
+.h2{width:378px!important;height:378px!important;right:9%!important;top:98px!important}
+.leafBlob{width:398px!important;height:258px!important;right:0!important;top:78px!important}
+.o1{width:445px!important;height:445px!important;right:4%!important;top:59px!important}
+.o2{width:482px!important;height:342px!important;right:0!important;top:98px!important}
+.o3{width:378px!important;height:490px!important;right:10%!important;top:42px!important}
+.heroBoy,.heroGirl{bottom:-8px!important}
+.heroBoy{height:605px!important;left:7%!important}
+.heroGirl{height:560px!important;left:34%!important}
+.heroCard{right:-1%!important;top:88px!important}
 .heroTicker{height:32px!important}
 }
-@media (min-width:1200px){.heroVisual{right:6vw!important;width:46%!important}.heroBoy{left:16%!important}.heroGirl{left:40%!important}}
-@media (max-width:950px){.heroVisual{margin-top:4px!important}.heroBoy{left:25%!important}.heroGirl{left:47%!important}.heroCard{right:5%!important}}
-@media (max-width:600px){.heroVisual{height:390px!important;margin-top:8px!important}.heroBoy{height:355px!important;left:10%!important;bottom:-2px!important}.heroGirl{height:330px!important;left:39%!important;bottom:-2px!important}.heroCard{right:1%!important;top:42px!important}.h1{right:0!important}.leafBlob{right:-1%!important}.o1{right:0!important}.o2{right:-2%!important}}
+@media (min-width:1200px){
+.heroVisual{right:9vw!important;width:48.5%!important}
+.heroBoy{height:610px!important;left:6%!important}
+.heroGirl{height:565px!important;left:33%!important}
+}
+@media (max-width:950px){.heroVisual{margin-top:4px!important}.heroBoy{height:500px!important;left:18%!important}.heroGirl{height:460px!important;left:43%!important}.heroCard{right:5%!important}}
+@media (max-width:600px){.heroVisual{height:400px!important;margin-top:8px!important}.heroBoy{height:375px!important;left:4%!important;bottom:-2px!important}.heroGirl{height:345px!important;left:36%!important;bottom:-2px!important}.heroCard{right:1%!important;top:42px!important}.h1{right:0!important}.leafBlob{right:-1%!important}.o1{right:0!important}.o2{right:-2%!important}}
