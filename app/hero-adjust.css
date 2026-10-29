@@ -1,57 +1,32 @@
 /* Hero composition refinement — responsive desktop + ultrawide */
+/* Escala tipográfica global: evita textos microscópicos em telas grandes e mantém leitura confortável no mobile. */
+.epSite{font-size:16px}
+.epSite p{font-size:clamp(14px,.78vw,17px);line-height:1.65}
+.epNav a{font-size:clamp(11px,.62vw,13px)!important}
+.epHeaderCta{font-size:clamp(10px,.56vw,12px)!important}
+.eyebrow{font-size:clamp(9px,.52vw,11px)!important;line-height:1.35}
+.heroTag{font-size:clamp(10px,.56vw,12px)!important;line-height:1.35}
+.heroCopy>p{font-size:clamp(15px,.82vw,18px)!important;line-height:1.65!important}
+.solidBtn,.outlineBtn{font-size:clamp(11px,.61vw,13px)!important}
+.heroTrust{font-size:clamp(10px,.55vw,12px)!important;line-height:1.45!important}
+.heroCard strong{font-size:clamp(10px,.55vw,12px)!important}.heroCard small{font-size:clamp(9px,.48vw,10px)!important;line-height:1.35!important}
+.heroTicker{font-size:clamp(8px,.46vw,10px)!important}
+.benefitBar strong{font-size:clamp(13px,.72vw,15px)!important}.benefitBar small{font-size:clamp(10px,.56vw,12px)!important;line-height:1.45!important}.benefitBar article>span{font-size:clamp(9px,.5vw,10px)!important}
+.lead p,.journeyHead p,.biCopy p,.emotion>div>p,.structureIntro p,.integral>div>p,.enrollHead p{font-size:clamp(14px,.78vw,17px)!important;line-height:1.7!important}
+.values b{font-size:10px!important}.values h3{font-size:clamp(17px,.92vw,20px)!important}.values p{font-size:clamp(12px,.67vw,14px)!important;line-height:1.6!important}
+.stage small,.emotion aside small,.routine small,.classes small,.enrollCta>span,.contact>div>span{font-size:clamp(9px,.5vw,11px)!important}.stage p{font-size:clamp(13px,.72vw,15px)!important;line-height:1.65!important}.classList span,.tags span{font-size:clamp(10px,.56vw,12px)!important}.biCopy>a,.enrollCta a{font-size:clamp(10px,.56vw,12px)!important}.routine p{font-size:clamp(12px,.67vw,14px)!important;line-height:1.6!important}.routine span{font-size:clamp(10px,.54vw,11px)!important;line-height:1.5!important}.classes span{font-size:clamp(12px,.66vw,14px)!important}.enrollCta p{font-size:clamp(12px,.66vw,14px)!important;line-height:1.6!important}.spaceList p{font-size:clamp(11px,.62vw,13px)!important;line-height:1.5!important}.contact p{font-size:clamp(13px,.72vw,15px)!important}.phones a{font-size:clamp(10px,.55vw,12px)!important}footer p,footer nav{font-size:clamp(9px,.5vw,11px)!important}footer>span{font-size:clamp(9px,.48vw,10px)!important}
+
 @media (min-width:951px){
 .epHero{height:620px!important;padding-top:48px!important;padding-bottom:54px!important;padding-left:max(6vw,calc((100vw - 1720px)/2 + 72px))!important;padding-right:max(6vw,calc((100vw - 1720px)/2 + 72px))!important}
 .heroCopy{width:51%!important;max-width:720px!important;transform:translateY(-6px)}
 .heroCopy h1{font-size:clamp(54px,5vw,74px)!important;margin-bottom:22px!important}
 .heroVisual{right:max(5.5vw,calc((100vw - 1720px)/2 + 45px))!important;top:0!important;width:min(53%,900px)!important;height:620px!important;overflow:hidden!important}
-.h1{width:540px!important;height:540px!important;right:0!important;top:30px!important}
-.h2{width:400px!important;height:400px!important;right:8%!important;top:88px!important}
-.leafBlob{width:425px!important;height:275px!important;right:-1%!important;top:70px!important}
-.o1{width:470px!important;height:470px!important;right:4%!important;top:50px!important}
-.o2{width:510px!important;height:360px!important;right:-1%!important;top:92px!important}
-.o3{width:400px!important;height:520px!important;right:9%!important;top:34px!important}
-.heroBoy,.heroGirl{bottom:-118px!important;filter:drop-shadow(0 22px 18px #173d3118)!important}
-.heroBoy{height:720px!important;left:0!important}
-.heroGirl{height:665px!important;left:31%!important;z-index:9!important}
-.heroCard{right:0!important;top:84px!important}
-.heroTicker{height:32px!important}
+.h1{width:540px!important;height:540px!important;right:0!important;top:30px!important}.h2{width:400px!important;height:400px!important;right:8%!important;top:88px!important}.leafBlob{width:425px!important;height:275px!important;right:-1%!important;top:70px!important}.o1{width:470px!important;height:470px!important;right:4%!important;top:50px!important}.o2{width:510px!important;height:360px!important;right:-1%!important;top:92px!important}.o3{width:400px!important;height:520px!important;right:9%!important;top:34px!important}.heroBoy,.heroGirl{bottom:-118px!important;filter:drop-shadow(0 22px 18px #173d3118)!important}.heroBoy{height:720px!important;left:0!important}.heroGirl{height:665px!important;left:31%!important;z-index:9!important}.heroCard{right:0!important;top:84px!important}.heroTicker{height:32px!important}
 }
-@media (min-width:1200px){
-.heroVisual{width:min(53.5%,900px)!important}
-.heroBoy{height:735px!important;left:-1%!important;bottom:-125px!important}
-.heroGirl{height:680px!important;left:30%!important;bottom:-120px!important}
-}
-/* Mantém a composição coesa em monitores 2K/ultrawide: o conteúdo para de se afastar com a viewport. */
+@media (min-width:1200px){.heroVisual{width:min(53.5%,900px)!important}.heroBoy{height:735px!important;left:-1%!important;bottom:-125px!important}.heroGirl{height:680px!important;left:30%!important;bottom:-120px!important}}
 @media (min-width:1800px){
-.epHero{height:660px!important;padding-top:60px!important;padding-bottom:62px!important}
-.heroCopy{width:680px!important;transform:none!important}
-.heroCopy h1{font-size:74px!important;line-height:.91!important}
-.heroCopy>p{max-width:590px!important;font-size:16px!important}
-.heroVisual{width:850px!important;height:660px!important;right:calc((100vw - 1720px)/2 + 35px)!important}
-.h1{width:570px!important;height:570px!important;right:10px!important;top:35px!important}
-.h2{width:420px!important;height:420px!important;right:9%!important;top:95px!important}
-.leafBlob{width:450px!important;height:290px!important;right:0!important;top:78px!important}
-.o1{width:500px!important;height:500px!important;right:4%!important;top:55px!important}
-.o2{width:545px!important;height:380px!important;right:-1%!important;top:105px!important}
-.o3{width:425px!important;height:545px!important;right:9%!important;top:42px!important}
-.heroBoy{height:770px!important;left:-2%!important;bottom:-130px!important}
-.heroGirl{height:710px!important;left:29%!important;bottom:-124px!important}
-.heroCard{right:10px!important;top:94px!important}
+.epHero{height:660px!important;padding-top:60px!important;padding-bottom:62px!important}.heroCopy{width:680px!important;transform:none!important}.heroCopy h1{font-size:74px!important;line-height:.91!important}.heroCopy>p{max-width:590px!important;font-size:17px!important}.heroVisual{width:850px!important;height:660px!important;right:calc((100vw - 1720px)/2 + 35px)!important}.h1{width:570px!important;height:570px!important;right:10px!important;top:35px!important}.h2{width:420px!important;height:420px!important;right:9%!important;top:95px!important}.leafBlob{width:450px!important;height:290px!important;right:0!important;top:78px!important}.o1{width:500px!important;height:500px!important;right:4%!important;top:55px!important}.o2{width:545px!important;height:380px!important;right:-1%!important;top:105px!important}.o3{width:425px!important;height:545px!important;right:9%!important;top:42px!important}.heroBoy{height:770px!important;left:-2%!important;bottom:-130px!important}.heroGirl{height:710px!important;left:29%!important;bottom:-124px!important}.heroCard{right:10px!important;top:94px!important}
 }
-@media (min-width:2400px){
-.epHero{padding-left:calc((100vw - 1720px)/2 + 72px)!important;padding-right:calc((100vw - 1720px)/2 + 72px)!important}
-.heroVisual{right:calc((100vw - 1720px)/2 + 20px)!important}
-}
-@media (max-width:950px){
-.heroVisual{margin-top:4px!important;overflow:hidden!important}
-.heroBoy{height:575px!important;left:8%!important;bottom:-92px!important}
-.heroGirl{height:530px!important;left:38%!important;bottom:-88px!important}
-.heroCard{right:3%!important}
-}
-@media (max-width:600px){
-.heroVisual{height:400px!important;margin-top:8px!important;overflow:hidden!important}
-.heroBoy{height:440px!important;left:-3%!important;bottom:-70px!important}
-.heroGirl{height:405px!important;left:33%!important;bottom:-66px!important}
-.heroCard{right:1%!important;top:42px!important}
-.h1{right:0!important}.leafBlob{right:-1%!important}.o1{right:0!important}.o2{right:-2%!important}
-}
+@media (min-width:2400px){.epHero{padding-left:calc((100vw - 1720px)/2 + 72px)!important;padding-right:calc((100vw - 1720px)/2 + 72px)!important}.heroVisual{right:calc((100vw - 1720px)/2 + 20px)!important}}
+@media (max-width:950px){.epSite p{font-size:15px}.epNav a{font-size:14px!important}.eyebrow,.heroTag{font-size:10px!important}.heroVisual{margin-top:4px!important;overflow:hidden!important}.heroBoy{height:575px!important;left:8%!important;bottom:-92px!important}.heroGirl{height:530px!important;left:38%!important;bottom:-88px!important}.heroCard{right:3%!important}.values p,.stage p,.routine p,.enrollCta p,.spaceList p{font-size:13px!important}.classList span,.tags span{font-size:11px!important}}
+@media (max-width:600px){.epSite p{font-size:14px;line-height:1.6}.heroCopy>p{font-size:15px!important}.heroTrust{font-size:10px!important}.solidBtn,.outlineBtn{font-size:12px!important}.benefitBar strong{font-size:14px!important}.benefitBar small{font-size:11px!important}.lead p,.journeyHead p,.biCopy p,.emotion>div>p,.structureIntro p,.integral>div>p,.enrollHead p{font-size:14px!important}.values h3{font-size:18px!important}.values p,.stage p,.routine p,.enrollCta p,.spaceList p{font-size:13px!important}.classList span,.tags span,.classes span{font-size:11px!important}.contact p{font-size:13px!important}.phones a{font-size:11px!important}footer p,footer nav,footer>span{font-size:10px!important}.heroVisual{height:400px!important;margin-top:8px!important;overflow:hidden!important}.heroBoy{height:440px!important;left:-3%!important;bottom:-70px!important}.heroGirl{height:405px!important;left:33%!important;bottom:-66px!important}.heroCard{right:1%!important;top:42px!important}.h1{right:0!important}.leafBlob{right:-1%!important}.o1{right:0!important}.o2{right:-2%!important}}
