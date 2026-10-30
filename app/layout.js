@@ -7,5 +7,6 @@ import './bilingual-wisdom.css';
 import './emotion-lab.css';
 import './emotion-v2.css';
 import './structure-premium.css';
+import './integral-premium.css';
 export const metadata={title:'Escola Parque | Educação Infantil e Ensino Fundamental',description:'Educação acolhedora, programa bilíngue e estrutura completa do Maternal ao 5º ano.'};
 export default function RootLayout({children}){return <html lang="pt-BR"><body>{children}</body></html>}
