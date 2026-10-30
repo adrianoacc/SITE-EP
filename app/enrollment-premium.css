@@ -1,0 +1,32 @@
+/* Matrículas 2027 — transforma a listagem em uma jornada de escolha clara e convidativa */
+.enrollment{position:relative!important;overflow:hidden!important;isolation:isolate!important;padding:88px 8vw 100px!important;background:linear-gradient(135deg,#123f34 0%,#174d3f 56%,#123c32 100%)!important;color:#fff!important}
+.enrollment:before{content:'';position:absolute;inset:0;z-index:-2;background:radial-gradient(circle at 88% 8%,#a7d83e1f 0 13%,transparent 13.2%),radial-gradient(circle at 7% 94%,#a7d83e12 0 15%,transparent 15.2%)}
+.enrollment:after{content:'2027';position:absolute;right:-18px;top:4px;z-index:-1;color:#ffffff08;font:900 clamp(150px,22vw,360px)/1 Manrope;letter-spacing:-.09em}
+.enrollHead{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(320px,.78fr)!important;column-gap:70px!important;align-items:end!important;margin-bottom:42px!important;position:relative}
+.enrollHead .eyebrow{grid-column:1/-1;margin-bottom:28px!important;color:#b8df62!important}
+.enrollHead h2{font-size:clamp(48px,4.7vw,78px)!important;line-height:.92!important;letter-spacing:-.06em!important;margin:0!important;max-width:720px!important}
+.enrollHead h2 em{color:#a7d83e!important;font-style:normal}
+.enrollHead>p{margin:0 0 7px!important;max-width:570px!important;color:#d5e1db!important;font-size:clamp(14px,1vw,17px)!important;line-height:1.7!important;padding-left:28px;border-left:1px solid #ffffff2b}
+.enrollGrid{display:grid!important;grid-template-columns:minmax(0,1.42fr) minmax(340px,.72fr)!important;gap:18px!important;align-items:stretch!important}
+.classes{background:#f9faf5!important;color:#143d31!important;border-radius:30px!important;padding:24px!important;display:grid!important;grid-template-columns:1fr 1fr!important;gap:14px!important;box-shadow:0 28px 65px #08271f2b!important;position:relative;overflow:hidden}
+.classes:before{content:'ESCOLHA A ETAPA';position:absolute;right:24px;top:15px;color:#143d3123;font:900 8px Manrope;letter-spacing:.16em}
+.classes>div{background:#fff;border:1px solid #e1e7dc;border-radius:22px;padding:25px 24px 18px;position:relative;transition:.3s ease}
+.classes>div:hover{transform:translateY(-5px);box-shadow:0 18px 35px #143d3110;border-color:#bdd598}
+.classes>div:first-child:before,.classes>div:last-child:before{display:grid;place-items:center;width:45px;height:45px;border-radius:15px;margin-bottom:20px;font:900 17px Manrope}
+.classes>div:first-child:before{content:'2–5';background:#edf6d8;color:#538c38}.classes>div:last-child:before{content:'1–5';background:#dcece7;color:#174d3f}
+.classes small{display:block!important;margin-bottom:13px!important;color:#6c8b5c!important;font:900 9px Manrope!important;letter-spacing:.13em!important}
+.classes span{display:flex!important;align-items:center;justify-content:space-between;min-height:43px;padding:0 4px!important;border-top:1px solid #e8ece5!important;color:#21493d!important;font:800 12px Manrope!important;transition:.25s ease}
+.classes span:after{content:'→';opacity:0;color:#6ba43e;transform:translateX(-7px);transition:.25s ease}
+.classes span:hover{padding-left:10px!important;color:#5b9f36!important}.classes span:hover:after{opacity:1;transform:none}
+.enrollCta{position:relative!important;overflow:hidden!important;background:linear-gradient(145deg,#b0df39,#98cf2c)!important;color:#143d31!important;border-radius:30px!important;padding:34px 34px 30px!important;display:flex!important;flex-direction:column!important;justify-content:space-between!important;min-height:100%!important;box-shadow:0 28px 60px #09291f24!important}
+.enrollCta:before{content:'✓';position:absolute;right:-18px;top:-25px;width:135px;height:135px;border-radius:50%;display:grid;place-items:center;background:#fff2;color:#fff7;font:900 74px Manrope;transform:rotate(9deg)}
+.enrollCta>span{display:inline-flex!important;width:max-content!important;background:#143d31!important;color:#dff49d!important;border-radius:999px!important;padding:9px 13px!important;font:900 8px Manrope!important;letter-spacing:.13em!important}
+.enrollCta h3{font-size:clamp(36px,3.1vw,55px)!important;line-height:.92!important;letter-spacing:-.055em!important;margin:45px 0 16px!important;max-width:360px!important}
+.enrollCta h3:after{content:'Do Maternal I ao 5º ano';display:block;margin-top:20px;font:800 10px Manrope;letter-spacing:.03em;color:#315f2a}
+.enrollCta p{font-size:12px!important;line-height:1.6!important;color:#315f2a!important;max-width:430px!important;margin:0 0 26px!important}
+.enrollCta a{display:flex!important;align-items:center!important;justify-content:space-between!important;width:100%!important;background:#143d31!important;color:#fff!important;border-radius:17px!important;padding:17px 18px!important;font:900 11px Manrope!important;transition:.3s ease}
+.enrollCta a:after{content:'WhatsApp  ↗';font-size:9px;color:#bce26e}
+.enrollCta a:hover{transform:translateY(-3px);background:#0d3229!important}
+@media(max-width:950px){.enrollment{padding:74px 7vw 82px!important}.enrollHead{grid-template-columns:1fr!important;gap:20px!important}.enrollHead .eyebrow{grid-column:auto;margin-bottom:5px!important}.enrollHead>p{padding:0!important;border:0!important}.enrollGrid{grid-template-columns:1fr!important}.enrollCta{min-height:370px!important}.classes{grid-template-columns:1fr 1fr!important}}
+@media(max-width:650px){.enrollment{padding:60px 20px 68px!important}.enrollHead{margin-bottom:28px!important}.enrollHead h2{font-size:clamp(42px,12vw,56px)!important}.classes{grid-template-columns:1fr!important;padding:12px!important;border-radius:24px!important}.classes:before{display:none}.classes>div{padding:20px 18px 13px!important;border-radius:18px!important}.classes>div:first-child:before,.classes>div:last-child:before{width:40px;height:40px;margin-bottom:15px}.classes span{min-height:40px}.enrollCta{min-height:390px!important;border-radius:24px!important;padding:27px 23px 23px!important}.enrollCta h3{margin-top:42px!important}.enrollment:after{font-size:170px;top:40px;right:-15px}}
+@media(prefers-reduced-motion:reduce){.classes>div,.classes span,.classes span:after,.enrollCta a{transition:none!important}}
