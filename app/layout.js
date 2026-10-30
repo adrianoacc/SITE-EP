@@ -2,6 +2,7 @@ import './globals.css';
 import './logo.css';
 import './hero-adjust.css';
 import './hero-tuning.css';
+import './mascot-enrollment.css';
 import './photo-showcase.css';
 import './bilingual-wisdom.css';
 import './emotion-lab.css';
