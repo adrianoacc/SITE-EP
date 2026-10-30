@@ -15,7 +15,34 @@
 .benefitBar>article:nth-of-type(3)>*{display:none!important}
 .benefitBar>article:nth-of-type(3):after{content:'VAGAS LIMITADAS POR TURMA  •  ANO LETIVO 2027';position:absolute;left:0;top:12px;color:#b9d6ca;font:800 7px Manrope;letter-spacing:.14em;white-space:nowrap}
 @keyframes mascotFloat{0%,100%{transform:translateY(0) rotate(-.4deg)}50%{transform:translateY(-7px) rotate(.4deg)}}
-@media(max-width:1050px){.benefitBar{min-height:350px!important}.benefitBar:before{left:1vw;width:44%;height:154%;bottom:-140px}.benefitBar>article:first-of-type:before,.benefitBar>article:first-of-type:after,.benefitBar>article:nth-of-type(2),.benefitBar>article:nth-of-type(3){left:46%!important}.benefitBar>article:first-of-type:after{width:51%;font-size:clamp(44px,6vw,62px)}.benefitBar>article:nth-of-type(2),.benefitBar>article:nth-of-type(3){width:50%!important}}
-@media(max-width:700px){.benefitBar{min-height:625px!important}.benefitBar:after{left:50%;translate:-50% 0;top:300px;width:450px;height:450px}.benefitBar:before{left:50%;translate:-50% 0;bottom:-130px;width:420px;height:430px;background-position:center top}.benefitBar>article:first-of-type:before{left:22px!important;top:30px!important}.benefitBar>article:first-of-type:after{left:22px!important;top:76px!important;width:calc(100% - 44px)!important;font-size:clamp(43px,13vw,57px)!important;white-space:normal}.benefitBar>article:nth-of-type(2){left:22px!important;top:145px!important;width:calc(100% - 44px)!important}.benefitBar>article:nth-of-type(2):before{font-size:15px;margin-bottom:13px;max-width:330px}.benefitBar>article:nth-of-type(2):after{padding:12px 15px;font-size:8px}.benefitBar>article:nth-of-type(3){left:22px!important;top:232px!important;bottom:auto!important;width:calc(100% - 44px)!important}.benefitBar>article:nth-of-type(3):after{font-size:6.5px;letter-spacing:.09em}}
-@media(max-width:430px){.benefitBar{min-height:600px!important}.benefitBar:before{width:390px;height:410px;bottom:-125px}.benefitBar>article:first-of-type:after{font-size:46px!important}.benefitBar>article:nth-of-type(2){top:142px!important}.benefitBar>article:nth-of-type(3){top:228px!important}.benefitBar>article:nth-of-type(2):after{content:'Agendar uma visita  ↗'}}
+@media(max-width:1050px) and (min-width:701px){.benefitBar{min-height:350px!important}.benefitBar:before{left:1vw;width:44%;height:154%;bottom:-140px}.benefitBar>article:first-of-type:before,.benefitBar>article:first-of-type:after,.benefitBar>article:nth-of-type(2),.benefitBar>article:nth-of-type(3){left:46%!important}.benefitBar>article:first-of-type:after{width:51%;font-size:clamp(44px,6vw,62px)}.benefitBar>article:nth-of-type(2),.benefitBar>article:nth-of-type(3){width:50%!important}}
+/* Mobile: conteúdo primeiro, mascote como fechamento visual — sem sobreposição */
+@media(max-width:700px){
+.benefitBar{min-height:620px!important;background:linear-gradient(165deg,#0b382d 0%,#14553f 62%,#1d704d 100%)!important}
+.benefitBar:after{left:auto;right:-205px;top:205px;width:410px;height:410px;translate:none;border-color:#b6dd471b;box-shadow:0 0 0 55px #b6dd4707,0 0 0 105px #b6dd4703}
+.benefitBar:before{left:auto;right:-38px;bottom:-96px;width:330px;height:345px;translate:none;background-position:center top;background-size:contain;filter:drop-shadow(0 22px 24px #05271e45);z-index:3}
+.benefitBar>article:first-of-type:before{left:20px!important;right:auto!important;top:28px!important;padding:8px 12px;font-size:8px;letter-spacing:.12em}
+.benefitBar>article:first-of-type:after{content:'2027 começa\A aqui.';white-space:pre;left:20px!important;right:20px!important;top:74px!important;width:auto!important;max-width:360px!important;font-size:clamp(46px,14vw,62px)!important;line-height:.88!important;letter-spacing:-.065em!important}
+.benefitBar>article:nth-of-type(2){left:20px!important;right:20px!important;top:196px!important;width:auto!important;max-width:370px!important}
+.benefitBar>article:nth-of-type(2):before{content:'Garanta a vaga do seu filho na Escola Parque.';font-size:15px;line-height:1.35;margin-bottom:14px;max-width:300px}
+.benefitBar>article:nth-of-type(2):after{content:'Agendar uma visita  ↗';padding:12px 17px;font-size:8.5px;letter-spacing:.01em}
+.benefitBar>article:nth-of-type(3){left:20px!important;right:auto!important;top:304px!important;bottom:auto!important;width:175px!important;background:#ffffff20!important}
+.benefitBar>article:nth-of-type(3):after{content:'MATERNAL AO 5º ANO  •  2027';top:11px;font-size:6.5px;letter-spacing:.09em;color:#c5ddd4;white-space:nowrap}
+}
+@media(max-width:430px){
+.benefitBar{min-height:590px!important}
+.benefitBar:before{right:-52px;bottom:-92px;width:305px;height:320px}
+.benefitBar:after{right:-225px;top:210px}
+.benefitBar>article:first-of-type:after{top:72px!important;font-size:clamp(43px,13.5vw,54px)!important;max-width:320px!important}
+.benefitBar>article:nth-of-type(2){top:184px!important}
+.benefitBar>article:nth-of-type(2):before{font-size:14px;max-width:275px}
+.benefitBar>article:nth-of-type(3){top:290px!important}
+}
+@media(max-width:360px){
+.benefitBar{min-height:565px!important}
+.benefitBar>article:first-of-type:after{font-size:43px!important}
+.benefitBar>article:nth-of-type(2){top:178px!important}
+.benefitBar>article:nth-of-type(3){top:282px!important}
+.benefitBar:before{right:-62px;width:280px;height:295px;bottom:-82px}
+}
 @media(prefers-reduced-motion:reduce){.benefitBar:before{animation:none}}
