@@ -70,7 +70,7 @@ export default function SchoolTour() {
         </div>
         <div className="schoolTour__introSide">
           <p>Venha conhecer os lugares onde seu filho vai brincar, se movimentar, aprender e criar boas lembranças.</p>
-          <a href="#tour-chegada" className="schoolTour__scrollCue">Role para passear <span aria-hidden="true">↓</span></a>
+          <a href="#tour-chegada" className="schoolTour__scrollCue">Role para passear</a>
         </div>
       </div>
 
