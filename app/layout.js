@@ -1,5 +1,6 @@
 import './globals.css';
 import './logo.css';
+import './entrance-intro.css';
 import './hero-adjust.css';
 import './hero-tuning.css';
 import './mascot-enrollment.css';
