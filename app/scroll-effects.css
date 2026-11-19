@@ -2,12 +2,12 @@
 .epSite.motion-active .motion-reveal{
   opacity:1;
   translate:0 0;
-  transition:opacity .72s ease,translate .82s cubic-bezier(.18,.75,.2,1);
+  transition:opacity .92s cubic-bezier(.18,.65,.2,1),translate 1.04s cubic-bezier(.16,.78,.2,1);
   transition-delay:var(--motion-delay,0ms);
 }
 .epSite.motion-active .motion-reveal.motion-pending{
-  opacity:0;
-  translate:0 24px;
+  opacity:.24;
+  translate:0 17px;
 }
 
 /* Parallax sutil nas pessoas e nas fotografias das etapas de ensino. */
@@ -70,7 +70,7 @@
 
 /* Em telas pequenas, a linha acompanha verticalmente os cartões. */
 @media(max-width:700px){
-  .epSite.motion-active .motion-reveal.motion-pending{translate:0 13px}
+  .epSite.motion-active .motion-reveal.motion-pending{opacity:.4;translate:0 11px}
   .epSite .stage::before{scale:1.035}
   .epSite .spaceList article > .spacePhoto{will-change:auto}
 }
@@ -82,6 +82,20 @@
     height:calc(100% - 28px);
   }
   .epSite.motion-active .manifest .values::before{opacity:0!important}
+}
+
+
+/* Uma única transição para os capítulos: evita conflito entre
+   animação pela timeline do navegador e entrada controlada por observador. */
+@media(min-width:861px){
+  .epSite.motion-active .tourStop__copy,
+  .epSite.motion-active .tourGallery{animation:none!important}
+}
+@media(max-width:700px){
+  .epSite.motion-active .motion-reveal{
+    transition-duration:.7s,.8s;
+    transition-delay:0ms;
+  }
 }
 
 /* Acessibilidade e dispositivos que pedem menos movimento. */
