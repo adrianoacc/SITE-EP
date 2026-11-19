@@ -119,6 +119,8 @@ export default function ScrollMotion(){
     const onResize=()=>{
       const compact=window.innerWidth<=950;
       const usableHeight=window.innerHeight-98;
+      const banner=root.querySelector('.campaignBanner');
+      if(banner)banner.classList.toggle('campaignBanner--sticky',compact&&window.innerHeight>=640&&banner.offsetHeight<=usableHeight);
       tourCards.forEach(card=>{
         // Sticky somente se a cena inteira couber na tela; caso contrário,
         // a rolagem continua livre e a próxima cena cobre a borda anterior.
