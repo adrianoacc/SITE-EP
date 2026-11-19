@@ -57,21 +57,27 @@ export default function ScrollMotion(){
       let pathLength=1;
       let frame=0;
       let lastPaint=0;
+      let lastLayoutWidth=-1;
       const prepare=()=>{
-        if(path&&svg){
-          const mobile=innerWidth<=650;
-          svg.setAttribute('viewBox',mobile?'0 0 80 1000':'0 0 1000 80');
-          path.setAttribute('d',mobile?MOBILE_PATH:DESKTOP_PATH);
-          try{
-            pathLength=Math.max(1,path.getTotalLength());
-            path.style.strokeDasharray=String(pathLength);
-          }catch{pathLength=1}
-        }
-        const h=innerHeight;
-        const banner=root.querySelector('.campaignBanner');
-        if(banner)banner.classList.toggle('campaignBanner--sticky',h>=690&&banner.offsetHeight<h-115);
-        for(const card of root.querySelectorAll('.tourStop')){
-          card.classList.toggle('tourStop--sticky',h>=720&&card.offsetHeight<h-115);
+        // A barra de endereço do Safari muda a altura do viewport durante o
+        // gesto. Não recalcular sticky nesse resize: evita saltos de seção.
+        if(Math.abs(innerWidth-lastLayoutWidth)>2){
+          lastLayoutWidth=innerWidth;
+          if(path&&svg){
+            const mobile=innerWidth<=650;
+            svg.setAttribute('viewBox',mobile?'0 0 80 1000':'0 0 1000 80');
+            path.setAttribute('d',mobile?MOBILE_PATH:DESKTOP_PATH);
+            try{
+              pathLength=Math.max(1,path.getTotalLength());
+              path.style.strokeDasharray=String(pathLength);
+            }catch{pathLength=1}
+          }
+          const h=innerHeight;
+          const banner=root.querySelector('.campaignBanner');
+          if(banner)banner.classList.toggle('campaignBanner--sticky',h>=690&&banner.offsetHeight<h-115);
+          for(const card of root.querySelectorAll('.tourStop')){
+            card.classList.toggle('tourStop--sticky',h>=720&&card.offsetHeight<h-115);
+          }
         }
         paintRocket();
       };
@@ -322,21 +328,3 @@ export default function ScrollMotion(){
     window.addEventListener('scroll',schedule,{passive:true});
     window.addEventListener('resize',onResize,{passive:true});
     document.addEventListener('visibilitychange',schedule);
-    // O Safari restaura páginas do cache sem disparar resize.
-    window.addEventListener('pageshow',onResize,{passive:true});
-    schedule();
-
-    return ()=>{
-      window.removeEventListener('scroll',schedule);
-      window.removeEventListener('resize',onResize);
-      document.removeEventListener('visibilitychange',schedule);
-      window.removeEventListener('pageshow',onResize);
-      if(iosGalleryObserver)iosGalleryObserver.disconnect();
-      if(frame)window.cancelAnimationFrame(frame);
-      if(observer)observer.disconnect();
-      items.forEach(el=>el.classList.remove('motion-reveal','motion-pending'));
-      root.classList.remove('motion-active','motion-lite','motion-ios');
-    };
-  },[]);
-  return null;
-}
