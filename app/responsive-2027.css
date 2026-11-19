@@ -438,3 +438,11 @@
 @media(prefers-reduced-motion:reduce){
   .epSite .tourGallery__photo img{transition:none!important}
 }
+
+/* Next/Image expõe dimensões intrínsecas; na hero a altura define o enquadramento.
+   Largura automática preserva a proporção e impede PNGs de ocupar 5000px. */
+.epSite .heroVisual .heroBoy,
+.epSite .heroVisual .heroGirl{
+  width:auto!important;
+  max-width:none!important;
+}
