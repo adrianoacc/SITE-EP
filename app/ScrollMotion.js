@@ -10,14 +10,112 @@ export default function ScrollMotion(){
   useEffect(()=>{
     const root=document.querySelector('.epSite');
     if(!root)return;
-    // Modo de segurança: o Safari pode encerrar a aba ao combinar grandes
-    // camadas animadas, SVG e imagens com rolagem. O conteúdo fica completo
-    // e as interações continuam, mas o scroll não faz trabalho por frame.
+    // iOS recebe movimento progressivo de baixo custo: observadores para
+    // entradas e apenas o pequeno SVG do foguete acompanha a rolagem.
+    // Não aplicamos parallax em fotografias nem transformamos seções inteiras.
     const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||
       (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
     if(ios){
       root.classList.add('motion-ios','motion-lite');
-      return ()=>root.classList.remove('motion-ios','motion-lite');
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduced)return ()=>root.classList.remove('motion-ios','motion-lite');
+
+      const targets=Array.from(root.querySelectorAll([
+        '.campaignBanner__copy','.campaignBanner__action',
+        '.manifest .lead h2','.manifest .lead>p','.manifest .values article',
+        '.journeyHead h2','.journeyHead>p','.stageGrid article',
+        '.biCopy h2','.biCopy>p','.biArt',
+        '.emotionWorld__copy','.emotionWorld__logo','.emotionWorld__friends',
+        '.schoolTour__introCopy','.schoolTour__introSide',
+        '.tourStop__copy','.tourGallery__photo','.schoolTour__closing',
+        '.dailyRoutine h2','.dailyRoutine__journey',
+        '.enrollmentExplorer h2','.enrollmentExplorer__result',
+        '.contact h2'
+      ].join(',')));
+      let observer=null;
+      if('IntersectionObserver' in window){
+        observer=new IntersectionObserver(entries=>{
+          for(const entry of entries){
+            if(!entry.isIntersecting)continue;
+            entry.target.classList.add('ios-visible');
+            if(entry.target.classList.contains('tourGallery__photo')){
+              entry.target.classList.add('ios-gallery-visible');
+            }
+            observer.unobserve(entry.target);
+          }
+        },{threshold:.015,rootMargin:'0px 0px 9% 0px'});
+        for(const el of targets){
+          el.classList.add('ios-reveal');
+          observer.observe(el);
+        }
+      }
+
+      const values=root.querySelector('.manifest .values');
+      const svg=values?.querySelector('.journeyTrace');
+      const path=svg?.querySelector('.journeyTrace__path');
+      const cursor=svg?.querySelector('.journeyTrace__cursor');
+      let pathLength=1;
+      let frame=0;
+      let lastPaint=0;
+      const prepare=()=>{
+        if(path&&svg){
+          const mobile=innerWidth<=650;
+          svg.setAttribute('viewBox',mobile?'0 0 80 1000':'0 0 1000 80');
+          path.setAttribute('d',mobile?MOBILE_PATH:DESKTOP_PATH);
+          try{
+            pathLength=Math.max(1,path.getTotalLength());
+            path.style.strokeDasharray=String(pathLength);
+          }catch{pathLength=1}
+        }
+        const h=innerHeight;
+        const banner=root.querySelector('.campaignBanner');
+        if(banner)banner.classList.toggle('campaignBanner--sticky',h>=690&&banner.offsetHeight<h-115);
+        for(const card of root.querySelectorAll('.tourStop')){
+          card.classList.toggle('tourStop--sticky',h>=720&&card.offsetHeight<h-115);
+        }
+        paintRocket();
+      };
+      const paintRocket=()=>{
+        if(!values||!path||!cursor)return;
+        const rect=values.getBoundingClientRect();
+        if(rect.bottom < -60||rect.top>innerHeight+100)return;
+        const progress=clamp((innerHeight*.83-rect.top)/(innerHeight*.48+rect.height*.66));
+        path.style.strokeDashoffset=String(pathLength*(1-progress));
+        try{
+          const p=path.getPointAtLength(pathLength*progress);
+          cursor.setAttribute('transform',`translate(${p.x.toFixed(1)} ${p.y.toFixed(1)})`);
+        }catch{cursor.style.display='none'}
+      };
+      const onScroll=()=>{
+        if(frame||document.visibilityState==='hidden')return;
+        frame=requestAnimationFrame(time=>{
+          frame=0;
+          if(time-lastPaint<48)return;
+          lastPaint=time;
+          paintRocket();
+        });
+      };
+      const onResize=()=>prepare();
+      const onShow=()=>{
+        for(const el of targets){
+          const r=el.getBoundingClientRect();
+          if(r.top<innerHeight&&r.bottom>0)el.classList.add('ios-visible');
+        }
+        prepare();
+      };
+      prepare();
+      window.addEventListener('scroll',onScroll,{passive:true});
+      window.addEventListener('resize',onResize,{passive:true});
+      window.addEventListener('pageshow',onShow,{passive:true});
+      return ()=>{
+        window.removeEventListener('scroll',onScroll);
+        window.removeEventListener('resize',onResize);
+        window.removeEventListener('pageshow',onShow);
+        if(frame)cancelAnimationFrame(frame);
+        observer?.disconnect();
+        root.classList.remove('motion-ios','motion-lite');
+        for(const el of targets)el.classList.remove('ios-reveal','ios-visible','ios-gallery-visible');
+      };
     }
     if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
     root.classList.add('motion-active');

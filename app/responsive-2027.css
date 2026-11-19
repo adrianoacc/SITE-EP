@@ -447,39 +447,34 @@
   max-width:none!important;
 }
 
-/* Safari no iPhone/iPad: preserva o passeio e seus detalhes sem combinar
-   camadas sticky com transformações contínuas, causa de telas vazias/pulos. */
-.epSite.motion-ios > :is(
-  .campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,
-  .structure,.dailyRoutine,.enrollmentExplorer,.contact
-){
-  translate:none!important;
-  transform:none!important;
-  opacity:1!important;
-  transition:none!important;
-  will-change:auto!important;
+/* Safari: animação de entrada uma vez por elemento, sem scroll-driven
+   transforms em fotografias ou grandes camadas de seção. */
+.epSite.motion-ios .ios-reveal{
+  opacity:1;
+  translate:0 0;
+  transition:opacity .7s cubic-bezier(.2,.76,.25,1),
+    translate .78s cubic-bezier(.18,.74,.22,1);
 }
-.epSite.motion-ios .tourGallery__photo{
-  translate:none!important;
-  opacity:1!important;
-  transition:none!important;
-  will-change:auto!important;
+.epSite.motion-ios .ios-reveal:not(.ios-visible){
+  opacity:.66;
+  translate:0 15px;
 }
 .epSite.motion-ios .tourGallery__photo img{
-  transform:none!important;
-  transition:none!important;
+  transform:scale(1.045)!important;
+  transition:transform .6s ease!important;
   will-change:auto!important;
 }
-.epSite.motion-ios .tourGallery__photo.ios-gallery-visible{
-  animation:iosGalleryReveal .55s ease-out both;
+.epSite.motion-ios .tourGallery__photo:active img{
+  transform:scale(1.085)!important;
 }
-@keyframes iosGalleryReveal{
-  from{opacity:.72;transform:translateY(10px)}
-  to{opacity:1;transform:translateY(0)}
+.epSite.motion-ios .tourGallery__photo.ios-reveal:nth-child(2){
+  transition-delay:75ms;
+}
+.epSite.motion-ios .tourGallery__photo.ios-reveal:nth-child(3){
+  transition-delay:140ms;
 }
 .epSite.motion-ios .emotionWorld__logo,
 .epSite.motion-ios .emotionWorld__friends,
-.epSite.motion-ios .emotionWorld__star,
 .epSite.motion-ios .emotionWorld__orbit,
 .epSite.motion-ios .enrollmentExplorer__mascot,
 .epSite.motion-ios .enrollmentExplorer__mascotPortrait{
@@ -490,59 +485,94 @@
   transform:none!important;
   will-change:auto!important;
 }
-.epSite.motion-ios .motion-reveal.motion-pending{
-  opacity:.7;
-  translate:none!important;
-}
-
-/* A regra funciona até antes da hidratação do React no Safari. */
-@supports (-webkit-touch-callout: none){
-  .epSite > .epHero,
-  .epSite > .campaignBanner,
-  .epSite .tourStop.tourStop--sticky{
-    position:relative!important;
-    top:auto!important;
-  }
-  .epSite .tourGallery__photo img{
-    -webkit-backface-visibility:hidden;
-    backface-visibility:hidden;
-  }
-}
-@media (prefers-reduced-motion:reduce){
-  .epSite.motion-ios .tourGallery__photo.ios-gallery-visible{animation:none!important}
-}
-
-/* Modo de segurança real para WebKit em iPhone/iPad. Safari pode encerrar
-   o processo de renderização quando muitos layers grandes são promovidos
-   por animações, filtros, blur e will-change. O conteúdo não depende deles. */
+/* Recortar o custo gráfico em vez de desligar toda a experiência. */
 @supports (-webkit-touch-callout: none){
   @media (max-width:1100px){
-    .epSite *,
-    .epSite *::before,
-    .epSite *::after{
+    .epSite .epHero,
+    .epSite .epHero::before,
+    .epSite .epHero::after,
+    .epSite .heroVisual::before,
+    .epSite .leafBlob,
+    .epSite .heroTicker,
+    .epSite .manifest::before,
+    .epSite .journey::before{
       animation:none!important;
-      transition-duration:0s!important;
+    }
+    .epSite .epHero::before,
+    .epSite .heroVisual::before,
+    .epSite .leafBlob,
+    .epSite .heroBoy,
+    .epSite .heroGirl,
+    .epSite .emotionWorld__friends{
       filter:none!important;
-      -webkit-backdrop-filter:none!important;
-      backdrop-filter:none!important;
-      will-change:auto!important;
     }
-    .epSite .heroVisual .orbit,
-    .epSite .heroVisual .halo{
-      display:none!important;
-    }
-    .epSite > section,
-    .epSite .tourStop,
-    .epSite .tourGallery__photo{
-      box-shadow:none!important;
+    .epSite .manifest .values article,
+    .epSite .manifest .values article::after,
+    .epSite .tourStop::before{
+      animation:none!important;
     }
     .epSite .epHeader{
-      background:#f5f9f0!important;
+      -webkit-backdrop-filter:none!important;
+      backdrop-filter:none!important;
+      background:rgba(247,251,242,.97)!important;
     }
-    .epSite .journeyTrace__cursor{display:none!important}
-    .epSite .journeyTrace__path{stroke-dashoffset:0!important}
-    .epSite .tourGallery__photo img{
-      transform:none!important;
+    .epSite .manifest .values::after{
+      animation:none!important;
+      opacity:0!important;
+    }
+    .epSite .journeyTrace__path,
+    .epSite .journeyTrace__cursor{
+      filter:none!important;
+    }
+    .epSite > .epHero{position:relative!important;top:auto!important}
+    .epSite > .campaignBanner:not(.campaignBanner--sticky){position:relative!important;top:auto!important}
+    .epSite > .campaignBanner.campaignBanner--sticky{
+      position:sticky!important;
+      top:70px!important;
+    }
+    .epSite .tourStop.tourStop--sticky{
+      position:sticky!important;
+      top:80px!important;
     }
   }
+}
+
+/* Detalhes vivos e baratos: somente pequenos elementos decorativos. */
+@media(max-width:950px) and (prefers-reduced-motion:no-preference){
+  .epSite.motion-ios .heroVisual .orbit.o1{
+    animation:spin 34s linear infinite!important;
+    filter:none!important;
+  }
+  .epSite.motion-ios .heroCard > b{
+    animation:iosTinyPulse 3.5s ease-in-out infinite!important;
+  }
+  .epSite.motion-ios .emotionWorld__star--one,
+  .epSite.motion-ios .emotionWorld__star--two{
+    animation:emotionStarFloat 5.5s ease-in-out infinite!important;
+  }
+  .epSite.motion-ios .heroCopy h1,
+  .epSite.motion-ios .heroCopy > p,
+  .epSite.motion-ios .heroBtns,
+  .epSite.motion-ios .heroTrust{
+    animation:iosOpening .75s cubic-bezier(.2,.75,.18,1) both;
+  }
+  .epSite.motion-ios .heroCopy > p{animation-delay:100ms}
+  .epSite.motion-ios .heroBtns{animation-delay:180ms}
+  .epSite.motion-ios .heroTrust{animation-delay:240ms}
+}
+@keyframes iosOpening{
+  from{opacity:.45;translate:0 14px}
+  to{opacity:1;translate:0 0}
+}
+@keyframes iosTinyPulse{
+  0%,100%{transform:scale(1)}
+  50%{transform:scale(1.12)}
+}
+@media(prefers-reduced-motion:reduce){
+  .epSite.motion-ios .ios-reveal,
+  .epSite.motion-ios .ios-reveal:not(.ios-visible){
+    opacity:1!important;translate:none!important;transition:none!important;
+  }
+  .epSite.motion-ios > .campaignBanner{position:relative!important;top:auto!important}
+  .epSite.motion-ios .tourStop.tourStop--sticky{position:relative!important;top:auto!important}
 }
