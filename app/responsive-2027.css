@@ -175,8 +175,10 @@
   .epSite .heroCard{transform:scale(.64)!important;top:5px!important}
   .epSite .emotionWorld__step{padding:14px 10px}
   .epSite .emotionWorld__stepName{font-size:14px!important}
-  .epSite .tourGallery--2{grid-template-columns:minmax(0,1fr);height:auto}
-  .epSite .tourGallery--2 .tourGallery__photo{min-height:185px;height:185px;margin:0!important;transform:none!important}
+  /* As duas fotos do parquinho dividem a largura. Empilhadas, tornavam
+     o capitulo maior que a tela e anulavam o efeito de cartoes sobrepostos. */
+  .epSite .tourGallery--2{grid-template-columns:repeat(2,minmax(0,1fr));height:192px}
+  .epSite .tourGallery--2 .tourGallery__photo{min-height:0;height:auto;margin:0!important;transform:none!important}
   .epSite .enrollmentExplorer__classes{grid-template-columns:minmax(0,1fr)}
   .epSite .enrollmentExplorer__classes button{grid-template-columns:32px minmax(0,1fr);min-height:66px}
   .epSite .enrollmentExplorer__classMark{display:grid!important}
@@ -591,4 +593,62 @@
   }
   .epSite.motion-ios > .campaignBanner{position:relative!important;top:auto!important}
   .epSite.motion-ios .tourStop.tourStop--sticky{position:relative!important;top:auto!important}
+}
+
+/* Passeio em capitulos no celular: cada cena fica quase toda dentro do
+   viewport, de modo que o proximo cartao realmente avanca por cima dela.
+   Esta regra de sticky funciona ate antes de o JavaScript carregar no iOS. */
+@media(max-width:700px){
+  .epSite .schoolTour__chapters{overflow:visible!important}
+  .epSite .tourStop{
+    padding:19px 17px 19px!important;
+    gap:13px!important;
+    border-radius:25px;
+    box-shadow:0 16px 36px rgba(12,57,37,.26),0 3px 8px rgba(12,57,37,.11);
+  }
+  .epSite .tourStop:not(:last-child){padding-bottom:34px!important}
+  .epSite .tourStop + .tourStop{margin-top:-36px!important}
+  .epSite .tourStop__topline{margin-bottom:11px!important;font-size:12px}
+  .epSite .tourStop__marker{width:31px;height:31px;font-size:13px}
+  .epSite .tourStop__eyebrow{font-size:10px;letter-spacing:.12em}
+  .epSite .tourStop__copy h3{
+    font-size:clamp(27px,7.4vw,36px)!important;
+    line-height:1.1!important;
+    margin:7px 0 9px!important;
+  }
+  .epSite .tourStop__copy > p{font-size:15px!important;line-height:1.47!important}
+  .epSite .tourStop__bottom{
+    margin-top:11px!important;
+    padding-top:9px!important;
+    font-size:11px!important;
+  }
+  .epSite .tourStop__sparkle{font-size:19px}
+  .epSite .tourGallery{gap:7px!important}
+  .epSite .tourGallery--1{height:clamp(185px,43vw,235px)}
+  .epSite .tourGallery--2{grid-template-columns:repeat(2,minmax(0,1fr));height:clamp(175px,42vw,213px)}
+  .epSite .tourGallery--2 .tourGallery__photo{height:auto;min-height:0;margin:0!important}
+  .epSite .tourGallery--3{
+    height:clamp(226px,59vw,260px);
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    grid-template-rows:1.2fr .8fr;
+  }
+  .epSite .tourGallery--3 .tourGallery__photo:first-child{grid-column:1/3;grid-row:1}
+  .epSite .tourGallery__photo{border-width:2px;border-radius:14px}
+  .epSite .tourGallery__photo figcaption{
+    left:8px;right:6px;bottom:8px;
+    font-size:clamp(11px,3.1vw,13px);line-height:1.2;
+  }
+}
+@media(max-width:700px) and (min-height:460px) and (prefers-reduced-motion:no-preference){
+  .epSite .schoolTour__chapters > .tourStop{
+    position:-webkit-sticky!important;
+    position:sticky!important;
+    top:var(--tour-sticky-top,74px)!important;
+  }
+}
+@media(max-width:360px){
+  .epSite .tourStop{padding:17px 14px!important;gap:11px!important}
+  .epSite .tourStop__copy h3{font-size:26px!important}
+  .epSite .tourGallery--3{height:220px;grid-template-rows:132px 81px}
+  .epSite .tourGallery--2{height:165px}
 }

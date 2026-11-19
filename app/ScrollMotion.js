@@ -76,11 +76,11 @@ export default function ScrollMotion(){
           const banner=root.querySelector('.campaignBanner');
           if(banner)banner.classList.toggle('campaignBanner--sticky',h>=690&&banner.offsetHeight<h-115);
           for(const card of root.querySelectorAll('.tourStop')){
-            // Cards com várias fotos são mais altos que a tela. Sticky com
-            // top negativo deixa toda a informação passar antes da sobreposição.
-            const top=Math.min(78,h-card.offsetHeight-16);
+            // As cenas compactas seguram perto do cabecalho. Em visores
+            // curtos, o topo recua apenas o necessario para o texto caber.
+            const top=Math.min(74,h-card.offsetHeight-20);
             card.style.setProperty('--tour-sticky-top',`${Math.round(top)}px`);
-            card.classList.toggle('tourStop--sticky',h>=550);
+            card.classList.toggle('tourStop--sticky',h>=460);
           }
         }
         paintRocket();
@@ -312,9 +312,9 @@ export default function ScrollMotion(){
         const banner=root.querySelector('.campaignBanner');
         if(banner)banner.classList.toggle('campaignBanner--sticky',compact&&!ios&&window.innerHeight>=640&&banner.offsetHeight<=usableHeight);
         tourCards.forEach(card=>{
-          const top=Math.min(78,window.innerHeight-card.offsetHeight-16);
+          const top=Math.min(74,window.innerHeight-card.offsetHeight-20);
           card.style.setProperty('--tour-sticky-top',`${Math.round(top)}px`);
-          card.classList.toggle('tourStop--sticky',compact&&window.innerHeight>=550);
+          card.classList.toggle('tourStop--sticky',compact&&window.innerHeight>=460);
           if(!compact){
             card.style.removeProperty('--tour-progress');
             card.querySelectorAll('.tourGallery__photo img').forEach(img=>{
