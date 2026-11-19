@@ -218,7 +218,7 @@
   .epSite .tourStop{margin-bottom:0!important;scroll-margin-top:86px}
   .epSite .tourStop:not(:last-child){padding-bottom:69px!important}
   .epSite .tourStop + .tourStop{margin-top:-46px!important}
-  .epSite .tourStop.tourStop--sticky{position:sticky!important;top:80px!important}
+  .epSite .tourStop.tourStop--sticky{position:sticky!important;top:var(--tour-sticky-top,78px)!important}
   .epSite.motion-active .tourGallery__photo{
     translate:0 calc((1 - var(--tour-progress,1))*13px);
     opacity:calc(.88 + var(--tour-progress,1)*.12);
@@ -447,6 +447,18 @@
   max-width:none!important;
 }
 
+/* O Next/Image informa 960x821 para o logo. Sem height:auto, a largura
+   pequena do footer mantinha a altura intrínseca e deformava a marca. */
+.epSite > footer > div:first-child img{
+  display:block!important;
+  width:92px!important;
+  height:auto!important;
+  max-height:90px!important;
+  aspect-ratio:960 / 821;
+  object-fit:contain!important;
+  object-position:left center;
+}
+
 /* Safari: animação de entrada uma vez por elemento, sem scroll-driven
    transforms em fotografias ou grandes camadas de seção. */
 .epSite.motion-ios .ios-reveal{
@@ -462,6 +474,10 @@
 .epSite.motion-ios .tourGallery__photo img{
   transform:scale(1.045)!important;
   transition:transform .6s ease!important;
+  will-change:auto!important;
+}
+.epSite.motion-ios .tourGallery__photo{
+  transform:none!important;
   will-change:auto!important;
 }
 .epSite.motion-ios .tourGallery__photo:active img{
@@ -532,7 +548,7 @@
     }
     .epSite .tourStop.tourStop--sticky{
       position:sticky!important;
-      top:80px!important;
+      top:var(--tour-sticky-top,78px)!important;
     }
   }
 }

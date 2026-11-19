@@ -76,7 +76,11 @@ export default function ScrollMotion(){
           const banner=root.querySelector('.campaignBanner');
           if(banner)banner.classList.toggle('campaignBanner--sticky',h>=690&&banner.offsetHeight<h-115);
           for(const card of root.querySelectorAll('.tourStop')){
-            card.classList.toggle('tourStop--sticky',h>=720&&card.offsetHeight<h-115);
+            // Cards com várias fotos são mais altos que a tela. Sticky com
+            // top negativo deixa toda a informação passar antes da sobreposição.
+            const top=Math.min(78,h-card.offsetHeight-16);
+            card.style.setProperty('--tour-sticky-top',`${Math.round(top)}px`);
+            card.classList.toggle('tourStop--sticky',h>=550);
           }
         }
         paintRocket();
@@ -308,7 +312,9 @@ export default function ScrollMotion(){
         const banner=root.querySelector('.campaignBanner');
         if(banner)banner.classList.toggle('campaignBanner--sticky',compact&&!ios&&window.innerHeight>=640&&banner.offsetHeight<=usableHeight);
         tourCards.forEach(card=>{
-          card.classList.toggle('tourStop--sticky',compact&&!ios&&window.innerHeight>=620&&card.offsetHeight<=usableHeight);
+          const top=Math.min(78,window.innerHeight-card.offsetHeight-16);
+          card.style.setProperty('--tour-sticky-top',`${Math.round(top)}px`);
+          card.classList.toggle('tourStop--sticky',compact&&window.innerHeight>=550);
           if(!compact){
             card.style.removeProperty('--tour-progress');
             card.querySelectorAll('.tourGallery__photo img').forEach(img=>{
