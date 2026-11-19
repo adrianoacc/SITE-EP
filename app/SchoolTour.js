@@ -8,7 +8,7 @@ const stops = [
     title: 'A escola começa pela porta da frente.',
     description: 'É aqui que os alunos chegam e que os encontros do dia começam.',
     photos: [
-      {src: '/Fachada Vibrante da Escola Parque.png', alt: 'Fachada da Escola Parque', label: 'Fachada da escola'}
+      {src: '/optimized/fachada.webp', alt: 'Fachada da Escola Parque', label: 'Fachada da escola'}
     ]
   },
   {
@@ -42,8 +42,8 @@ const stops = [
     title: 'Um canto para estudar. Outro para imaginar.',
     description: 'As salas são climatizadas. Na sala de leitura, livros e histórias abrem espaço para perguntas e imaginação.',
     photos: [
-      {src: '/05_sala_de_aula.png', alt: 'Alunos da Escola Parque em sala de aula', label: 'Salas climatizadas'},
-      {src: '/sala de leitura.png', alt: 'Espaço de leitura da Escola Parque com livros e mesas infantis', label: 'Sala de leitura'}
+      {src: '/optimized/sala-de-aula.webp', alt: 'Alunos da Escola Parque em sala de aula', label: 'Salas climatizadas'},
+      {src: '/optimized/leitura.webp', alt: 'Espaço de leitura da Escola Parque com livros e mesas infantis', label: 'Sala de leitura'}
     ]
   },
   {
@@ -55,8 +55,8 @@ const stops = [
     description: 'Entre uma aula e outra, cantina, pátio e área de convivência recebem os momentos com os amigos.',
     photos: [
       {src: '/13_area_recreacao.jpg', alt: 'Área de recreação utilizada para a convivência na Escola Parque', label: 'Área de convivência'},
-      {src: '/cantina.png', alt: 'Cantina da Escola Parque', label: 'Cantina'},
-      {src: '/Pátio Escolar Colorido com Caminho Numérico.png', alt: 'Pátio colorido da Escola Parque', label: 'Pátio da escola'}
+      {src: '/optimized/cantina.webp', alt: 'Cantina da Escola Parque', label: 'Cantina'},
+      {src: '/optimized/patio.webp', alt: 'Pátio colorido da Escola Parque', label: 'Pátio da escola'}
     ]
   }
 ];

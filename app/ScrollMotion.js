@@ -9,13 +9,18 @@ const MOBILE_PATH='M 42 7 C 17 185 67 330 38 490 S 57 805 42 994';
 export default function ScrollMotion(){
   useEffect(()=>{
     const root=document.querySelector('.epSite');
-    if(!root||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-    root.classList.add('motion-active');
-    // Todos os navegadores no iPhone/iPad usam WebKit, que sofre com
-    // sticky + transforms em superfícies grandes durante o touch-scroll.
+    if(!root)return;
+    // Modo de segurança: o Safari pode encerrar a aba ao combinar grandes
+    // camadas animadas, SVG e imagens com rolagem. O conteúdo fica completo
+    // e as interações continuam, mas o scroll não faz trabalho por frame.
     const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||
       (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
-    root.classList.toggle('motion-ios',ios);
+    if(ios){
+      root.classList.add('motion-ios','motion-lite');
+      return ()=>root.classList.remove('motion-ios','motion-lite');
+    }
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    root.classList.add('motion-active');
     const lowPower=ios||(navigator.deviceMemory>0&&navigator.deviceMemory<=4)||(navigator.hardwareConcurrency>0&&navigator.hardwareConcurrency<=4);
     const setVar=(el,name,value)=>{if(el.style.getPropertyValue(name)!==value)el.style.setProperty(name,value)};
     const updateLite=()=>root.classList.toggle('motion-lite',lowPower||window.innerWidth<=480);

@@ -95,7 +95,7 @@ export default function EnrollmentExplorer() {
             <div className="enrollmentExplorer__mascot">
               <span className="enrollmentExplorer__mascotHalo" aria-hidden="true"/>
               <div className="enrollmentExplorer__mascotPortrait">
-                <Image src="/Mascote Laranja com Coroa de Folhas.png" alt="Mascote da Escola Parque dando boas-vindas" width={850} height={900} sizes="180px" quality={76} loading="lazy"/>
+                <Image src="/optimized/mascote.webp" alt="Mascote da Escola Parque dando boas-vindas" width={850} height={1530} sizes="180px" quality={76} loading="lazy"/>
               </div>
               <span className="enrollmentExplorer__mascotSpeech">{stage === 'infantil' && selected === 0 ? 'Oi, família!' : 'Que tal uma visita?'}</span>
               <span className="enrollmentExplorer__mascotSpark" aria-hidden="true">✦</span>

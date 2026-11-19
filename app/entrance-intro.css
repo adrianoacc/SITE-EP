@@ -147,3 +147,9 @@
 @media(prefers-reduced-motion:reduce){
   .epIntro{display:none!important}
 }
+
+/* Em iOS a abertura é dispensada: evita montar uma camada fixa sobre toda
+   a tela durante a fase mais pesada do carregamento da página. */
+@supports (-webkit-touch-callout: none){
+  .epIntro{display:none!important}
+}

@@ -511,3 +511,38 @@
 @media (prefers-reduced-motion:reduce){
   .epSite.motion-ios .tourGallery__photo.ios-gallery-visible{animation:none!important}
 }
+
+/* Modo de segurança real para WebKit em iPhone/iPad. Safari pode encerrar
+   o processo de renderização quando muitos layers grandes são promovidos
+   por animações, filtros, blur e will-change. O conteúdo não depende deles. */
+@supports (-webkit-touch-callout: none){
+  @media (max-width:1100px){
+    .epSite *,
+    .epSite *::before,
+    .epSite *::after{
+      animation:none!important;
+      transition-duration:0s!important;
+      filter:none!important;
+      -webkit-backdrop-filter:none!important;
+      backdrop-filter:none!important;
+      will-change:auto!important;
+    }
+    .epSite .heroVisual .orbit,
+    .epSite .heroVisual .halo{
+      display:none!important;
+    }
+    .epSite > section,
+    .epSite .tourStop,
+    .epSite .tourGallery__photo{
+      box-shadow:none!important;
+    }
+    .epSite .epHeader{
+      background:#f5f9f0!important;
+    }
+    .epSite .journeyTrace__cursor{display:none!important}
+    .epSite .journeyTrace__path{stroke-dashoffset:0!important}
+    .epSite .tourGallery__photo img{
+      transform:none!important;
+    }
+  }
+}
