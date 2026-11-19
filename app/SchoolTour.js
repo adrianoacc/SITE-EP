@@ -1,3 +1,4 @@
+import Image from 'next/image';
 const stops = [
   {
     id: 'tour-chegada',
@@ -93,7 +94,7 @@ export default function SchoolTour() {
             <div className={'tourGallery tourGallery--' + stop.photos.length} aria-label={'Fotos: ' + stop.step}>
               {stop.photos.map((photo, photoIndex) => (
                 <figure className="tourGallery__photo" key={photo.src}>
-                  <img src={photo.src} alt={photo.alt} loading={index === 0 && photoIndex === 0 ? 'eager' : 'lazy'} decoding="async" />
+                  <Image src={photo.src} alt={photo.alt} fill sizes="(max-width: 420px) 90vw, (max-width: 540px) 55vw, (max-width: 860px) 85vw, 45vw" quality={73} loading="lazy" />
                   <figcaption>{photo.label}</figcaption>
                 </figure>
               ))}
