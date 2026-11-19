@@ -259,3 +259,28 @@
     top:72px!important;
   }
 }
+
+
+/* Transição progressiva das superfícies em desktop, tablet e celular.
+   As variáveis são atualizadas durante a rolagem, antes da seção entrar
+   na tela: sem salto ao primeiro frame visível. */
+.epSite.motion-active > :is(
+  .campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,
+  .structure,.dailyRoutine,.enrollmentExplorer,.contact
+){
+  translate:0 var(--stack-lift-y,0px);
+  opacity:var(--stack-opacity,1);
+  transition:translate .18s cubic-bezier(.18,.75,.2,1),opacity .22s ease-out;
+}
+@media(max-width:700px){
+  .epSite.motion-active > :is(
+    .campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,
+    .structure,.dailyRoutine,.enrollmentExplorer,.contact
+  ){transition-duration:.16s,.18s}
+}
+@media(prefers-reduced-motion:reduce){
+  .epSite > :is(
+    .campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,
+    .structure,.dailyRoutine,.enrollmentExplorer,.contact
+  ){translate:none!important;opacity:1!important;transition:none!important}
+}
