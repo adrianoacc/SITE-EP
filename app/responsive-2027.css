@@ -70,8 +70,8 @@
   .epSite .heroTrust{display:flex!important;flex-flow:row wrap!important;gap:7px!important;margin-top:17px!important}
   .epSite .heroTrust span{font-size:11px;padding:7px 9px!important;line-height:1.25}
   .epSite .heroVisual{height:clamp(305px,82vw,388px)!important;width:min(100%,440px)!important;margin:15px auto 0!important}
-  .epSite .heroBoy{height:clamp(315px,88vw,400px)!important;left:8%!important;bottom:-42px!important}
-  .epSite .heroGirl{height:clamp(300px,85vw,385px)!important;left:43%!important;bottom:-40px!important}
+  .epSite .heroBoy{height:clamp(300px,80vw,390px)!important;left:5%!important;bottom:-38px!important}
+  .epSite .heroGirl{height:clamp(270px,72vw,340px)!important;left:23%!important;bottom:-35px!important}
   .epSite .heroCard{top:10px!important;right:4px!important;transform:scale(.72)!important;transform-origin:top right}
   .epSite .halo,.epSite .orbit{max-width:100%}
 
@@ -171,7 +171,7 @@
   .epSite .heroCopy h1{font-size:clamp(35px,9.7vw,41px)!important}
   .epSite .heroVisual{height:300px!important}
   .epSite .heroBoy{height:330px!important;left:4%!important;bottom:-39px!important}
-  .epSite .heroGirl{height:310px!important;left:41%!important;bottom:-37px!important}
+  .epSite .heroGirl{height:clamp(255px,70vw,295px)!important;left:22%!important;bottom:-32px!important}
   .epSite .heroCard{transform:scale(.64)!important;top:5px!important}
   .epSite .emotionWorld__step{padding:14px 10px}
   .epSite .emotionWorld__stepName{font-size:14px!important}
@@ -184,8 +184,8 @@
 @media(max-width:360px){
   .epSite > .epHero{padding-left:15px!important;padding-right:15px!important}
   .epSite .heroVisual{height:282px!important}
-  .epSite .heroBoy{height:305px!important;left:0!important}
-  .epSite .heroGirl{height:287px!important;left:39%!important}
+  .epSite .heroBoy{height:295px!important;left:0!important}
+  .epSite .heroGirl{height:255px!important;left:21%!important}
   .epSite .heroCard{display:none!important}
   .epSite .dailyRoutine__time{gap:4px}
   .epSite .dailyRoutine__time strong{font-size:23px!important}
