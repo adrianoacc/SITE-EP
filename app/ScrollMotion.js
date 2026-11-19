@@ -18,7 +18,9 @@ export default function ScrollMotion(){
       '.biCopy h2','.biCopy>p','.biArt',
       '.emotion h2','.emotion aside','.structureIntro h2','.structureIntro p',
       '.spaceList article','.integral h2','.routine article',
-      '.enrollHead h2','.enrollCta','.contact h2'
+      '.enrollHead h2','.enrollCta','.contact h2',
+      '.schoolTour__intro h2','.schoolTour__introSide','.tourStop__copy',
+      '.tourGallery','.schoolTour__closing'
     ];
     const items=Array.from(root.querySelectorAll(selectors.join(',')));
     const observer=typeof IntersectionObserver==='function'
@@ -28,13 +30,13 @@ export default function ScrollMotion(){
           entry.target.classList.remove('motion-pending');
           observer.unobserve(entry.target);
         });
-      },{threshold:0.12,rootMargin:'0px 0px -5% 0px'})
+      },{threshold:0.01,rootMargin:'0px 0px 18% 0px'})
       :null;
     if(observer){
       items.forEach(el=>{
         const parent=el.parentElement;
         const stagger=parent&&parent.matches('.values,.stageGrid,.spaceList,.routine')
-          ?Math.min(Array.from(parent.children).indexOf(el)*65,260):0;
+          ?Math.min(Array.from(parent.children).indexOf(el)*42,126):0;
         el.style.setProperty('--motion-delay',String(stagger)+'ms');
         el.classList.add('motion-reveal','motion-pending');
         observer.observe(el);
@@ -52,6 +54,7 @@ export default function ScrollMotion(){
     const cursor=svg&&svg.querySelector('.journeyTrace__cursor');
     let total=1;
     let frame=0;
+    let lastLayoutWidth=-1;
     const preparePath=()=>{
       if(!svg||!path)return;
       const mobile=window.innerWidth<=650;
@@ -85,15 +88,21 @@ export default function ScrollMotion(){
           }
         }
       }
-      // No celular e tablet, as fotos do passeio respondem à rolagem mesmo sem hover.
-      // O movimento fica limitado às cenas próximas da tela.
+      // Entrada em camadas contínua e gradual em todas as telas.
+      // Preparar a progressão também fora do viewport evita o salto repentino
+      // da posição padrão para o início da animação quando a seção aparece.
+      coverSections.forEach(section=>{
+        const rect=section.getBoundingClientRect();
+        const progress=clamp((height*.96-rect.top)/(height*.54));
+        const eased=progress*progress*(3-2*progress);
+        section.style.setProperty('--stack-enter',eased.toFixed(3));
+        const lift=window.innerWidth<=700?13:window.innerWidth<=950?17:20;
+        section.style.setProperty('--stack-lift-y',((1-eased)*lift).toFixed(1)+'px');
+        section.style.setProperty('--stack-opacity',(.93+eased*.07).toFixed(3));
+      });
+      // O passeio acompanha o dedo no celular; cards fora da tela
+      // conservam a última posição sem comprometer a fluidez.
       if(window.innerWidth<=950){
-        coverSections.forEach(section=>{
-          const rect=section.getBoundingClientRect();
-          if(rect.bottom<-90||rect.top>height+100)return;
-          const entry=clamp((height*.95-rect.top)/(height*.42));
-          section.style.setProperty('--stack-enter',entry.toFixed(3));
-        });
         tourCards.forEach(card=>{
           const rect=card.getBoundingClientRect();
           if(rect.bottom<-120||rect.top>height+140)return;
@@ -117,23 +126,26 @@ export default function ScrollMotion(){
     };
     const schedule=()=>{if(!frame)frame=window.requestAnimationFrame(draw)};
     const onResize=()=>{
-      const compact=window.innerWidth<=950;
-      const usableHeight=window.innerHeight-98;
-      const banner=root.querySelector('.campaignBanner');
-      if(banner)banner.classList.toggle('campaignBanner--sticky',compact&&window.innerHeight>=640&&banner.offsetHeight<=usableHeight);
-      tourCards.forEach(card=>{
-        // Sticky somente se a cena inteira couber na tela; caso contrário,
-        // a rolagem continua livre e a próxima cena cobre a borda anterior.
-        card.classList.toggle('tourStop--sticky',compact&&window.innerHeight>=620&&card.offsetHeight<=usableHeight);
-        if(!compact){
-          card.style.removeProperty('--tour-progress');
-          card.querySelectorAll('.tourGallery__photo img').forEach(img=>{
-            img.style.removeProperty('--tour-photo-y');
-            img.style.removeProperty('--tour-photo-scale');
-          });
-        }
-      });
-      if(!compact)coverSections.forEach(el=>el.style.removeProperty('--stack-enter'));
+      const width=window.innerWidth;
+      const compact=width<=950;
+      // Barras do navegador móvel mudam a altura ao rolar. Não alternar
+      // sticky nessas mudanças, pois isso provoca saltos visíveis.
+      if(Math.abs(width-lastLayoutWidth)>2){
+        lastLayoutWidth=width;
+        const usableHeight=window.innerHeight-98;
+        const banner=root.querySelector('.campaignBanner');
+        if(banner)banner.classList.toggle('campaignBanner--sticky',compact&&window.innerHeight>=640&&banner.offsetHeight<=usableHeight);
+        tourCards.forEach(card=>{
+          card.classList.toggle('tourStop--sticky',compact&&window.innerHeight>=620&&card.offsetHeight<=usableHeight);
+          if(!compact){
+            card.style.removeProperty('--tour-progress');
+            card.querySelectorAll('.tourGallery__photo img').forEach(img=>{
+              img.style.removeProperty('--tour-photo-y');
+              img.style.removeProperty('--tour-photo-scale');
+            });
+          }
+        });
+      }
       if(window.innerWidth<=700){
         [...hero,...stages,...photos].forEach(el=>el.style.removeProperty('--motion-photo-y'));
         if(photos[0])photos[0].style.removeProperty('--motion-facade-zoom');
