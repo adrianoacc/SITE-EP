@@ -9,8 +9,8 @@ const discoveries = [
     action: 'Dar nome ao que sinto',
     symbol: '☀',
     color: 'yellow',
-    headline: 'Quando uma emoção ganha nome, fica mais fácil conversar.',
-    description: 'A criança aprende, aos poucos, a reconhecer o que sente e a pedir ajuda quando precisa. Um passo importante para conhecer a si mesma.',
+    headline: 'Primeiro, aprender a dizer o que sente.',
+    description: 'Quando encontra palavras para alegria, medo ou tristeza, a criança consegue conversar e pedir ajuda com mais clareza.',
     example: '“Hoje eu fiquei triste.”'
   },
   {
@@ -19,8 +19,8 @@ const discoveries = [
     action: 'Olhar para o outro',
     symbol: '♡',
     color: 'pink',
-    headline: 'Perceber o outro também se aprende.',
-    description: 'Nas relações do dia a dia, incentivamos escuta, respeito e atenção aos sentimentos dos colegas. Conviver é descobrir que cada pessoa sente de um jeito.',
+    headline: 'O colega também tem sentimentos.',
+    description: 'Nas brincadeiras e nos conflitos, conversamos sobre ouvir, respeitar e perceber o que o outro está vivendo.',
     example: '“Acho que meu amigo precisa de ajuda.”'
   },
   {
@@ -29,8 +29,8 @@ const discoveries = [
     action: 'Tentar outra vez',
     symbol: '✳',
     color: 'lime',
-    headline: 'Nem tudo dá certo de primeira — e tudo bem.',
-    description: 'Uma brincadeira difícil ou um desafio novo pode ensinar a lidar com frustrações, buscar alternativas e recomeçar com confiança.',
+    headline: 'Não deu certo? Dá para tentar de outro jeito.',
+    description: 'Quando uma atividade parece difícil, incentivamos a criança a experimentar alternativas, aceitar ajuda e recomeçar.',
     example: '“Não consegui ainda. Vou tentar de novo.”'
   },
   {
@@ -39,8 +39,8 @@ const discoveries = [
     action: 'Encontrar meu jeito',
     symbol: '☺',
     color: 'blue',
-    headline: 'Sentir é natural. Aprender a expressar faz diferença.',
-    description: 'Com acolhimento e orientação, a criança encontra maneiras mais saudáveis de expressar emoções, conversar sobre conflitos e enfrentar desafios.',
+    headline: 'E quando a raiva chega?',
+    description: 'Com orientação, a criança aprende a fazer uma pausa, dizer o que incomoda e buscar uma solução para o conflito.',
     example: '“Estou bravo. Preciso me acalmar.”'
   }
 ];
@@ -106,8 +106,8 @@ export default function EmotionWorld() {
         <div className="emotionWorld__copy">
           <span className="emotionWorld__eyebrow"><span aria-hidden="true">✳</span> OFICINA DAS EMOÇÕES</span>
           <h2 id="emotionWorldTitle">Sentir faz parte. <em>Aprender a lidar com o que sentimos também.</em></h2>
-          <p>Na Oficina das Emoções, ajudamos as crianças a reconhecer sentimentos, conversar sobre o que vivem e encontrar caminhos para enfrentar os desafios da infância.</p>
-          <div className="emotionWorld__invite"><span className="emotionWorld__inviteDot" aria-hidden="true"/><span>Conheça o universo das emoções logo abaixo</span></div>
+          <p>Frustração, alegria, medo, saudade: tudo isso faz parte da infância. Na Oficina das Emoções, a turma aprende a falar sobre sentimentos e a cuidar melhor das relações.</p>
+          <div className="emotionWorld__invite"><span className="emotionWorld__inviteDot" aria-hidden="true"/><span>Explore os sentimentos com os personagens</span></div>
         </div>
 
         <div className="emotionWorld__stage" aria-label="Personagens da Oficina das Emoções da Escola Parque">
@@ -137,9 +137,9 @@ export default function EmotionWorld() {
         <div className="emotionWorld__experienceHead">
           <div>
             <span className="emotionWorld__eyebrowSmall">APRENDER A SENTIR, TODOS OS DIAS</span>
-            <h3>Uma descoberta de cada vez.</h3>
+            <h3>E no dia a dia, como funciona?</h3>
           </div>
-          <p>Escolha um tema e veja como o desenvolvimento emocional pode fazer parte das pequenas situações da infância.</p>
+          <p>Toque em um tema para ver situações comuns da infância e formas de conversar sobre elas.</p>
         </div>
 
         <div className="emotionWorld__trail" role="group" aria-label="Explore os quatro temas da Oficina das Emoções">
@@ -171,8 +171,8 @@ export default function EmotionWorld() {
       </div>
 
       <div className="emotionWorld__footer">
-        <p>Porque cuidar da infância também é acolher tudo o que ela sente.</p>
-        <a href="https://wa.me/5591993371903?text=Ol%C3%A1%21%20Quero%20conhecer%20a%20Oficina%20das%20Emo%C3%A7%C3%B5es%20da%20Escola%20Parque.">Quero conhecer a Oficina</a>
+        <p>Crescer também é aprender o que fazer com a raiva, o medo e a alegria.</p>
+        <a href="https://wa.me/5591993371903?text=Ol%C3%A1%21%20Quero%20conhecer%20a%20Oficina%20das%20Emo%C3%A7%C3%B5es%20da%20Escola%20Parque.">Conversar sobre a Oficina</a>
       </div>
     </section>
   );
