@@ -1,0 +1,131 @@
+/* Abertura breve da Escola Parque: a marca é o centro da animação. */
+.epIntro{
+  position:fixed;
+  inset:0;
+  z-index:2147483000;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(190,227,137,.55), transparent 31%),
+    radial-gradient(circle at 84% 80%, rgba(112,199,211,.34), transparent 31%),
+    linear-gradient(140deg,#faffee 0%,#fbfff9 48%,#eaf8e0 100%);
+  clip-path:circle(150% at 50% 50%);
+  opacity:1;
+  transition:clip-path .7s cubic-bezier(.75,0,.24,1),opacity .42s ease .15s;
+}
+.epIntro--leaving{clip-path:circle(0% at 50% 50%);opacity:0;pointer-events:none}
+.epIntro__shape{
+  position:absolute;
+  width:min(52vw,560px);
+  aspect-ratio:1;
+  border-radius:37% 63% 63% 37% / 42% 39% 61% 58%;
+  background:rgba(131,192,84,.16);
+  animation:epIntroDrift 5s ease-in-out infinite alternate;
+}
+.epIntro__shape--left{left:-18%;top:-26%;transform:rotate(-24deg)}
+.epIntro__shape--right{right:-17%;bottom:-35%;background:rgba(96,192,207,.18);animation-delay:-2s}
+.epIntro__stage{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:min(88vw,520px);
+  min-height:370px;
+}
+.epIntro__halo{
+  position:absolute;
+  width:clamp(275px,39vw,470px);
+  aspect-ratio:1;
+  border-radius:50%;
+  background:radial-gradient(circle,#d6eebb 0 47%,rgba(177,218,119,.4) 48% 62%,transparent 63%);
+  box-shadow:0 0 0 1px rgba(65,142,87,.15),0 0 0 32px rgba(120,185,105,.05);
+  animation:epIntroHalo .94s cubic-bezier(.16,1,.3,1) both;
+}
+.epIntro__ring{
+  position:absolute;
+  width:clamp(315px,45vw,510px);
+  aspect-ratio:1;
+  border:1.5px dashed rgba(64,133,72,.33);
+  border-radius:50%;
+  transform:rotate(-18deg);
+  animation:epIntroRing 12s linear infinite,epIntroReveal .75s ease both;
+}
+.epIntro__star{
+  position:absolute;
+  z-index:2;
+  display:grid;
+  place-items:center;
+  width:44px;
+  height:44px;
+  border-radius:15px;
+  font-size:24px;
+  font-weight:800;
+  animation:epIntroPop .6s cubic-bezier(.2,1.3,.25,1) both,epIntroFloat 3s ease-in-out .6s infinite alternate;
+}
+.epIntro__star--yellow{left:7%;top:12%;color:#d48b00;background:#ffdc6b;transform:rotate(-17deg);animation-delay:.18s,.8s}
+.epIntro__star--blue{right:6%;top:21%;color:#167c85;background:#8dd9dc;transform:rotate(16deg);animation-delay:.38s,1s}
+.epIntro__star--green{right:16%;bottom:7%;color:#285d43;background:#b2e66f;transform:rotate(-10deg);animation-delay:.48s,1.1s}
+.epIntro__logoCard{
+  position:relative;
+  z-index:3;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:21px;
+  width:min(78vw,350px);
+  min-height:255px;
+  padding:30px 33px 25px;
+  border:1px solid rgba(255,255,255,.95);
+  border-radius:35px;
+  background:rgba(255,255,255,.94);
+  box-shadow:0 28px 70px rgba(38,97,69,.15),inset 0 1px 0 #fff;
+  animation:epIntroLogo .86s cubic-bezier(.17,.89,.32,1.18) both;
+}
+.epIntro__logoCard img{display:block;width:min(100%,236px);height:auto;max-height:178px;object-fit:contain}
+.epIntro__welcome{
+  display:block;
+  color:#477d49;
+  font:800 11px/1.3 'DM Sans',sans-serif;
+  letter-spacing:.26em;
+  text-align:center;
+}
+.epIntro__dots{
+  position:absolute;
+  bottom:-13px;
+  display:flex;
+  gap:8px;
+  align-items:center;
+  justify-content:center;
+  z-index:4;
+  animation:epIntroReveal .6s ease .35s both;
+}
+.epIntro__dots span{width:9px;height:9px;border-radius:50%;background:#6db3c0}
+.epIntro__dots span:first-child{background:#f5c94e}
+.epIntro__dots span:last-child{background:#75af54}
+@keyframes epIntroLogo{
+  0%{opacity:0;filter:blur(7px);transform:translateY(36px) scale(.83) rotate(-4deg)}
+  65%{opacity:1;filter:blur(0);transform:translateY(-5px) scale(1.035) rotate(1deg)}
+  100%{opacity:1;filter:blur(0);transform:translateY(0) scale(1) rotate(0)}
+}
+@keyframes epIntroHalo{from{opacity:0;transform:scale(.45) rotate(-20deg)}to{opacity:1;transform:scale(1) rotate(0)}}
+@keyframes epIntroRing{to{transform:rotate(342deg)}}
+@keyframes epIntroReveal{from{opacity:0}to{opacity:1}}
+@keyframes epIntroPop{from{opacity:0;scale:.2}to{opacity:1;scale:1}}
+@keyframes epIntroFloat{to{translate:0 -12px}}
+@keyframes epIntroDrift{to{border-radius:60% 40% 40% 60% / 53% 62% 38% 47%;rotate:10deg}}
+@media(max-width:600px){
+  .epIntro__stage{min-height:340px}
+  .epIntro__halo{width:300px}
+  .epIntro__ring{width:340px}
+  .epIntro__logoCard{width:min(75vw,315px);min-height:225px;padding:28px}
+  .epIntro__logoCard img{max-height:148px}
+  .epIntro__star{width:37px;height:37px;font-size:20px}
+  .epIntro__star--yellow{left:0;top:8%}
+  .epIntro__star--blue{right:0;top:16%}
+  .epIntro__star--green{right:4%;bottom:8%}
+}
+@media(prefers-reduced-motion:reduce){
+  .epIntro,.epIntro *{animation:none!important;transition:none!important}
+}
