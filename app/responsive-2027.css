@@ -390,3 +390,51 @@
     box-shadow:0 10px 24px rgba(20,74,51,.2)!important;
   }
 }
+
+
+/* Performance em toque: manter reveal, foguete e sobreposição, mas eliminar
+   repaints contínuos de fundo, filtros grandes e sombras de PNG transparente. */
+@media(max-width:950px) and (pointer:coarse), (max-width:700px){
+  .epSite .epHero,
+  .epSite .epHero::before,
+  .epSite .epHero::after,
+  .epSite .heroVisual::before,
+  .epSite .leafBlob,
+  .epSite .orbit,
+  .epSite .heroCard,
+  .epSite .heroTicker{
+    animation:none!important;
+  }
+  .epSite .heroBoy,
+  .epSite .heroGirl{filter:none!important}
+  .epSite .epHeader{
+    -webkit-backdrop-filter:none!important;
+    backdrop-filter:none!important;
+    background:rgba(248,252,243,.98)!important;
+  }
+  .epSite .journeyTrace__path,
+  .epSite .journeyTrace__cursor{filter:none!important}
+  .epSite .tourGallery__photo{
+    box-shadow:0 9px 24px rgba(18,63,48,.16);
+  }
+}
+@media(max-width:700px){
+  .epSite .emotionWorld__orbit,
+  .epSite .emotionWorld__star,
+  .epSite .enrollmentExplorer__mascotPortrait{
+    animation:none!important;
+  }
+  .epSite .emotionWorld__friends{filter:none!important}
+}
+/* Em aparelhos com menos memória/núcleos, o conteúdo mantém as
+   transições de rolagem sem personagens flutuando em loop. */
+.epSite.motion-lite .emotionWorld__logo,
+.epSite.motion-lite .emotionWorld__friends,
+.epSite.motion-lite .enrollmentExplorer__mascot,
+.epSite.motion-lite .enrollmentExplorer__mascotPortrait,
+.epSite.motion-lite .enrollmentExplorer__mascotHalo{
+  animation:none!important;
+}
+@media(prefers-reduced-motion:reduce){
+  .epSite .tourGallery__photo img{transition:none!important}
+}
