@@ -1,0 +1,96 @@
+/* Quatro microinterações orientadas pela rolagem: reveal, parallax, fachada e jornada. */
+.epSite.motion-active .motion-reveal{
+  opacity:1;
+  translate:0 0;
+  transition:opacity .72s ease,translate .82s cubic-bezier(.18,.75,.2,1);
+  transition-delay:var(--motion-delay,0ms);
+}
+.epSite.motion-active .motion-reveal.motion-pending{
+  opacity:0;
+  translate:0 24px;
+}
+
+/* Parallax sutil nas pessoas e nas fotografias das etapas de ensino. */
+.epSite.motion-active .heroBoy,
+.epSite.motion-active .heroGirl{translate:0 var(--motion-photo-y,0px)}
+.epSite .stage::before{
+  translate:0 var(--motion-photo-y,0px);
+  scale:1.065;
+}
+
+/* A camada com a imagem é independente do cartão: títulos nunca se deslocam. */
+.epSite .spaceList article{background-image:none!important}
+.epSite .spaceList article > .spacePhoto{
+  display:block;
+  position:absolute;
+  inset:-9% 0;
+  width:100%;
+  height:118%;
+  z-index:0;
+  pointer-events:none;
+  background-image:var(--space-photo);
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:cover;
+  transform:translate3d(0,var(--motion-photo-y,0px),0) scale(var(--motion-facade-zoom,1.065));
+  transition:scale .5s ease;
+  will-change:transform;
+}
+.epSite .spaceList article:hover > .spacePhoto{scale:1.045}
+.epSite .spaceList article::before{z-index:1!important}
+.epSite .spaceList article > span,
+.epSite .spaceList article > div{z-index:2!important}
+
+/* A primeira foto abre em zoom e se acomoda conforme a fachada entra na tela. */
+.epSite .spaceList article:first-child > .spacePhoto{
+  transform-origin:center 48%;
+}
+
+/* Linha orgânica desenhada progressivamente sobre os quatro valores. */
+.epSite .manifest .values > .journeyTrace{
+  display:block;
+  position:absolute;
+  left:3%;
+  top:-2px;
+  width:94%;
+  height:67px;
+  overflow:visible;
+  z-index:6;
+  pointer-events:none;
+}
+.epSite .journeyTrace__path{
+  stroke-dasharray:1400;
+  stroke-dashoffset:1400;
+  filter:drop-shadow(0 1px 3px #6eaa4555);
+}
+.epSite .journeyTrace__cursor{
+  filter:drop-shadow(0 3px 4px #184b3125);
+}
+.epSite.motion-active .manifest .values::after{opacity:0!important;animation:none!important}
+
+/* Em telas pequenas, a linha acompanha verticalmente os cartões. */
+@media(max-width:700px){
+  .epSite.motion-active .motion-reveal.motion-pending{translate:0 13px}
+  .epSite .stage::before{scale:1.035}
+  .epSite .spaceList article > .spacePhoto{will-change:auto}
+}
+@media(max-width:650px){
+  .epSite .manifest .values > .journeyTrace{
+    left:-18px;
+    top:22px;
+    width:58px;
+    height:calc(100% - 28px);
+  }
+  .epSite.motion-active .manifest .values::before{opacity:0!important}
+}
+
+/* Acessibilidade e dispositivos que pedem menos movimento. */
+@media(prefers-reduced-motion:reduce){
+  .epSite .motion-reveal,.epSite .motion-reveal.motion-pending{
+    opacity:1!important;translate:none!important;transition:none!important;
+  }
+  .epSite .heroBoy,.epSite .heroGirl,.epSite .stage::before{translate:none!important;scale:1!important}
+  .epSite .spaceList article > .spacePhoto{transform:none!important;transition:none!important;scale:1!important;will-change:auto}
+  .epSite .journeyTrace__path{stroke-dasharray:none!important;stroke-dashoffset:0!important}
+  .epSite .journeyTrace__cursor{display:none}
+}
