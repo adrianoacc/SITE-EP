@@ -12,6 +12,7 @@
 .epSite > .journey,
 .epSite > .bilingual,
 .epSite > .emotion,
+.epSite > .emotionWorld,
 .epSite > .structure,
 .epSite > .integral,
 .epSite > .enrollment,
@@ -29,7 +30,7 @@
 .epSite > .manifest{z-index:3}
 .epSite > .journey{z-index:4}
 .epSite > .bilingual{z-index:5}
-.epSite > .emotion{z-index:6}
+.epSite > .emotion,.epSite > .emotionWorld{z-index:6}
 .epSite > .structure{z-index:7}
 .epSite > .integral{z-index:8}
 .epSite > .enrollment{z-index:9}
