@@ -1,5 +1,5 @@
 'use client';
-import {useState} from 'react';
+import {useEffect,useRef,useState} from 'react';
 import ScrollMotion from './ScrollMotion';
 import SchoolTour from './SchoolTour';
 import EmotionWorld from './EmotionWorld';
@@ -8,7 +8,42 @@ import EnrollmentExplorer from './EnrollmentExplorer';
 const benefits=[['Bilíngue','Inglês presente na rotina desde o Maternal'],['Socioemocional','Espaço para reconhecer e lidar com as emoções'],['Integral','Uma rotina completa até 17h30'],['Estrutura','Ambientes pensados para cada fase da infância']];
 const infantil=['Maternal I · 2 anos','Maternal II · 3 anos','Jardim I · 4 anos','Jardim II · 5 anos'];
 const fundamental=['1º ano','2º ano','3º ano','4º ano','5º ano'];
-export default function Home(){const[open,setOpen]=useState(false);return <main className="epSite"><ScrollMotion/><header className="epHeader"><a href="#inicio" className="epLogo"><img src="/ep.png" alt="Escola Parque"/></a><nav className={open?'epNav open':'epNav'}><a href="#escola">A Escola</a><a href="#ensino">Ensino</a><a href="#bilingue">Bilíngue</a><a href="#estrutura">Estrutura</a><a href="#matriculas">Matrículas</a></nav><a href="https://wa.me/5591993371903" className="epHeaderCta">Agende uma visita ↗</a><button className="epMenu" onClick={()=>setOpen(!open)} aria-label="Menu"><i/><i/></button></header>
+export default function Home(){
+  const[open,setOpen]=useState(false);
+  const[introPhase,setIntroPhase]=useState('entering');
+  const introStarted=useRef(false);
+  useEffect(()=>{
+    let wasShown=false;
+    try{wasShown=window.sessionStorage.getItem('ep-intro-seen-2027')==='yes'}catch{}
+    const reducedMotion=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!introStarted.current&&(wasShown||reducedMotion)){
+      setIntroPhase('done');
+      return;
+    }
+    introStarted.current=true;
+    try{window.sessionStorage.setItem('ep-intro-seen-2027','yes')}catch{}
+    const reveal=window.setTimeout(()=>setIntroPhase('leaving'),1550);
+    const finish=window.setTimeout(()=>setIntroPhase('done'),2250);
+    return()=>{window.clearTimeout(reveal);window.clearTimeout(finish)};
+  },[]);
+  return <main className="epSite">
+    {introPhase!=='done'&&<div className={`epIntro epIntro--${introPhase}`} aria-hidden="true">
+      <div className="epIntro__shape epIntro__shape--left"/>
+      <div className="epIntro__shape epIntro__shape--right"/>
+      <div className="epIntro__stage">
+        <div className="epIntro__halo"/>
+        <div className="epIntro__ring"/>
+        <span className="epIntro__star epIntro__star--yellow">✳</span>
+        <span className="epIntro__star epIntro__star--blue">✦</span>
+        <span className="epIntro__star epIntro__star--green">✳</span>
+        <div className="epIntro__logoCard">
+          <img src="/ep.png" alt="" loading="eager" fetchPriority="high"/>
+          <span className="epIntro__welcome">BEM-VINDO!</span>
+        </div>
+        <div className="epIntro__dots"><span/><span/><span/></div>
+      </div>
+    </div>}
+    <ScrollMotion/><header className="epHeader"><a href="#inicio" className="epLogo"><img src="/ep.png" alt="Escola Parque"/></a><nav className={open?'epNav open':'epNav'}><a href="#escola">A Escola</a><a href="#ensino">Ensino</a><a href="#bilingue">Bilíngue</a><a href="#estrutura">Estrutura</a><a href="#matriculas">Matrículas</a></nav><a href="https://wa.me/5591993371903" className="epHeaderCta">Agende uma visita ↗</a><button className="epMenu" onClick={()=>setOpen(!open)} aria-label="Menu"><i/><i/></button></header>
 <section id="inicio" className="epHero"><div className="heroCopy"><span className="heroTag">MATRÍCULAS 2027 · DO MATERNAL AO 5º ANO</span><h1>Aprender bem.<br/><em>Fazer amigos.</em><br/>Ser criança.</h1><p>Do Maternal ao 5º ano, professores atentos, atividades que envolvem a turma e tempo para brincar fazem parte do dia a dia. É uma escola para aprender e se sentir à vontade.</p><div className="heroBtns"><a href="https://wa.me/5591993371903" className="solidBtn">Agende uma visita ↗</a><a href="#ensino" className="outlineBtn">Conheça a escola ↓</a></div><div className="heroTrust"><span>Programa Bilíngue</span><span>Programa Socioemocional</span><span>Integral e Semi-integral</span></div></div><div className="heroVisual"><div className="orbit o1"/><div className="orbit o2"/><div className="orbit o3"/><div className="halo h1"/><div className="halo h2"/><div className="leafBlob"/><img className="heroBoy" src="/Design sem nome (1).png" alt="Aluno da Escola Parque"/><img className="heroGirl" src="/Design sem nome (2).png" alt="Aluna da Escola Parque"/><div className="heroCard"><b>✦</b><span><strong>Matrículas 2027</strong><small>Educação Infantil e Fundamental</small></span></div></div><div className="heroTicker">ACOLHER <i>•</i> APRENDER <i>•</i> BRINCAR <i>•</i> DESCOBRIR</div></section>
 <section className="campaignBanner" aria-labelledby="campaignTitle"><div className="campaignBanner__inner"><div className="campaignBanner__copy"><span className="campaignBanner__eyebrow"><span aria-hidden="true" className="campaignBanner__sparkle">✦</span> MATRÍCULAS 2027 ABERTAS</span><h2 id="campaignTitle">Uma escolha importante.<br/><em>Uma conversa sem pressa.</em></h2><p>As matrículas para 2027 estão abertas do Maternal ao 5º ano. Tire dúvidas sobre turmas, horários e os próximos passos com a secretaria.</p></div><div className="campaignBanner__action"><a href="https://wa.me/5591993371903?text=Ol%C3%A1%21%20Gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20as%20matr%C3%ADculas%20de%202027%20da%20Escola%20Parque." target="_blank" rel="noopener noreferrer">Falar sobre matrículas <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 19L19 5M8 5h11v11" stroke="currentColor" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round"/></svg></a><small>DO MATERNAL AO 5º ANO <span aria-hidden="true">·</span> ATENDIMENTO PELO WHATSAPP</small></div></div></section>
 <section id="escola" className="manifest"><div className="eyebrow">01 — A ESCOLA PARQUE</div><div className="lead"><h2>Aqui, a gente conhece<br/><em>quem está aprendendo.</em></h2><p>Tem criança que pergunta sem parar. Tem criança que prefere observar primeiro. A gente respeita essas diferenças e acompanha os avanços de cada aluno junto com a família.</p></div><div className="values"><svg className="journeyTrace" viewBox="0 0 1000 80" preserveAspectRatio="none" aria-hidden="true"><defs><linearGradient id="journeyMotionGradient" x1="0%" x2="100%"><stop offset="0%" stopColor="#9bd35f"/><stop offset="55%" stopColor="#b8e86c"/><stop offset="100%" stopColor="#e9c95d"/></linearGradient></defs><path className="journeyTrace__path" d="M 8 45 C 235 5 385 9 520 28 S 815 56 992 18" fill="none" stroke="url(#journeyMotionGradient)" strokeWidth="4.5" strokeLinecap="round"/><g className="journeyTrace__cursor" transform="translate(8 45)"><g transform="rotate(45)"><path d="M-5 7L0 20L5 7Z" fill="#ffad45" stroke="#e67c26" strokeWidth="1.5"/><path d="M-8 1L-16 8L-12 11L-5 7Z" fill="#72be62" stroke="#34784c" strokeWidth="1.5" strokeLinejoin="round"/><path d="M8 1L16 8L12 11L5 7Z" fill="#72be62" stroke="#34784c" strokeWidth="1.5" strokeLinejoin="round"/><path d="M0 -19C7 -14 10 -4 8 8H-8C-10 -4 -7 -14 0 -19Z" fill="#fff9e7" stroke="#33764b" strokeWidth="2" strokeLinejoin="round"/><path d="M-7 5H7" stroke="#b9e16d" strokeWidth="2"/><circle cx="0" cy="-5" r="4.1" fill="#86c7d7" stroke="#367b8f" strokeWidth="1.4"/><path d="M-2 17L0 25L2 17" fill="#f9d45f" stroke="#ff9f31" strokeWidth="1"/></g></g></svg><article><b>01</b><h3>Atenção a cada aluno</h3><p>O professor observa as necessidades e acompanha os avanços de perto.</p></article><article><b>02</b><h3>Independência aos poucos</h3><p>Pequenas escolhas e responsabilidades entram na rotina desde cedo.</p></article><article><b>03</b><h3>Escuta e acolhimento</h3><p>A criança tem espaço para falar, pedir ajuda e receber orientação.</p></article><article><b>04</b><h3>Base para seguir em frente</h3><p>Conteúdos e experiências são trabalhados com continuidade, ano após ano.</p></article></div></section>
