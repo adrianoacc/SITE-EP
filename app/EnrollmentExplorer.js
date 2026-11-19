@@ -91,7 +91,7 @@ export default function EnrollmentExplorer() {
           </div>
 
           <aside className="enrollmentExplorer__result" aria-labelledby="enrollmentExplorerSelection">
-            <div className="enrollmentExplorer__mascot" key={stage + turma.name}>
+            <div className="enrollmentExplorer__mascot">
               <span className="enrollmentExplorer__mascotHalo" aria-hidden="true"/>
               <div className="enrollmentExplorer__mascotPortrait">
                 <img src="/Mascote Laranja com Coroa de Folhas.png" alt="Mascote da Escola Parque dando boas-vindas"/>
