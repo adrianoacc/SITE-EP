@@ -47,13 +47,13 @@ export default function EnrollmentExplorer() {
       <span className="enrollmentExplorer__orb enrollmentExplorer__orb--one" aria-hidden="true"/>
       <span className="enrollmentExplorer__orb enrollmentExplorer__orb--two" aria-hidden="true"/>
       <div className="enrollmentExplorer__inner">
-        <header className="enrollmentExplorer__intro">
+        <div className="enrollmentExplorer__intro">
           <div>
             <span className="enrollmentExplorer__eyebrow"><span aria-hidden="true">✳</span> MATRÍCULAS ABERTAS 2027</span>
             <h2 id="enrollmentExplorerTitle">Cada fase tem seu tempo.<br/><em>Vamos descobrir a turma do seu filho?</em></h2>
           </div>
           <p>É simples: escolha a etapa, encontre a turma e converse com a nossa equipe. A melhor maneira de decidir é conhecer a escola de perto.</p>
-        </header>
+        </div>
 
         <div className="enrollmentExplorer__grid">
           <div className="enrollmentExplorer__chooser">
