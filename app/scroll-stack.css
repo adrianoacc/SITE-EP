@@ -1,0 +1,83 @@
+/* Escola Parque — scroll em camadas, inspirado na transição da Elev7.
+   Rolagem nativa: sem snap, sem interceptar touch/wheel e sem prender seções longas. */
+.epSite{
+  --stack-edge:clamp(24px,2.5vw,38px);
+  --stack-overlap:clamp(21px,2.1vw,30px);
+  --stack-depth-shadow:0 -15px 44px -26px rgba(8,46,34,.45),0 -3px 15px -10px rgba(8,46,34,.28);
+}
+
+/* A próxima superfície passa visualmente por cima da anterior. */
+.epSite > .campaignBanner,
+.epSite > .manifest,
+.epSite > .journey,
+.epSite > .bilingual,
+.epSite > .emotion,
+.epSite > .structure,
+.epSite > .integral,
+.epSite > .enrollment,
+.epSite > .contact,
+.epSite > footer{
+  position:relative;
+  margin-top:calc(-1 * var(--stack-overlap));
+  border-radius:var(--stack-edge) var(--stack-edge) 0 0;
+  box-shadow:var(--stack-depth-shadow);
+}
+
+/* Ordem explícita evita que uma seção anterior cubra links da próxima. */
+.epSite > .epHero{z-index:1}
+.epSite > .campaignBanner{z-index:2}
+.epSite > .manifest{z-index:3}
+.epSite > .journey{z-index:4}
+.epSite > .bilingual{z-index:5}
+.epSite > .emotion{z-index:6}
+.epSite > .structure{z-index:7}
+.epSite > .integral{z-index:8}
+.epSite > .enrollment{z-index:9}
+.epSite > .contact{z-index:10}
+.epSite > footer{z-index:11}
+
+/* Abertura fixada apenas quando cabe no viewport.
+   Assim a faixa de matrículas realmente desliza por cima da foto inicial. */
+@media (min-width:951px) and (min-height:730px){
+  .epSite > .epHero{
+    position:sticky!important;
+    top:78px!important;
+  }
+}
+
+/* A faixa é curta: fica atrás da seção "A Escola" durante a passagem. */
+@media (min-height:570px){
+  .epSite > .campaignBanner{
+    position:sticky;
+    top:78px;
+  }
+}
+
+/* Ancoragem legível sob o menu fixo. */
+.epSite > section[id]{scroll-margin-top:102px}
+
+/* Telas intermediárias e celular: seções compridas continuam no fluxo
+   para não criar o problema de prender a página ou sobrepor textos. */
+@media (max-width:950px){
+  .epSite{--stack-edge:26px;--stack-overlap:22px}
+  .epSite > .epHero{position:relative!important}
+}
+@media (max-width:700px){
+  .epSite{
+    --stack-edge:22px;
+    --stack-overlap:17px;
+    --stack-depth-shadow:0 -12px 32px -20px rgba(8,46,34,.42),0 -2px 10px -8px rgba(8,46,34,.2);
+  }
+  .epSite > section[id]{scroll-margin-top:91px}
+  .epSite > .campaignBanner{top:78px}
+}
+/* Em visores muito baixos, a rolagem fica 100% livre. */
+@media (max-height:569px){
+  .epSite > .epHero,
+  .epSite > .campaignBanner{position:relative!important;top:auto!important}
+}
+/* Respeita pessoas sensíveis a movimento fixado. */
+@media (prefers-reduced-motion:reduce){
+  .epSite > .epHero,
+  .epSite > .campaignBanner{position:relative!important;top:auto!important}
+}
