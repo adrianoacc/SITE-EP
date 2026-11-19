@@ -69,6 +69,10 @@
 .spaceList article:nth-child(7) {background-image:url('/cantina.png')!important}
 .spaceList article:nth-child(8) {background-image:url('/Pátio Escolar Colorido com Caminho Numérico.png')!important}
 .spaceList article:nth-child(9) {background-image:url('/Fachada Vibrante da Escola Parque.png')!important}
+.spaceList article:nth-child(4),.spaceList article:nth-child(7) {
+  background-size:cover!important;background-position:center 55%!important;
+  background-repeat:no-repeat!important;
+}
 .spaceList article>span {
   position:absolute!important;top:18px!important;left:18px!important;z-index:2!important;
   width:auto!important;height:auto!important;padding:8px 11px!important;
