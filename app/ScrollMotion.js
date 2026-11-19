@@ -83,7 +83,7 @@ export default function ScrollMotion(){
       // de fotografias a cada rolagem (melhor fluidez e menos gasto de bateria).
       if(!mobile){
         const heroProgress=clamp(window.scrollY/600);
-        hero.forEach((image,index)=>setVar(image,'--motion-photo-y',String((-heroProgress*(index?23:11)).toFixed(1))+'px')));
+        hero.forEach((image,index)=>setVar(image,'--motion-photo-y',String((-heroProgress*(index?23:11)).toFixed(1))+'px'));
         stages.forEach(el=>shiftPhoto(el,15,height));
         photos.forEach(el=>shiftPhoto(el,19,height));
         if(photos[0]){
