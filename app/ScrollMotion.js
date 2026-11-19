@@ -68,15 +68,19 @@ export default function ScrollMotion(){
       frame=0;
       const height=window.innerHeight;
       const mobile=window.innerWidth<=700;
-      const heroProgress=clamp(window.scrollY/600);
-      hero.forEach((image,index)=>image.style.setProperty('--motion-photo-y',String((-heroProgress*(index?23:11)).toFixed(1))+'px'));
-      stages.forEach(el=>shiftPhoto(el,mobile?7:15,height));
-      photos.forEach(el=>shiftPhoto(el,mobile?8:19,height));
-      if(photos[0]){
-        const rect=photos[0].getBoundingClientRect();
-        if(rect.bottom>-150&&rect.top<height+150){
-          const enter=clamp((height*.92-rect.top)/(height*.62+rect.height*.52));
-          photos[0].style.setProperty('--motion-facade-zoom',(1.18-enter*.12).toFixed(3));
+      // Telas menores mantêm o foguete e o reveal, sem recalcular parallax
+      // de fotografias a cada rolagem (melhor fluidez e menos gasto de bateria).
+      if(!mobile){
+        const heroProgress=clamp(window.scrollY/600);
+        hero.forEach((image,index)=>image.style.setProperty('--motion-photo-y',String((-heroProgress*(index?23:11)).toFixed(1))+'px'));
+        stages.forEach(el=>shiftPhoto(el,15,height));
+        photos.forEach(el=>shiftPhoto(el,19,height));
+        if(photos[0]){
+          const rect=photos[0].getBoundingClientRect();
+          if(rect.bottom>-150&&rect.top<height+150){
+            const enter=clamp((height*.92-rect.top)/(height*.62+rect.height*.52));
+            photos[0].style.setProperty('--motion-facade-zoom',(1.18-enter*.12).toFixed(3));
+          }
         }
       }
       if(values&&path&&cursor){
@@ -90,7 +94,13 @@ export default function ScrollMotion(){
       }
     };
     const schedule=()=>{if(!frame)frame=window.requestAnimationFrame(draw)};
-    const onResize=()=>{preparePath();schedule()};
+    const onResize=()=>{
+      if(window.innerWidth<=700){
+        [...hero,...stages,...photos].forEach(el=>el.style.removeProperty('--motion-photo-y'));
+        if(photos[0])photos[0].style.removeProperty('--motion-facade-zoom');
+      }
+      preparePath();schedule();
+    };
     preparePath();
     window.addEventListener('scroll',schedule,{passive:true});
     window.addEventListener('resize',onResize,{passive:true});
