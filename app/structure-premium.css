@@ -1,135 +1,250 @@
-/* Galeria de ambientes reais da Escola Parque */
-.structure {
+/* Um passeio pela Escola Parque: cenas que se sobrepõem com a rolagem. */
+.epSite > .structure.schoolTour {
   display:block!important;
   position:relative!important;
-  overflow:hidden!important;
-  padding:104px 6vw 112px!important;
-  background:linear-gradient(180deg,#fff 0%,#fbfcf7 100%)!important;
+  overflow:visible!important;
   isolation:isolate;
+  padding:clamp(76px,8vw,130px) max(24px,5.3vw) clamp(80px,8vw,126px)!important;
+  background:linear-gradient(180deg,#fbfdf8 0%,#f4f8ec 56%,#fffdf4 100%)!important;
 }
-.structure::before {
-  content:'ESPAÇOS PARA VIVER A INFÂNCIA';
-  position:absolute;right:-25px;top:85px;z-index:-1;
-  color:#143d3108;font:900 clamp(38px,5vw,88px)/.9 Manrope;
-  letter-spacing:-.05em;white-space:nowrap;pointer-events:none;
+.schoolTour, .schoolTour * {box-sizing:border-box}
+.schoolTour__intro {
+  position:relative;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(260px,.62fr);
+  gap:clamp(24px,6vw,96px);align-items:end;max-width:1500px;margin:0 auto 65px;
 }
-.structureIntro {
-  display:grid!important;
-  grid-template-columns:minmax(0,1fr) minmax(280px,.65fr)!important;
-  align-items:end!important;gap:20px 5vw!important;
-  max-width:none!important;margin:0 0 44px!important;
+.schoolTour__eyebrow {
+  display:inline-flex;align-items:center;gap:11px;padding:11px 17px;
+  border:1px solid #c9dfb4;border-radius:100px;
+  color:#477b33;background:#ecf6e4;font:800 12px/1.3 Manrope,sans-serif;
+  letter-spacing:.11em;
 }
-.structureIntro .eyebrow {
-  grid-column:1/-1!important;display:inline-flex!important;width:max-content!important;
-  padding:9px 13px!important;border-radius:999px!important;
-  background:#edf5df!important;color:#527b3e!important;
-  font:900 10px Manrope!important;letter-spacing:.13em!important;
+.schoolTour__eyebrow span {font-size:22px;line-height:0;color:#78a94a}
+.schoolTour__intro h2 {
+  max-width:900px;margin:22px 0 0;color:#143e31;
+  font:800 clamp(43px,5.1vw,82px)/1.02 Manrope,sans-serif!important;
+  letter-spacing:-.065em;
 }
-.structureIntro h2 {
-  font-size:clamp(44px,4.5vw,76px)!important;
-  line-height:.95!important;letter-spacing:-.065em!important;
-  margin:0!important;max-width:720px!important;
+.schoolTour__intro h2 em {font-style:normal;color:#5b9f36}
+.schoolTour__introSide {padding-bottom:7px}
+.schoolTour__introSide p {
+  margin:0 0 24px;color:#50665b;font:500 clamp(17px,1.22vw,20px)/1.65 'DM Sans',sans-serif;
 }
-.structureIntro h2 em {color:#5b9f36!important;font-style:normal!important}
-.structureIntro p {
-  margin:0 0 6px!important;max-width:465px!important;
-  font-size:clamp(16px,1.05vw,18px)!important;line-height:1.65!important;color:#68776f!important;
+.schoolTour__scrollCue {
+  display:inline-flex;align-items:center;gap:11px;color:#376c42;
+  font:800 14px/1.3 Manrope,sans-serif;text-decoration:none;
 }
-.spaceList {
-  display:grid!important;
-  grid-template-columns:repeat(4,minmax(0,1fr))!important;
-  grid-template-rows:repeat(3,minmax(245px,auto))!important;
-  grid-auto-flow:row!important;gap:16px!important;margin:0!important;
+.schoolTour__scrollCue::before {
+  content:'';height:31px;width:31px;border:2px solid #8bbd62;border-radius:50%;
+  background:radial-gradient(circle at center,#8bbd62 0 4px,transparent 5px);
+  box-shadow:0 0 0 6px #e0efd9;
 }
-.spaceList article {
-  position:relative!important;display:flex!important;align-items:flex-end!important;
-  min-width:0!important;min-height:245px!important;height:100%!important;
-  border:0!important;border-radius:25px!important;overflow:hidden!important;
-  padding:24px!important;isolation:isolate!important;
-  background-color:#305848!important;background-size:cover!important;
-  background-position:center!important;background-repeat:no-repeat!important;
-  box-shadow:0 12px 32px #143d3110!important;
-  transition:transform .35s ease,box-shadow .35s ease!important;
+.schoolTour__scrollCue:hover {color:#174932}
+.schoolTour__chapters {position:relative;max-width:1500px;margin:0 auto;isolation:isolate}
+.schoolTour__chapters::before {
+  content:'';position:absolute;top:0;bottom:0;left:28px;
+  border-left:3px dashed #9cbf75;opacity:.3;pointer-events:none;
 }
-.spaceList article:hover {transform:translateY(-5px)!important;box-shadow:0 24px 48px #143d3125!important}
-.spaceList article::before {
-  content:'';position:absolute;inset:0;z-index:0!important;pointer-events:none;
-  background:linear-gradient(180deg,#082c2000 20%,#082c2040 45%,#082c20ed 100%)!important;
+.tourStop {
+  --tour-ink:#123f30;--tour-muted:#4f6b5c;--tour-pill:#e6f6d6;
+  position:sticky;top:94px;z-index:var(--tour-layer);
+  display:grid;grid-template-columns:minmax(270px,.73fr) minmax(0,1.2fr);
+  align-items:center;gap:clamp(18px,4vw,60px);
+  min-height:min(76vh,710px);padding:clamp(22px,3.8vw,60px);
+  margin:0 0 clamp(80px,12vh,135px);
+  border-radius:clamp(26px,3.2vw,46px);
+  border:1px solid #ffffff91;
+  box-shadow:0 24px 65px #20433325,0 6px 17px #103d2820;
+  color:var(--tour-ink);background:#f8e8bd;overflow:hidden;
+  scroll-margin-top:94px;
 }
-.spaceList article::after {display:none!important}
-.spaceList article:nth-child(1) {
-  grid-column:span 2!important;grid-row:span 2!important;
-  background-image:url('/Fachada Vibrante da Escola Parque.png')!important;
+.tourStop::before {
+  content:'';position:absolute;width:270px;height:270px;left:-160px;bottom:-145px;
+  border:32px solid #ffffff4f;border-radius:50%;pointer-events:none;
 }
-.spaceList article:nth-child(2) {background-image:url('/12_parquinho_01.jpg')!important}
-.spaceList article:nth-child(3) {background-image:url('/14_parquinho_02.jpg')!important}
-.spaceList article:nth-child(4) {background-image:url('/11_quadra_esportiva.jpg')!important}
-.spaceList article:nth-child(5) {background-image:url('/sala de leitura.png')!important}
-.spaceList article:nth-child(6) {background-image:url('/05_sala_de_aula.png')!important}
-.spaceList article:nth-child(7) {background-image:url('/area de convivencia.png')!important}
-.spaceList article:nth-child(8) {background-image:url('/cantina.png')!important}
-.spaceList article:nth-child(9) {background-image:url('/Pátio Escolar Colorido com Caminho Numérico.png')!important}
-.spaceList article:nth-child(5),.spaceList article:nth-child(8) {
-  background-size:cover!important;background-position:center 55%!important;
-  background-repeat:no-repeat!important;
+.tourStop::after {
+  content:'✳';position:absolute;top:10px;right:44%;font-size:63px;
+  line-height:1;color:#ffffff88;transform:rotate(-14deg);pointer-events:none;
 }
-.spaceList article>span {
-  position:absolute!important;top:18px!important;left:18px!important;z-index:2!important;
-  width:auto!important;height:auto!important;padding:8px 11px!important;
-  border-radius:999px!important;background:#fffffff0!important;color:#143d31!important;
-  font:900 11px Manrope!important;letter-spacing:.04em!important;
+.tourStop--welcome {
+  --tour-ink:#fff;--tour-muted:#dcebe0;--tour-pill:#d1eca9;
+  background:linear-gradient(130deg,#0f4939,#22654d 57%,#458f5b);
 }
-.spaceList article>div {position:relative!important;z-index:2!important;min-width:0}
-.spaceList article h3 {
-  color:#fff!important;font:800 clamp(20px,1.35vw,27px)/1.1 Manrope!important;
-  letter-spacing:-.035em!important;margin:0 0 8px!important;text-shadow:0 2px 14px #08291f55;
+.tourStop--play {background:linear-gradient(145deg,#fff4ce,#ffe4aa 70%,#ffdcaa)}
+.tourStop--sport {background:linear-gradient(140deg,#e5f4e9,#caeadd 66%,#b4e1d4)}
+.tourStop--learn {background:linear-gradient(135deg,#f3eefa,#e6e9fc 65%,#d6e5fb)}
+.tourStop--together {
+  --tour-ink:#fff;--tour-muted:#e8f1e4;--tour-pill:#e1eebb;
+  background:linear-gradient(135deg,#285d46,#3c7e51 64%,#75a959);
 }
-.spaceList article p {
-  color:#fff!important;opacity:.94!important;font-size:13px!important;
-  line-height:1.5!important;margin:0!important;max-width:370px!important;
+.tourStop__copy {position:relative;z-index:2;min-width:0;max-width:480px;display:flex;flex-direction:column;align-items:flex-start}
+.tourStop__topline {
+  display:flex;align-items:center;gap:11px;margin-bottom:clamp(34px,5vh,65px);
+  color:var(--tour-ink);font:800 14px/1.2 Manrope,sans-serif;
 }
-.spaceList article:first-child h3 {font-size:clamp(27px,2vw,38px)!important}
-.spaceList article:first-child p {font-size:15px!important}
-.spaceList article>b {display:none!important}
-.spaceScrollHint {display:none}
-@media (max-width:1100px) {
-  .structureIntro {grid-template-columns:1fr 1fr!important;gap:20px 35px!important}
-  .spaceList {
-    grid-template-columns:repeat(2,minmax(0,1fr))!important;
-    grid-template-rows:none!important;grid-auto-rows:minmax(250px,auto)!important;
+.tourStop__marker {
+  display:grid;place-items:center;width:39px;height:39px;border-radius:50%;
+  color:#174832;background:var(--tour-pill);font:900 16px Manrope,sans-serif;
+  box-shadow:0 0 0 5px #ffffff31;
+}
+.tourStop__eyebrow {
+  font:900 12px/1.4 Manrope,sans-serif;letter-spacing:.15em;
+  color:var(--tour-ink);opacity:.76;
+}
+.tourStop__copy h3 {
+  margin:13px 0 17px!important;color:var(--tour-ink)!important;
+  font:800 clamp(36px,3.55vw,62px)/1.04 Manrope,sans-serif!important;
+  letter-spacing:-.055em;max-width:500px;
+}
+.tourStop__copy > p {
+  margin:0!important;max-width:420px;color:var(--tour-muted)!important;
+  font:500 clamp(16px,1.2vw,19px)/1.65 'DM Sans',sans-serif!important;
+}
+.tourStop__bottom {
+  display:flex;gap:11px;align-items:center;margin-top:clamp(28px,5vh,54px);
+  padding-top:17px;border-top:1px solid currentColor;
+  color:var(--tour-ink);opacity:.72;
+  font:700 13px/1.5 Manrope,sans-serif;
+}
+.tourStop__sparkle {font-size:23px;color:#75b641;line-height:1}
+.tourStop--welcome .tourStop__sparkle,.tourStop--together .tourStop__sparkle {color:#d8ed87}
+.tourGallery {
+  position:relative;z-index:2;display:grid;gap:13px;
+  height:clamp(325px,53vh,545px);min-width:0;min-height:0;
+}
+.tourGallery--1 {grid-template-columns:1fr}
+.tourGallery--2 {grid-template-columns:1.1fr .83fr;align-items:stretch}
+.tourGallery--3 {grid-template-columns:1.18fr .85fr;grid-template-rows:1fr 1fr}
+.tourGallery__photo {
+  position:relative;isolation:isolate;min-width:0;min-height:0;
+  margin:0;border:5px solid #fffffff0;border-radius:clamp(18px,2.3vw,31px);
+  background:#94b69b;overflow:hidden;
+  box-shadow:0 17px 38px #123f3025;transform:translateZ(0);
+}
+.tourGallery--2 .tourGallery__photo:nth-child(2) {
+  margin-top:11%;margin-bottom:5%;transform:rotate(2.5deg);
+}
+.tourGallery--3 .tourGallery__photo:first-child {grid-row:1/3}
+.tourGallery--3 .tourGallery__photo:nth-child(2) {transform:rotate(2deg)}
+.tourGallery--3 .tourGallery__photo:nth-child(3) {transform:rotate(-2deg)}
+.tourGallery__photo img {
+  width:100%;height:100%;display:block;object-fit:cover;object-position:center;
+  transform:scale(1.055);transition:transform .75s cubic-bezier(.2,.65,.2,1);
+}
+.tourGallery__photo:hover img {transform:scale(1.14)}
+.tourGallery__photo::after {
+  content:'';position:absolute;z-index:0;inset:42% 0 0;
+  background:linear-gradient(180deg,transparent,#082c20c7);pointer-events:none;
+}
+.tourGallery__photo figcaption {
+  position:absolute;z-index:1;left:19px;right:16px;bottom:17px;
+  color:#fff;text-shadow:0 2px 9px #082c2099;
+  font:800 clamp(15px,1.12vw,19px)/1.3 Manrope,sans-serif;
+}
+.tourStop--welcome .tourGallery__photo img {object-position:center 45%}
+.tourStop--sport .tourGallery__photo img {object-position:center 52%}
+.tourStop--learn .tourGallery__photo:nth-child(2) img {object-position:center 45%}
+.tourStop--together .tourGallery__photo:first-child img {object-position:center}
+.schoolTour__closing {
+  position:relative;display:flex;align-items:center;justify-content:space-between;
+  gap:25px;max-width:1500px;margin:0 auto;padding:clamp(30px,5vw,66px);
+  background:#fff;border:2px dashed #b2d18a;border-radius:34px;overflow:hidden;
+}
+.schoolTour__closingDecoration {
+  position:absolute;right:26%;bottom:-72px;color:#d7eeb7;
+  font-size:235px;line-height:1;z-index:0;transform:rotate(18deg);
+  pointer-events:none;
+}
+.schoolTour__closing > div:not(.schoolTour__closingDecoration) {position:relative;z-index:1;max-width:670px}
+.schoolTour__closing span {
+  color:#538b42;font:900 12px/1.4 Manrope,sans-serif;letter-spacing:.15em;
+}
+.schoolTour__closing h3 {
+  margin:11px 0;font:800 clamp(29px,3vw,46px)/1.13 Manrope,sans-serif;
+  letter-spacing:-.045em;color:#153f32;
+}
+.schoolTour__closing h3 em {font-style:normal;color:#5a9637}
+.schoolTour__closing p {margin:0;color:#64776d;font-size:17px;line-height:1.6}
+.schoolTour__visit {
+  position:relative;z-index:1;display:inline-flex;justify-content:center;
+  align-items:center;flex:0 0 auto;min-height:54px;padding:16px 27px;
+  border-radius:16px;background:#26764a;color:white;
+  font:800 16px/1.2 Manrope,sans-serif;box-shadow:0 11px 23px #26764a2e;
+  transition:background .2s,transform .2s;
+}
+.schoolTour__visit:hover {background:#165b3b;transform:translateY(-2px)}
+.schoolTour__visit:focus-visible,.schoolTour__scrollCue:focus-visible {
+  outline:3px solid #edb959;outline-offset:4px;
+}
+@supports(animation-timeline:view()) {
+  @media (prefers-reduced-motion:no-preference) and (min-width:861px) {
+    .tourStop__copy {animation:tourCopyIn both ease-out;animation-timeline:view();animation-range:entry 5% cover 34%}
+    .tourGallery {animation:tourPhotoIn both ease-out;animation-timeline:view();animation-range:entry 0% cover 34%}
   }
-  .spaceList article:first-child {
-    grid-column:1/-1!important;grid-row:auto!important;min-height:390px!important;
-  }
 }
-@media (max-width:650px) {
-  .structure {padding:72px 20px 76px!important}
-  .structure::before {display:none}
-  .structureIntro {display:block!important;margin-bottom:27px!important}
-  .structureIntro .eyebrow {margin-bottom:18px!important}
-  .structureIntro h2 {font-size:clamp(40px,11vw,57px)!important;margin-bottom:17px!important}
-  .structureIntro p {font-size:16px!important;line-height:1.6!important}
-  .spaceList {
-    display:flex!important;overflow-x:auto!important;overflow-y:hidden!important;
-    scroll-snap-type:x mandatory!important;overscroll-behavior-x:contain!important;
-    gap:12px!important;margin:0 -20px 0 0!important;
-    padding:0 20px 12px 0!important;scrollbar-width:thin;
-    scrollbar-color:#aac598 transparent;
-  }
-  .spaceList article,.spaceList article:first-child {
-    flex:0 0 min(82vw,360px)!important;grid-column:auto!important;grid-row:auto!important;
-    min-height:380px!important;height:380px!important;
-    scroll-snap-align:start!important;border-radius:23px!important;padding:22px!important;
-  }
-  .spaceList article h3,.spaceList article:first-child h3 {font-size:27px!important}
-  .spaceList article p,.spaceList article:first-child p {font-size:13px!important}
-  .spaceScrollHint {
-    display:flex;align-items:center;gap:9px;margin:12px 0 0;
-    font:700 12px Manrope;color:#68836b;
-  }
-  .spaceScrollHint span {font-size:17px}
+@keyframes tourCopyIn {from{opacity:.6;translate:0 24px}to{opacity:1;translate:0 0}}
+@keyframes tourPhotoIn {from{opacity:.7;translate:0 37px;scale:.97}to{opacity:1;translate:0 0;scale:1}}
+@media(max-width:1100px){
+  .schoolTour__intro {grid-template-columns:1.15fr .85fr}
+  .tourStop {grid-template-columns:minmax(240px,.82fr) minmax(0,1fr);gap:26px;padding:28px}
+  .tourStop__copy h3 {font-size:clamp(33px,4.3vw,46px)!important}
+  .tourStop__topline {margin-bottom:30px}
 }
-@media (prefers-reduced-motion:reduce) {
-  .spaceList article {transition:none!important}
-  .spaceList {scroll-behavior:auto!important}
+@media(max-width:860px){
+  .epSite > .structure.schoolTour {padding:72px 24px 90px!important}
+  .schoolTour__intro {grid-template-columns:1fr;gap:15px;margin-bottom:42px}
+  .schoolTour__intro h2 {max-width:700px}
+  .schoolTour__introSide {max-width:600px}
+  .schoolTour__introSide p {margin-bottom:17px}
+  .tourStop {
+    position:relative;top:auto;display:flex;flex-direction:column;
+    align-items:stretch;gap:24px;min-height:0;margin-bottom:21px;
+    padding:28px;border-radius:29px;scroll-margin-top:90px;
+  }
+  .tourStop__copy {max-width:100%}
+  .tourStop__copy h3 {max-width:700px;font-size:clamp(33px,5.5vw,47px)!important}
+  .tourStop__copy > p {max-width:640px}
+  .tourStop__topline {margin-bottom:25px}
+  .tourStop__bottom {margin-top:20px}
+  .tourGallery {height:clamp(340px,53vw,500px)}
+  .schoolTour__closing {flex-direction:column;align-items:flex-start}
+  .schoolTour__chapters::before {display:none}
+}
+@media(max-width:540px){
+  .epSite > .structure.schoolTour {padding:64px 18px 76px!important}
+  .schoolTour__eyebrow {font-size:11px;letter-spacing:.07em;padding:10px 12px}
+  .schoolTour__intro h2 {font-size:clamp(39px,10vw,53px)!important;line-height:1.06!important}
+  .schoolTour__introSide p {font-size:17px}
+  .schoolTour__intro {margin-bottom:31px}
+  .tourStop {padding:23px 19px 20px;gap:22px;border-radius:26px;margin-bottom:17px}
+  .tourStop::before {width:160px;height:160px;left:-100px;bottom:-100px}
+  .tourStop::after {font-size:40px;right:20px;top:18px}
+  .tourStop__marker {width:36px;height:36px}
+  .tourStop__topline {font-size:13px;margin-bottom:24px}
+  .tourStop__eyebrow {font-size:11px}
+  .tourStop__copy h3 {font-size:clamp(32px,8.4vw,42px)!important;margin:10px 0 12px!important}
+  .tourStop__copy > p {font-size:16px!important;line-height:1.58!important}
+  .tourStop__bottom {font-size:12px;line-height:1.45;margin-top:18px}
+  .tourGallery {height:auto;gap:11px}
+  .tourGallery--1 {height:270px}
+  .tourGallery--2 {display:grid;grid-template-columns:1fr 1fr;height:220px}
+  .tourGallery--2 .tourGallery__photo:nth-child(2) {margin-top:16px;margin-bottom:0;transform:none}
+  .tourGallery--3 {height:385px;grid-template-columns:1fr 1fr;grid-template-rows:230px 144px}
+  .tourGallery--3 .tourGallery__photo:first-child {grid-row:1;grid-column:1/3}
+  .tourGallery--3 .tourGallery__photo:nth-child(2),.tourGallery--3 .tourGallery__photo:nth-child(3) {transform:none}
+  .tourGallery__photo {border-width:3px;border-radius:17px}
+  .tourGallery__photo figcaption {left:10px;right:7px;bottom:10px;font-size:13px}
+  .schoolTour__closing {padding:27px 22px;border-radius:25px}
+  .schoolTour__closing h3 {font-size:30px}
+  .schoolTour__closing p {font-size:16px}
+  .schoolTour__visit {width:100%;min-height:54px;text-align:center}
+  .schoolTour__closingDecoration {font-size:165px;right:-35px;bottom:20px}
+}
+@media(max-width:360px){
+  .tourGallery--2 {height:185px}
+  .tourGallery--3 {height:360px;grid-template-rows:210px 139px}
+  .tourStop__copy h3 {font-size:32px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .tourStop__copy,.tourGallery {animation:none!important;translate:none!important;scale:1!important;opacity:1!important}
+  .tourGallery__photo img,.schoolTour__visit {transition:none!important;transform:none!important}
 }
