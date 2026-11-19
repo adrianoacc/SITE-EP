@@ -26,7 +26,7 @@
   .epSite .heroCopy > p{max-width:620px;font-size:17px!important;line-height:1.62!important}
   .epSite .heroVisual{position:relative!important;inset:auto!important;width:min(100%,680px)!important;height:clamp(380px,56vw,490px)!important;margin:23px auto 0!important;transform:none!important;overflow:hidden!important;flex:none}
   .epSite .heroBoy{height:clamp(440px,60vw,575px)!important;left:14%!important;bottom:-68px!important}
-  .epSite .heroGirl{height:clamp(410px,57vw,530px)!important;left:44%!important;bottom:-62px!important}
+  .epSite .heroGirl{height:clamp(410px,52vw,500px)!important;left:36%!important;bottom:-60px!important}
   .epSite .heroCard{right:7%!important;top:32px!important}
   .epSite .heroTicker{display:none!important}
   .epSite .heroTrust{flex-wrap:wrap!important;gap:9px 12px!important}
