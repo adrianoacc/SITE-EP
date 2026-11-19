@@ -42,6 +42,8 @@ export default function ScrollMotion(){
     }
 
     const photos=Array.from(root.querySelectorAll('.spaceList article'));
+    const tourCards=Array.from(root.querySelectorAll('.schoolTour .tourStop'));
+    const coverSections=Array.from(root.children).filter(el=>el.matches('.campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,.structure,.dailyRoutine,.enrollmentExplorer,.contact'));
     const stages=Array.from(root.querySelectorAll('.stageGrid .stage'));
     const hero=Array.from(root.querySelectorAll('.heroBoy,.heroGirl'));
     const values=root.querySelector('.manifest .values');
@@ -83,6 +85,26 @@ export default function ScrollMotion(){
           }
         }
       }
+      // No celular e tablet, as fotos do passeio respondem à rolagem mesmo sem hover.
+      // O movimento fica limitado às cenas próximas da tela.
+      if(window.innerWidth<=950){
+        coverSections.forEach(section=>{
+          const rect=section.getBoundingClientRect();
+          if(rect.bottom<-90||rect.top>height+100)return;
+          const entry=clamp((height*.95-rect.top)/(height*.42));
+          section.style.setProperty('--stack-enter',entry.toFixed(3));
+        });
+        tourCards.forEach(card=>{
+          const rect=card.getBoundingClientRect();
+          if(rect.bottom<-120||rect.top>height+140)return;
+          const progress=clamp((height*.9-rect.top)/(height*.48+Math.min(rect.height,height)*.48));
+          card.style.setProperty('--tour-progress',progress.toFixed(3));
+          card.querySelectorAll('.tourGallery__photo img').forEach((photo,index)=>{
+            photo.style.setProperty('--tour-photo-y',((.5-progress)*(index%2===0?-18:18)).toFixed(1)+'px');
+            photo.style.setProperty('--tour-photo-scale',(1.105-progress*.055).toFixed(3));
+          });
+        });
+      }
       if(values&&path&&cursor){
         const rect=values.getBoundingClientRect();
         if(rect.bottom>-100&&rect.top<height+150){
@@ -95,13 +117,28 @@ export default function ScrollMotion(){
     };
     const schedule=()=>{if(!frame)frame=window.requestAnimationFrame(draw)};
     const onResize=()=>{
+      const compact=window.innerWidth<=950;
+      const usableHeight=window.innerHeight-98;
+      tourCards.forEach(card=>{
+        // Sticky somente se a cena inteira couber na tela; caso contrário,
+        // a rolagem continua livre e a próxima cena cobre a borda anterior.
+        card.classList.toggle('tourStop--sticky',compact&&window.innerHeight>=620&&card.offsetHeight<=usableHeight);
+        if(!compact){
+          card.style.removeProperty('--tour-progress');
+          card.querySelectorAll('.tourGallery__photo img').forEach(img=>{
+            img.style.removeProperty('--tour-photo-y');
+            img.style.removeProperty('--tour-photo-scale');
+          });
+        }
+      });
+      if(!compact)coverSections.forEach(el=>el.style.removeProperty('--stack-enter'));
       if(window.innerWidth<=700){
         [...hero,...stages,...photos].forEach(el=>el.style.removeProperty('--motion-photo-y'));
         if(photos[0])photos[0].style.removeProperty('--motion-facade-zoom');
       }
       preparePath();schedule();
     };
-    preparePath();
+    onResize();
     window.addEventListener('scroll',schedule,{passive:true});
     window.addEventListener('resize',onResize,{passive:true});
     schedule();
