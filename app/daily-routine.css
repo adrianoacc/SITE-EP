@@ -1,0 +1,275 @@
+/* Um dia na Escola Parque — timeline interativa de Integral e Semi-integral */
+.epSite > .dailyRoutine {
+  position:relative;isolation:isolate;overflow:hidden;
+  padding:clamp(76px,7vw,115px) max(24px,5.5vw) clamp(70px,6.5vw,105px);
+  background:linear-gradient(120deg,#fbf9f0 0%,#fffdf7 47%,#eef7e9 100%);
+  color:#153f32;
+}
+.dailyRoutine,.dailyRoutine * {box-sizing:border-box}
+.dailyRoutine::before {
+  content:'';position:absolute;z-index:-1;left:-160px;bottom:10%;width:400px;height:400px;
+  border:2px dashed #9fc77c45;border-radius:50%;
+  box-shadow:0 0 0 68px #b9da931b,0 0 0 127px #eec75f0b;pointer-events:none;
+}
+.dailyRoutine__top {
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(390px,.84fr);
+  gap:clamp(38px,7vw,112px);align-items:center;max-width:1470px;
+  margin:0 auto clamp(48px,5vw,75px);
+}
+.dailyRoutine__intro {min-width:0;max-width:740px}
+.dailyRoutine__eyebrow {
+  display:inline-flex;align-items:center;gap:10px;padding:9px 16px;
+  background:#edf6df;border:1px solid #d8e7c6;border-radius:100px;
+  color:#548344;font:900 12px/1.3 Manrope,sans-serif;letter-spacing:.12em;
+}
+.dailyRoutine__eyebrow span {font-size:21px;color:#b4c957;line-height:0}
+.dailyRoutine__intro h2 {
+  margin:23px 0 22px;color:#123f32;
+  font:800 clamp(42px,4.55vw,73px)/1.04 Manrope,sans-serif;
+  letter-spacing:-.064em;text-wrap:balance;
+}
+.dailyRoutine__intro h2 em {display:block;font-style:normal;color:#5ca13d}
+.dailyRoutine__intro > p {
+  margin:0;max-width:605px;color:#61746a;
+  font:500 clamp(17px,1.18vw,20px)/1.67 'DM Sans',sans-serif;
+}
+.dailyRoutine__selector {
+  position:relative;min-width:0;padding:clamp(26px,3.1vw,46px);
+  background:#fff;border:1px solid #e1ebd8;border-radius:32px;
+  box-shadow:0 22px 68px #16463413;
+}
+.dailyRoutine__selectorLabel {
+  display:block;margin-bottom:19px;color:#6b875b;
+  font:900 12px/1.4 Manrope,sans-serif;letter-spacing:.12em;
+}
+.dailyRoutine__options {
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;
+  padding:6px;border-radius:19px;background:#eef4e9;
+}
+.dailyRoutine__options button {
+  border:0;border-radius:14px;background:transparent;color:#627a65;
+  font:800 clamp(14px,1.07vw,16px)/1.3 Manrope,sans-serif;
+  min-height:47px;padding:11px 15px;cursor:pointer;
+  transition:background .2s,color .2s,box-shadow .2s;
+}
+.dailyRoutine__options button.is-active {
+  background:#164d39;color:#fff;box-shadow:0 6px 18px #174e3d25;
+}
+.dailyRoutine__options button:hover:not(.is-active) {background:#fff;color:#174d38}
+.dailyRoutine__options button:focus-visible,.dailyRoutine__footer a:focus-visible {
+  outline:3px solid #f0bc48;outline-offset:3px;
+}
+.dailyRoutine__time {
+  display:flex;align-items:center;justify-content:space-between;gap:17px;
+  padding:26px 0 19px;border-bottom:1px solid #e2ebe0;
+}
+.dailyRoutine__time > span:not(.dailyRoutine__timeLine) {
+  display:flex;flex-direction:column;gap:4px;
+  color:#6a856d;font:800 12px/1.4 Manrope,sans-serif;letter-spacing:.1em;
+}
+.dailyRoutine__time strong {
+  color:#164934;font:900 clamp(29px,2.5vw,42px)/1.1 Manrope,sans-serif;
+  letter-spacing:-.055em;
+}
+.dailyRoutine__timeLine {
+  position:relative;align-self:center;flex:1;max-width:110px;height:4px;
+  border-radius:3px;background:linear-gradient(90deg,#f5cb56,#8dc66a);
+}
+.dailyRoutine__timeLine::before,.dailyRoutine__timeLine::after {
+  content:'';position:absolute;top:50%;width:11px;height:11px;border-radius:50%;
+  background:#f3cc56;transform:translateY(-50%);
+}
+.dailyRoutine__timeLine::before {left:0}
+.dailyRoutine__timeLine::after {right:0;background:#8dc66a}
+.dailyRoutine__selectorSummary {
+  min-height:48px;margin:18px 0 0;color:#61746a;
+  font:500 16px/1.55 'DM Sans',sans-serif;
+}
+.dailyRoutine__journey {
+  max-width:1470px;margin:0 auto;padding:clamp(26px,4.4vw,65px);
+  background:#fff;border:1px solid #e3eddc;border-radius:clamp(24px,3.1vw,43px);
+  box-shadow:0 25px 75px #153f3212;
+}
+.dailyRoutine__journeyHead {
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(250px,.65fr);
+  gap:clamp(25px,4vw,60px);align-items:end;margin:0 0 33px;
+}
+.dailyRoutine__journeyHead span {
+  color:#619250;font:900 12px/1.5 Manrope,sans-serif;letter-spacing:.15em;
+}
+.dailyRoutine__journeyHead h3 {
+  margin:11px 0 0;max-width:750px;color:#143f32;
+  font:800 clamp(31px,3.25vw,52px)/1.12 Manrope,sans-serif;
+  letter-spacing:-.055em;
+}
+.dailyRoutine__journeyHead p {
+  max-width:405px;margin:0 0 4px;color:#677c6e;
+  font:500 16px/1.65 'DM Sans',sans-serif;
+}
+.dailyRoutine__path {
+  --routine-progress:0;--routine-count:5;
+  position:relative;min-width:0;padding-top:81px;
+}
+.dailyRoutine__pathLine {
+  position:absolute;top:27px;left:7%;right:7%;height:6px;
+  border-radius:10px;
+  background:repeating-linear-gradient(90deg,#dfe8d5 0 13px,transparent 13px 21px);
+}
+.dailyRoutine__pathFill {
+  position:absolute;display:block;left:0;top:0;height:100%;
+  width:calc(var(--routine-progress) * 100%);
+  border-radius:10px;background:linear-gradient(90deg,#eac552,#95c765,#3f9b7e);
+  transition:width .12s linear;
+}
+.dailyRoutine__backpack {
+  position:absolute;top:-29px;left:calc(var(--routine-progress) * 100%);
+  z-index:7;width:40px;height:45px;
+  border:3px solid #154c3b;border-radius:12px 12px 14px 14px;
+  background:#f2cf61;box-shadow:inset 0 5px 0 #fbe59a,0 7px 15px #1647332b;
+  transform:translateX(-50%) rotate(-7deg);
+  transition:left .12s linear;
+}
+.dailyRoutine__backpack::before,.dailyRoutine__backpack::after {
+  content:'';position:absolute;top:8px;bottom:8px;width:6px;
+  border:2px solid #164b3a;border-radius:7px;z-index:-1;
+}
+.dailyRoutine__backpack::before {left:-8px}
+.dailyRoutine__backpack::after {right:-8px}
+.dailyRoutine__backpackHandle {
+  position:absolute;left:10px;top:-12px;width:15px;height:12px;
+  border:3px solid #154c3b;border-bottom:0;border-radius:9px 9px 0 0;
+}
+.dailyRoutine__backpackPocket {
+  position:absolute;left:8px;right:8px;bottom:6px;height:15px;
+  border:2px solid #154c3b;border-radius:6px;background:#ffd979;
+}
+.dailyRoutine__steps {
+  display:grid;grid-template-columns:repeat(var(--routine-count),minmax(0,1fr));
+  gap:12px;margin:0;padding:0;list-style:none;
+}
+.dailyRoutine__step {
+  position:relative;min-width:0;min-height:202px;padding:22px 18px;
+  border-radius:22px;background:#f7faf4;border:1px solid #e4ecde;
+  box-shadow:0 6px 15px #1643330a;
+}
+.dailyRoutine__step:nth-child(2n) {background:#fff9e9;border-color:#f3ead1}
+.dailyRoutine__step:nth-child(4n) {background:#ecf8f2;border-color:#d4eadc}
+.dailyRoutine__stepIcon {
+  display:grid;place-items:center;width:47px;height:47px;margin-bottom:17px;
+  border-radius:16px;color:#1e6446;background:#d9ebc9;
+  font:900 29px/1 Manrope,sans-serif;
+}
+.dailyRoutine__step:nth-child(2n) .dailyRoutine__stepIcon {background:#fbe69a;color:#7d691a}
+.dailyRoutine__step:nth-child(4n) .dailyRoutine__stepIcon {background:#bdebd7;color:#2d7656}
+.dailyRoutine__stepTime {
+  display:inline-block;margin:0 0 8px;padding:5px 9px;
+  border-radius:100px;background:#dfeecf;color:#4c7d3b;
+  font:900 13px/1.2 Manrope,sans-serif;
+}
+.dailyRoutine__step h4 {
+  margin:0 0 8px;color:#184c3a;
+  font:800 clamp(16px,1.18vw,19px)/1.23 Manrope,sans-serif;letter-spacing:-.02em;
+}
+.dailyRoutine__step p {
+  margin:0;color:#6a7b70;font:500 15px/1.52 'DM Sans',sans-serif;
+}
+.dailyRoutine__extra {
+  display:inline-flex;align-items:center;gap:10px;margin:25px 0 0;
+  padding:12px 16px;border:1px solid #d5e9c3;border-radius:15px;
+  color:#4f7848;background:#f0f8e9;
+  font:750 15px/1.45 Manrope,sans-serif;
+}
+.dailyRoutine__extra span {font-size:21px;color:#78a954}
+.dailyRoutine__footer {
+  max-width:1470px;margin:30px auto 0;
+  display:flex;justify-content:space-between;align-items:center;gap:28px;
+  padding:4px 4px 0;
+}
+.dailyRoutine__footer > div {max-width:650px}
+.dailyRoutine__footer span {
+  color:#689257;font:900 12px/1.3 Manrope,sans-serif;letter-spacing:.15em;
+}
+.dailyRoutine__footer p {
+  margin:8px 0 0;color:#214f3b;
+  font:750 clamp(18px,1.5vw,23px)/1.4 Manrope,sans-serif;
+}
+.dailyRoutine__footer a {
+  flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;
+  min-height:54px;padding:15px 25px;border-radius:16px;
+  background:#247649;color:#fff!important;
+  font:800 16px/1.3 Manrope,sans-serif;box-shadow:0 12px 25px #23784a2d;
+  transition:background .2s,transform .2s;
+}
+.dailyRoutine__footer a:hover {background:#155c39;transform:translateY(-2px)}
+@media(prefers-reduced-motion:no-preference){
+  .dailyRoutine__path.dailyRoutine--revealed .dailyRoutine__step {animation:routineStepRise .5s both}
+  .dailyRoutine__path.dailyRoutine--revealed .dailyRoutine__step:nth-child(2){animation-delay:.12s}
+  .dailyRoutine__path.dailyRoutine--revealed .dailyRoutine__step:nth-child(3){animation-delay:.24s}
+  .dailyRoutine__path.dailyRoutine--revealed .dailyRoutine__step:nth-child(4){animation-delay:.36s}
+  .dailyRoutine__path.dailyRoutine--revealed .dailyRoutine__step:nth-child(5){animation-delay:.48s}
+}
+@keyframes routineStepRise {from{opacity:.25;translate:0 22px}to{opacity:1;translate:0 0}}
+@media(max-width:1100px){
+  .dailyRoutine__top {grid-template-columns:1fr 1fr;gap:30px}
+  .dailyRoutine__intro h2 {font-size:clamp(41px,4.8vw,57px)}
+  .dailyRoutine__journey {padding:30px}
+  .dailyRoutine__step {padding:18px 12px;min-height:214px}
+  .dailyRoutine__step p {font-size:14px}
+}
+@media(max-width:860px){
+  .epSite > .dailyRoutine {padding:75px 25px 80px}
+  .dailyRoutine__top {grid-template-columns:1fr;max-width:720px;margin-bottom:42px}
+  .dailyRoutine__intro h2 {max-width:700px;font-size:clamp(43px,6.8vw,61px)}
+  .dailyRoutine__selector {max-width:670px}
+  .dailyRoutine__journeyHead {grid-template-columns:1fr;gap:10px}
+  .dailyRoutine__journeyHead p {max-width:660px}
+  .dailyRoutine__steps {grid-template-columns:1fr}
+  .dailyRoutine__path {padding:0 0 0 35px}
+  .dailyRoutine__pathLine {top:15px;bottom:15px;left:5px;right:auto;width:5px;height:auto;background:repeating-linear-gradient(180deg,#dfe8d5 0 12px,transparent 12px 20px)}
+  .dailyRoutine__pathFill {left:0;top:0;width:100%;height:calc(var(--routine-progress) * 100%);background:linear-gradient(180deg,#eac552,#95c765,#3f9b7e);transition:height .12s linear}
+  .dailyRoutine__backpack {left:50%;top:calc(var(--routine-progress) * 100%);transform:translate(-50%,-50%) scale(.85);transition:top .12s linear}
+  .dailyRoutine__step {min-height:0;padding:20px 22px;display:grid;grid-template-columns:55px 1fr;gap:4px 12px;align-items:start}
+  .dailyRoutine__stepIcon {grid-row:1/4;grid-column:1;width:44px;height:44px;margin:0}
+  .dailyRoutine__stepTime,.dailyRoutine__step h4,.dailyRoutine__step p {grid-column:2;margin:0}
+  .dailyRoutine__stepTime {justify-self:start;margin-bottom:5px}
+  .dailyRoutine__step h4 {font-size:20px}
+  .dailyRoutine__step p {font-size:15px}
+}
+@media(max-width:580px){
+  .epSite > .dailyRoutine {padding:64px 18px 70px}
+  .dailyRoutine__eyebrow {font-size:11px;padding:9px 12px}
+  .dailyRoutine__intro h2 {font-size:clamp(37px,9.4vw,50px);margin:18px 0}
+  .dailyRoutine__intro > p {font-size:16px}
+  .dailyRoutine__top {gap:27px;margin-bottom:30px}
+  .dailyRoutine__selector {padding:22px 18px;border-radius:25px}
+  .dailyRoutine__selectorLabel {font-size:11px}
+  .dailyRoutine__options button {padding:10px 8px;font-size:14px}
+  .dailyRoutine__time {gap:8px;padding:20px 0 15px}
+  .dailyRoutine__time strong {font-size:clamp(26px,7.8vw,35px)}
+  .dailyRoutine__timeLine {max-width:60px}
+  .dailyRoutine__selectorSummary {font-size:15px}
+  .dailyRoutine__journey {padding:24px 16px;border-radius:27px}
+  .dailyRoutine__journeyHead h3 {font-size:clamp(30px,8vw,38px)}
+  .dailyRoutine__journeyHead p {font-size:15px}
+  .dailyRoutine__path {padding-left:27px}
+  .dailyRoutine__pathLine {left:3px}
+  .dailyRoutine__backpack {transform:translate(-50%,-50%) scale(.7)}
+  .dailyRoutine__step {grid-template-columns:42px 1fr;padding:16px 13px;border-radius:19px;gap:4px 8px}
+  .dailyRoutine__stepIcon {width:35px;height:35px;border-radius:12px;font-size:23px}
+  .dailyRoutine__step h4 {font-size:18px}
+  .dailyRoutine__step p {font-size:15px}
+  .dailyRoutine__extra {font-size:14px;padding:12px}
+  .dailyRoutine__footer {flex-direction:column;align-items:stretch;gap:19px}
+  .dailyRoutine__footer p {font-size:18px}
+  .dailyRoutine__footer a {width:100%;text-align:center}
+}
+@media(max-width:360px){
+  .dailyRoutine__selector {padding:18px 13px}
+  .dailyRoutine__time strong {font-size:25px}
+  .dailyRoutine__journey {padding:20px 12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .dailyRoutine__backpack,.dailyRoutine__pathFill,.dailyRoutine__step {transition:none!important;animation:none!important}
+  .dailyRoutine__path {--routine-progress:1}
+  .dailyRoutine__footer a {transition:none!important}
+}
