@@ -446,3 +446,68 @@
   width:auto!important;
   max-width:none!important;
 }
+
+/* Safari no iPhone/iPad: preserva o passeio e seus detalhes sem combinar
+   camadas sticky com transformações contínuas, causa de telas vazias/pulos. */
+.epSite.motion-ios > :is(
+  .campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,
+  .structure,.dailyRoutine,.enrollmentExplorer,.contact
+){
+  translate:none!important;
+  transform:none!important;
+  opacity:1!important;
+  transition:none!important;
+  will-change:auto!important;
+}
+.epSite.motion-ios .tourGallery__photo{
+  translate:none!important;
+  opacity:1!important;
+  transition:none!important;
+  will-change:auto!important;
+}
+.epSite.motion-ios .tourGallery__photo img{
+  transform:none!important;
+  transition:none!important;
+  will-change:auto!important;
+}
+.epSite.motion-ios .tourGallery__photo.ios-gallery-visible{
+  animation:iosGalleryReveal .55s ease-out both;
+}
+@keyframes iosGalleryReveal{
+  from{opacity:.72;transform:translateY(10px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.epSite.motion-ios .emotionWorld__logo,
+.epSite.motion-ios .emotionWorld__friends,
+.epSite.motion-ios .emotionWorld__star,
+.epSite.motion-ios .emotionWorld__orbit,
+.epSite.motion-ios .enrollmentExplorer__mascot,
+.epSite.motion-ios .enrollmentExplorer__mascotPortrait{
+  animation:none!important;
+  filter:none!important;
+}
+.epSite.motion-ios .spaceList .spacePhoto{
+  transform:none!important;
+  will-change:auto!important;
+}
+.epSite.motion-ios .motion-reveal.motion-pending{
+  opacity:.7;
+  translate:none!important;
+}
+
+/* A regra funciona até antes da hidratação do React no Safari. */
+@supports (-webkit-touch-callout: none){
+  .epSite > .epHero,
+  .epSite > .campaignBanner,
+  .epSite .tourStop.tourStop--sticky{
+    position:relative!important;
+    top:auto!important;
+  }
+  .epSite .tourGallery__photo img{
+    -webkit-backface-visibility:hidden;
+    backface-visibility:hidden;
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .epSite.motion-ios .tourGallery__photo.ios-gallery-visible{animation:none!important}
+}
