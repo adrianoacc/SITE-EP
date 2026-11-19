@@ -129,3 +129,21 @@
 @media(prefers-reduced-motion:reduce){
   .epIntro,.epIntro *{animation:none!important;transition:none!important}
 }
+
+/* Failsafe de entrada: mesmo se o Safari atrasar a hidratação ou timers,
+   nenhuma tela de boas-vindas pode ficar eternamente sobre a navegação. */
+.epIntro{animation:epIntroSafetyExit .01s linear 2.8s forwards}
+@keyframes epIntroSafetyExit{
+  to{visibility:hidden;pointer-events:none}
+}
+@supports (-webkit-touch-callout: none){
+  .epIntro{clip-path:none!important;transition:opacity .24s ease!important}
+  .epIntro--leaving{opacity:0!important;visibility:hidden!important}
+  .epIntro__shape,.epIntro__halo,.epIntro__ring,
+  .epIntro__star,.epIntro__logoCard{
+    animation:none!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .epIntro{display:none!important}
+}
