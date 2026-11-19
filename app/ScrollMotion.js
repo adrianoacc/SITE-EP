@@ -328,3 +328,21 @@ export default function ScrollMotion(){
     window.addEventListener('scroll',schedule,{passive:true});
     window.addEventListener('resize',onResize,{passive:true});
     document.addEventListener('visibilitychange',schedule);
+    // O Safari restaura páginas do cache sem disparar resize.
+    window.addEventListener('pageshow',onResize,{passive:true});
+    schedule();
+
+    return ()=>{
+      window.removeEventListener('scroll',schedule);
+      window.removeEventListener('resize',onResize);
+      document.removeEventListener('visibilitychange',schedule);
+      window.removeEventListener('pageshow',onResize);
+      if(iosGalleryObserver)iosGalleryObserver.disconnect();
+      if(frame)window.cancelAnimationFrame(frame);
+      if(observer)observer.disconnect();
+      items.forEach(el=>el.classList.remove('motion-reveal','motion-pending'));
+      root.classList.remove('motion-active','motion-lite','motion-ios');
+    };
+  },[]);
+  return null;
+}
