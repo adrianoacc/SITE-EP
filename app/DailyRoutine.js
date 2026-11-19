@@ -7,25 +7,25 @@ const schedules = {
     name: 'Semi-integral',
     time: '07h30 — 14h',
     end: '14h',
-    summary: 'Aula regular pela manhã, banho e almoço antes de voltar para casa.',
+    summary: 'Para quem precisa da escola até as 14h, com banho e almoço incluídos.',
     steps: [
-      {icon: '☀', title: 'Chegada', detail: 'O dia começa na Escola Parque.', time: '07h30'},
-      {icon: '✎', title: 'Aulas da manhã', detail: 'Aula regular com a turma.'},
-      {icon: '♡', title: 'Banho e almoço', detail: 'Cuidado e refeição após as aulas.'},
-      {icon: '⌂', title: 'Volta para casa', detail: 'Fim da rotina semi-integral.', time: '14h'}
+      {icon: '☀', title: 'Chegada', detail: 'Recepção e início das atividades.', time: '07h30'},
+      {icon: '✎', title: 'Aulas da manhã', detail: 'Atividades e conteúdos da etapa de ensino.'},
+      {icon: '♡', title: 'Banho e almoço', detail: 'Banho e almoço após o turno da manhã.'},
+      {icon: '⌂', title: 'Volta para casa', detail: 'Hora de encontrar a família.', time: '14h'}
     ]
   },
   integral: {
     name: 'Integral',
     time: '07h30 — 17h30',
     end: '17h30',
-    summary: 'Além das aulas, a tarde inclui acompanhamento escolar, Circuito Kids e reforço de inglês.',
+    summary: 'A tarde continua com apoio nos estudos, atividades de movimento e inglês.',
     steps: [
-      {icon: '☀', title: 'Chegada', detail: 'O dia começa na Escola Parque.', time: '07h30'},
-      {icon: '✎', title: 'Aulas da manhã', detail: 'Aula regular com a turma.'},
-      {icon: '♡', title: 'Banho e almoço', detail: 'Cuidados e refeição para continuar o dia.'},
+      {icon: '☀', title: 'Chegada', detail: 'Recepção e início das atividades.', time: '07h30'},
+      {icon: '✎', title: 'Aulas da manhã', detail: 'Atividades e conteúdos da etapa de ensino.'},
+      {icon: '♡', title: 'Banho e almoço', detail: 'Banho, almoço e pausa antes das atividades da tarde.'},
       {icon: '✳', title: 'Tarde com atividades', detail: 'Acompanhamento escolar, Circuito Kids e reforço de inglês.'},
-      {icon: '⌂', title: 'Volta para casa', detail: 'Fim da rotina integral.', time: '17h30'}
+      {icon: '⌂', title: 'Volta para casa', detail: 'Hora de voltar para casa.', time: '17h30'}
     ]
   }
 };
@@ -88,11 +88,11 @@ export default function DailyRoutine() {
       <div className="dailyRoutine__top">
         <div className="dailyRoutine__intro">
           <span className="dailyRoutine__eyebrow"><span aria-hidden="true">✳</span> INTEGRAL E SEMI-INTEGRAL</span>
-          <h2 id="dailyRoutineTitle">Mais tempo na escola. <em>Mais momentos para viver a infância.</em></h2>
-          <p>Do turno da manhã ao fim da tarde, você escolhe a rotina que combina com sua família. Veja o que acontece em cada modalidade.</p>
+          <h2 id="dailyRoutineTitle">Precisa de um horário estendido? <em>Veja como funciona.</em></h2>
+          <p>Compare o semi-integral e o integral para entender os horários e o que está incluído em cada opção.</p>
         </div>
         <div className="dailyRoutine__selector">
-          <span className="dailyRoutine__selectorLabel">QUAL ROTINA COMBINA COM VOCÊS?</span>
+          <span className="dailyRoutine__selectorLabel">ESCOLHA O HORÁRIO</span>
           <div className="dailyRoutine__options" role="group" aria-label="Selecione a modalidade">
             <button type="button" onClick={() => setMode('semi')} aria-pressed={mode === 'semi'} aria-controls="dailyRoutineJourney" className={mode === 'semi' ? 'is-active' : ''}>Semi-integral</button>
             <button type="button" onClick={() => setMode('integral')} aria-pressed={mode === 'integral'} aria-controls="dailyRoutineJourney" className={mode === 'integral' ? 'is-active' : ''}>Integral</button>
@@ -110,9 +110,9 @@ export default function DailyRoutine() {
         <div className="dailyRoutine__journeyHead">
           <div>
             <span>UM DIA NA ESCOLA PARQUE</span>
-            <h3>Do primeiro bom-dia à hora de voltar para casa.</h3>
+            <h3>Da chegada à hora de ir para casa.</h3>
           </div>
-          <p>Os momentos seguem a rotina escolhida. A linha acompanha a sua rolagem pela página.</p>
+          <p>Selecione uma modalidade acima para ver as atividades e acompanhar o dia da turma.</p>
         </div>
 
         <div className="dailyRoutine__path" style={{'--routine-count': current.steps.length}}>
@@ -135,8 +135,8 @@ export default function DailyRoutine() {
       </div>
 
       <div className="dailyRoutine__footer">
-        <div><span>ANO LETIVO 2027</span><p>Seu filho tem uma rotina. Sua família tem tranquilidade para escolher.</p></div>
-        <a href="https://wa.me/5591993371903?text=Ol%C3%A1%21%20Quero%20conhecer%20o%20Integral%20e%20Semi-integral%20da%20Escola%20Parque%20para%202027.">Conhecer as opções para 2027</a>
+        <div><span>ANO LETIVO 2027</span><p>Ficou na dúvida sobre o que está incluído? A secretaria explica os detalhes.</p></div>
+        <a href="https://wa.me/5591993371903?text=Ol%C3%A1%21%20Quero%20conhecer%20o%20Integral%20e%20Semi-integral%20da%20Escola%20Parque%20para%202027.">Tirar dúvidas sobre os horários</a>
       </div>
     </section>
   );
