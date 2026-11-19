@@ -196,3 +196,57 @@
   .epSite .epMenu i{transition:none!important}
   .epSite > .campaignBanner{position:relative!important;top:auto!important}
 }
+
+
+/* Ajustes de composição e narrativa de rolagem (mobile/tablet).
+   O menino vem à frente; sem reposicionar ou deformar os arquivos das crianças. */
+@media(max-width:950px){
+  .epSite{--stack-overlap:31px;--stack-edge:27px}
+  .epSite .heroVisual{isolation:isolate}
+  .epSite .heroBoy{z-index:11!important;left:4%!important}
+  .epSite .heroGirl{z-index:10!important;left:42%!important}
+
+  /* As próximas superfícies avançam sobre as anteriores sem prender conteúdo alto. */
+  .epSite.motion-active > :is(.campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,.structure,.dailyRoutine,.enrollmentExplorer,.contact){
+    translate:0 calc((1 - var(--stack-enter,1))*25px);
+  }
+  .epSite > :is(.campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,.structure,.dailyRoutine,.enrollmentExplorer,.contact){
+    box-shadow:0 -16px 42px -22px rgba(8,46,34,.48),0 -3px 16px -9px rgba(8,46,34,.25);
+  }
+
+  /* A galeria também tem movimento por rolagem e sobreposição de capítulos. */
+  .epSite .tourStop{margin-bottom:0!important;scroll-margin-top:86px}
+  .epSite .tourStop:not(:last-child){padding-bottom:69px!important}
+  .epSite .tourStop + .tourStop{margin-top:-46px!important}
+  .epSite .tourStop.tourStop--sticky{position:sticky!important;top:80px!important}
+  .epSite.motion-active .tourGallery__photo{
+    translate:0 calc((1 - var(--tour-progress,1))*13px);
+    opacity:calc(.88 + var(--tour-progress,1)*.12);
+  }
+  .epSite.motion-active .tourGallery__photo img{
+    transform:translate3d(0,var(--tour-photo-y,0px),0) scale(var(--tour-photo-scale,1.055));
+    transition:transform .13s linear;
+  }
+}
+@media(max-width:700px){
+  .epSite{--stack-overlap:37px;--stack-edge:24px}
+  .epSite .heroBoy{left:-6%!important}
+  .epSite .heroGirl{left:29%!important}
+  .epSite .tourStop + .tourStop{margin-top:-43px!important}
+  .epSite .tourStop:not(:last-child){padding-bottom:66px!important}
+}
+@media(max-width:420px){
+  .epSite .heroBoy{left:-10%!important;height:clamp(295px,91vw,340px)!important;bottom:-38px!important}
+  .epSite .heroGirl{left:25%!important;height:clamp(245px,71vw,295px)!important;bottom:-30px!important}
+  .epSite .tourStop + .tourStop{margin-top:-38px!important}
+  .epSite .tourStop:not(:last-child){padding-bottom:59px!important}
+}
+@media(max-width:360px){
+  .epSite .heroBoy{left:-10%!important;height:304px!important}
+  .epSite .heroGirl{left:24%!important;height:252px!important}
+}
+@media(prefers-reduced-motion:reduce){
+  .epSite > :is(.campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,.structure,.dailyRoutine,.enrollmentExplorer,.contact),
+  .epSite .tourGallery__photo{translate:none!important;opacity:1!important}
+  .epSite .tourGallery__photo img{transition:none!important;transform:scale(1.055)!important}
+}
