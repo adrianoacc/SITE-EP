@@ -11,9 +11,14 @@ export default function ScrollMotion(){
     const root=document.querySelector('.epSite');
     if(!root||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
     root.classList.add('motion-active');
-    const lowPower=(navigator.deviceMemory>0&&navigator.deviceMemory<=4)||(navigator.hardwareConcurrency>0&&navigator.hardwareConcurrency<=4);
+    // Todos os navegadores no iPhone/iPad usam WebKit, que sofre com
+    // sticky + transforms em superfícies grandes durante o touch-scroll.
+    const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||
+      (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+    root.classList.toggle('motion-ios',ios);
+    const lowPower=ios||(navigator.deviceMemory>0&&navigator.deviceMemory<=4)||(navigator.hardwareConcurrency>0&&navigator.hardwareConcurrency<=4);
     const setVar=(el,name,value)=>{if(el.style.getPropertyValue(name)!==value)el.style.setProperty(name,value)};
-    const updateLite=()=>root.classList.toggle('motion-lite',lowPower||window.innerWidth<=420);
+    const updateLite=()=>root.classList.toggle('motion-lite',lowPower||window.innerWidth<=480);
     updateLite();
 
     const selectors=[
@@ -27,11 +32,13 @@ export default function ScrollMotion(){
       '.tourGallery','.schoolTour__closing'
     ];
     const items=Array.from(root.querySelectorAll(selectors.join(',')));
+    const pending=new Set();
     const observer=typeof IntersectionObserver==='function'
       ?new IntersectionObserver(entries=>{
         entries.forEach(entry=>{
           if(!entry.isIntersecting)return;
           entry.target.classList.remove('motion-pending');
+          pending.delete(entry.target);
           observer.unobserve(entry.target);
         });
       },{threshold:0.01,rootMargin:'0px 0px 18% 0px'})
@@ -43,6 +50,7 @@ export default function ScrollMotion(){
           ?Math.min(Array.from(parent.children).indexOf(el)*42,126):0;
         el.style.setProperty('--motion-delay',String(stagger)+'ms');
         el.classList.add('motion-reveal','motion-pending');
+        pending.add(el);
         observer.observe(el);
       });
     }
@@ -50,6 +58,19 @@ export default function ScrollMotion(){
     const photos=Array.from(root.querySelectorAll('.spaceList article'));
     const tourCards=Array.from(root.querySelectorAll('.schoolTour .tourStop'));
     const tourData=tourCards.map(card=>({card,photos:Array.from(card.querySelectorAll('.tourGallery__photo img'))}));
+    // Safari recebe um reveal leve por observação; sem transformar a foto
+    // a cada pixel de rolagem e sem depender de sticky em cards altos.
+    let iosGalleryObserver=null;
+    if(ios&&typeof IntersectionObserver==='function'){
+      iosGalleryObserver=new IntersectionObserver(entries=>{
+        entries.forEach(entry=>{
+          if(!entry.isIntersecting)return;
+          entry.target.classList.add('ios-gallery-visible');
+          iosGalleryObserver.unobserve(entry.target);
+        });
+      },{threshold:.05,rootMargin:'0px 0px 10% 0px'});
+      tourData.forEach(({photos})=>photos.forEach(img=>iosGalleryObserver.observe(img.parentElement)));
+    }
     const coverSections=Array.from(root.children).filter(el=>el.matches('.campaignBanner,.manifest,.journey,.bilingual,.emotionWorld,.structure,.dailyRoutine,.enrollmentExplorer,.contact'));
     const stages=Array.from(root.querySelectorAll('.stageGrid .stage'));
     const hero=Array.from(root.querySelectorAll('.heroBoy,.heroGirl'));
@@ -66,8 +87,13 @@ export default function ScrollMotion(){
       const mobile=window.innerWidth<=650;
       svg.setAttribute('viewBox',mobile?'0 0 80 1000':'0 0 1000 80');
       path.setAttribute('d',mobile?MOBILE_PATH:DESKTOP_PATH);
-      total=Math.max(1,path.getTotalLength());
-      path.style.strokeDasharray=String(total);
+      try{
+        total=Math.max(1,path.getTotalLength());
+        path.style.strokeDasharray=String(total);
+      }catch{
+        total=1;
+        if(cursor)cursor.style.display='none';
+      }
     };
     const shiftPhoto=(el,amount,height)=>{
       const rect=el.getBoundingClientRect();
@@ -79,6 +105,18 @@ export default function ScrollMotion(){
       frame=0;
       const height=window.innerHeight;
       const mobile=window.innerWidth<=700;
+      // Fallback para observadores do Safari ao voltar da navegação/BFCache.
+      // Se um conteúdo está na área visível, ele nunca permanece esmaecido.
+      if(ios&&pending.size){
+        for(const el of pending){
+          const rect=el.getBoundingClientRect();
+          if(rect.top<height*1.06&&rect.bottom>-32){
+            el.classList.remove('motion-pending');
+            pending.delete(el);
+            if(observer)observer.unobserve(el);
+          }
+        }
+      }
       // Telas menores mantêm o foguete e o reveal, sem recalcular parallax
       // de fotografias a cada rolagem (melhor fluidez e menos gasto de bateria).
       if(!mobile){
@@ -97,6 +135,7 @@ export default function ScrollMotion(){
       // Entrada em camadas contínua e gradual em todas as telas.
       // Preparar a progressão também fora do viewport evita o salto repentino
       // da posição padrão para o início da animação quando a seção aparece.
+      if(!ios){
       const sectionRects=coverSections.map(section=>({section,rect:section.getBoundingClientRect()}));
       const lift=mobile?13:window.innerWidth<=950?17:20;
       sectionRects.forEach(({section,rect})=>{
@@ -106,9 +145,10 @@ export default function ScrollMotion(){
         setVar(section,'--stack-lift-y',((1-eased)*lift).toFixed(1)+'px');
         setVar(section,'--stack-opacity',(.93+eased*.07).toFixed(3));
       });
+      }
       // O passeio acompanha o dedo no celular; cards fora da tela
       // conservam a última posição sem comprometer a fluidez.
-      if(window.innerWidth<=950){
+      if(window.innerWidth<=950&&!ios){
         const tourRects=tourData.map(({card,photos})=>({card,photos,rect:card.getBoundingClientRect()}));
         tourRects.forEach(({card,photos,rect})=>{
           if(rect.bottom<-120||rect.top>height+140)return;
@@ -126,14 +166,18 @@ export default function ScrollMotion(){
           const progress=clamp((height*.83-rect.top)/(height*.48+rect.height*.66));
           const dashOffset=String(total*(1-progress));
           if(path.style.strokeDashoffset!==dashOffset)path.style.strokeDashoffset=dashOffset;
-          const point=path.getPointAtLength(total*progress);
-          const transform='translate('+point.x.toFixed(1)+' '+point.y.toFixed(1)+')';
-          if(cursor.getAttribute('transform')!==transform)cursor.setAttribute('transform',transform);
+          try{
+            const point=path.getPointAtLength(total*progress);
+            const transform='translate('+point.x.toFixed(1)+' '+point.y.toFixed(1)+')';
+            if(cursor.getAttribute('transform')!==transform)cursor.setAttribute('transform',transform);
+          }catch{
+            cursor.style.display='none';
+          }
         }
       }
     };
     const tick=(time)=>{
-      const interval=window.innerWidth<=700?(lowPower||window.innerWidth<=420?33:24):16;
+      const interval=ios?33:window.innerWidth<=700?(lowPower||window.innerWidth<=420?33:24):16;
       if(time-lastFrameTime<interval){frame=window.requestAnimationFrame(tick);return}
       lastFrameTime=time;
       draw();
@@ -153,9 +197,9 @@ export default function ScrollMotion(){
         preparePath();
         const usableHeight=window.innerHeight-98;
         const banner=root.querySelector('.campaignBanner');
-        if(banner)banner.classList.toggle('campaignBanner--sticky',compact&&window.innerHeight>=640&&banner.offsetHeight<=usableHeight);
+        if(banner)banner.classList.toggle('campaignBanner--sticky',compact&&!ios&&window.innerHeight>=640&&banner.offsetHeight<=usableHeight);
         tourCards.forEach(card=>{
-          card.classList.toggle('tourStop--sticky',compact&&window.innerHeight>=620&&card.offsetHeight<=usableHeight);
+          card.classList.toggle('tourStop--sticky',compact&&!ios&&window.innerHeight>=620&&card.offsetHeight<=usableHeight);
           if(!compact){
             card.style.removeProperty('--tour-progress');
             card.querySelectorAll('.tourGallery__photo img').forEach(img=>{
@@ -175,16 +219,20 @@ export default function ScrollMotion(){
     window.addEventListener('scroll',schedule,{passive:true});
     window.addEventListener('resize',onResize,{passive:true});
     document.addEventListener('visibilitychange',schedule);
+    // O Safari restaura páginas do cache sem disparar resize.
+    window.addEventListener('pageshow',onResize,{passive:true});
     schedule();
 
     return ()=>{
       window.removeEventListener('scroll',schedule);
       window.removeEventListener('resize',onResize);
       document.removeEventListener('visibilitychange',schedule);
+      window.removeEventListener('pageshow',onResize);
+      if(iosGalleryObserver)iosGalleryObserver.disconnect();
       if(frame)window.cancelAnimationFrame(frame);
       if(observer)observer.disconnect();
       items.forEach(el=>el.classList.remove('motion-reveal','motion-pending'));
-      root.classList.remove('motion-active','motion-lite');
+      root.classList.remove('motion-active','motion-lite','motion-ios');
     };
   },[]);
   return null;
