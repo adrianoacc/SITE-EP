@@ -1,4 +1,5 @@
 'use client';
+import Image from 'next/image';
 
 import {useEffect, useRef, useState} from 'react';
 
@@ -115,8 +116,8 @@ export default function EmotionWorld() {
           <span className="emotionWorld__orbit emotionWorld__orbit--two" aria-hidden="true"/>
           <span className="emotionWorld__star emotionWorld__star--one" aria-hidden="true">✳</span>
           <span className="emotionWorld__star emotionWorld__star--two" aria-hidden="true">✦</span>
-          <img className="emotionWorld__logo" src="/Oficina das Emoções Colorida.png" alt="Oficina das Emoções" loading="lazy" decoding="async"/>
-          <img className="emotionWorld__friends" src="/turma-socioemocional.png" alt="Personagens coloridos da Oficina das Emoções" loading="lazy" decoding="async"/>
+          <Image className="emotionWorld__logo" src="/Oficina das Emoções Colorida.png" alt="Oficina das Emoções" width={900} height={500} sizes="(max-width: 700px) 62vw, 325px" quality={76} loading="lazy"/>
+          <Image className="emotionWorld__friends" src="/turma-socioemocional.png" alt="Personagens coloridos da Oficina das Emoções" width={900} height={900} sizes="(max-width: 700px) 88vw, 700px" quality={76} loading="lazy"/>
           {discoveries.map((discovery, index) => (
             <button
               key={discovery.key}
