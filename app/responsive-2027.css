@@ -250,3 +250,12 @@
   .epSite .tourGallery__photo{translate:none!important;opacity:1!important}
   .epSite .tourGallery__photo img{transition:none!important;transform:scale(1.055)!important}
 }
+
+/* A faixa de matrículas permanece por um instante enquanto a próxima
+   seção sobe por cima dela, somente quando toda a faixa cabe no aparelho. */
+@media(max-width:950px) and (min-height:640px) and (prefers-reduced-motion:no-preference){
+  .epSite > .campaignBanner.campaignBanner--sticky{
+    position:sticky!important;
+    top:72px!important;
+  }
+}
