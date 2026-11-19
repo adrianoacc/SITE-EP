@@ -59,17 +59,17 @@
 .spaceList article::after {display:none!important}
 .spaceList article:nth-child(1) {
   grid-column:span 2!important;grid-row:span 2!important;
-  background-image:url('/12_parquinho_01.jpg')!important;
+  background-image:url('/Fachada Vibrante da Escola Parque.png')!important;
 }
-.spaceList article:nth-child(2) {background-image:url('/14_parquinho_02.jpg')!important}
-.spaceList article:nth-child(3) {background-image:url('/11_quadra_esportiva.jpg')!important}
-.spaceList article:nth-child(4) {background-image:url('/sala de leitura.png')!important}
-.spaceList article:nth-child(5) {background-image:url('/05_sala_de_aula.png')!important}
-.spaceList article:nth-child(6) {background-image:url('/area de convivencia.png')!important}
-.spaceList article:nth-child(7) {background-image:url('/cantina.png')!important}
-.spaceList article:nth-child(8) {background-image:url('/Pátio Escolar Colorido com Caminho Numérico.png')!important}
-.spaceList article:nth-child(9) {background-image:url('/Fachada Vibrante da Escola Parque.png')!important}
-.spaceList article:nth-child(4),.spaceList article:nth-child(7) {
+.spaceList article:nth-child(2) {background-image:url('/12_parquinho_01.jpg')!important}
+.spaceList article:nth-child(3) {background-image:url('/14_parquinho_02.jpg')!important}
+.spaceList article:nth-child(4) {background-image:url('/11_quadra_esportiva.jpg')!important}
+.spaceList article:nth-child(5) {background-image:url('/sala de leitura.png')!important}
+.spaceList article:nth-child(6) {background-image:url('/05_sala_de_aula.png')!important}
+.spaceList article:nth-child(7) {background-image:url('/area de convivencia.png')!important}
+.spaceList article:nth-child(8) {background-image:url('/cantina.png')!important}
+.spaceList article:nth-child(9) {background-image:url('/Pátio Escolar Colorido com Caminho Numérico.png')!important}
+.spaceList article:nth-child(5),.spaceList article:nth-child(8) {
   background-size:cover!important;background-position:center 55%!important;
   background-repeat:no-repeat!important;
 }
