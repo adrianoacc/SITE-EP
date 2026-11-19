@@ -607,7 +607,9 @@
     box-shadow:0 16px 36px rgba(12,57,37,.26),0 3px 8px rgba(12,57,37,.11);
   }
   .epSite .tourStop:not(:last-child){padding-bottom:34px!important}
-  .epSite .tourStop + .tourStop{margin-top:-36px!important}
+  /* Intervalo real entre capitulos: a sobreposicao acontece somente
+     durante a rolagem, sem deixar as bordas dos cartoes amontoadas. */
+  .epSite .tourStop + .tourStop{margin-top:22px!important}
   .epSite .tourStop__topline{margin-bottom:11px!important;font-size:12px}
   .epSite .tourStop__marker{width:31px;height:31px;font-size:13px}
   .epSite .tourStop__eyebrow{font-size:10px;letter-spacing:.12em}
@@ -623,7 +625,7 @@
     font-size:11px!important;
   }
   .epSite .tourStop__sparkle{font-size:19px}
-  .epSite .tourGallery{gap:7px!important}
+  .epSite .tourGallery{gap:11px!important}
   .epSite .tourGallery--1{height:clamp(185px,43vw,235px)}
   .epSite .tourGallery--2{grid-template-columns:repeat(2,minmax(0,1fr));height:clamp(175px,42vw,213px)}
   .epSite .tourGallery--2 .tourGallery__photo{height:auto;min-height:0;margin:0!important}
@@ -645,6 +647,10 @@
     position:sticky!important;
     top:var(--tour-sticky-top,74px)!important;
   }
+}
+@media(min-width:701px) and (max-width:950px){
+  .epSite .tourStop + .tourStop{margin-top:26px!important}
+  .epSite .tourStop:not(:last-child){padding-bottom:43px!important}
 }
 @media(max-width:360px){
   .epSite .tourStop{padding:17px 14px!important;gap:11px!important}
