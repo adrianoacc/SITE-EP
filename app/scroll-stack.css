@@ -15,6 +15,7 @@
 .epSite > .emotionWorld,
 .epSite > .structure,
 .epSite > .integral,
+.epSite > .dailyRoutine,
 .epSite > .enrollment,
 .epSite > .contact,
 .epSite > footer{
@@ -32,7 +33,7 @@
 .epSite > .bilingual{z-index:5}
 .epSite > .emotion,.epSite > .emotionWorld{z-index:6}
 .epSite > .structure{z-index:7}
-.epSite > .integral{z-index:8}
+.epSite > .integral,.epSite > .dailyRoutine{z-index:8}
 .epSite > .enrollment{z-index:9}
 .epSite > .contact{z-index:10}
 .epSite > footer{z-index:11}
