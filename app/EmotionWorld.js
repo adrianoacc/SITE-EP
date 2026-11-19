@@ -57,10 +57,11 @@ export default function EmotionWorld() {
     if (!section || !trail) return;
 
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const ios = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
     let frame = 0;
     const updateTrail = () => {
       frame = 0;
-      if (reduceMotion) {
+      if (reduceMotion || ios) {
         trail.style.setProperty('--emotion-trail-progress', '1');
         return;
       }
@@ -75,7 +76,10 @@ export default function EmotionWorld() {
     };
 
     let observer;
-    if ('IntersectionObserver' in window) {
+    if (ios) {
+      section.classList.add('emotionWorld--revealed');
+      trail.classList.add('emotionWorld--revealed');
+    } else if ('IntersectionObserver' in window) {
       observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
           if (!entry.isIntersecting) return;
@@ -90,8 +94,10 @@ export default function EmotionWorld() {
       trail.classList.add('emotionWorld--revealed');
     }
 
-    window.addEventListener('scroll', schedule, {passive:true});
-    window.addEventListener('resize', schedule);
+    if (!ios && !reduceMotion) {
+      window.addEventListener('scroll', schedule, {passive:true});
+      window.addEventListener('resize', schedule);
+    }
     schedule();
     return () => {
       window.removeEventListener('scroll', schedule);
