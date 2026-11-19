@@ -91,10 +91,13 @@ export default function EnrollmentExplorer() {
           </div>
 
           <aside className="enrollmentExplorer__result" aria-labelledby="enrollmentExplorerSelection">
-            <div className="enrollmentExplorer__drawing" aria-hidden="true">
-              <span className="enrollmentExplorer__flower">✳</span>
-              <span className="enrollmentExplorer__star">✦</span>
-              <svg viewBox="0 0 260 135" fill="none"><path d="M12 100C56 30 90 129 130 56S215 19 245 64" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeDasharray="1 12"/><path d="M233 49l13 15-20 6" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/></svg>
+            <div className="enrollmentExplorer__mascot" key={stage + turma.name}>
+              <span className="enrollmentExplorer__mascotHalo" aria-hidden="true"/>
+              <div className="enrollmentExplorer__mascotPortrait">
+                <img src="/Mascote Laranja com Coroa de Folhas.png" alt="Mascote da Escola Parque dando boas-vindas"/>
+              </div>
+              <span className="enrollmentExplorer__mascotSpeech">{stage === 'infantil' && selected === 0 ? 'Oi, família!' : 'Vamos conhecer?'}</span>
+              <span className="enrollmentExplorer__mascotSpark" aria-hidden="true">✦</span>
             </div>
             <span className="enrollmentExplorer__resultBadge"><span aria-hidden="true">●</span> SUA TURMA PARA CONHECER</span>
             <div className="enrollmentExplorer__resultCopy" key={stage + turma.name} aria-live="polite" aria-atomic="true">
